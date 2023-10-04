@@ -1,6 +1,6 @@
 package experiment;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class TestBoardCell {
@@ -21,8 +21,9 @@ public class TestBoardCell {
 
 
 	public void addAdjacency(TestBoardCell cell) {
-//		adjacencyMatrix = new Set<TestBoardCell>();
+		adjacencyMatrix = new LinkedHashSet<TestBoardCell>();
 		adjacencyMatrix.add(cell);
+		
 		
 	}
 	
