@@ -20,12 +20,12 @@ public class TestBoardCell {
 
 
 
-//	public void addAdjacency(TestBoardCell cell) {
-////		adjacencyMatrix = new Set<TestBoardCell>();
-//		adjacencyMatrix.add(cell);
-//		
-//	}
-//	
+	public void addAdjacency(TestBoardCell cell) {
+//		adjacencyMatrix = new Set<TestBoardCell>();
+		adjacencyMatrix.add(cell);
+		
+	}
+	
 	
 	
 	
