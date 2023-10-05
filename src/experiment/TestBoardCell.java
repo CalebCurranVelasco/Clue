@@ -9,6 +9,7 @@ public class TestBoardCell {
 	private int column;
 	private TestBoardCell cell;
 	private Set<TestBoardCell> adjacencyMatrix;
+	private boolean test;
 	
 	
 	
