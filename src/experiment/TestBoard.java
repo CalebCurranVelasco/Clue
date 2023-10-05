@@ -1,5 +1,8 @@
 package experiment;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class TestBoard {
 	
 	public void testBoard() {
@@ -17,6 +20,9 @@ public class TestBoard {
 	
 	
 	public Set<TestBoardCell> getTartgets() {
+		
+		HashSet<TestBoardCell> newSet = new HashSet<TestBoardCell> ();
+		return newSet;
 		
 	}
 }
