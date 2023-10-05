@@ -17,6 +17,24 @@ public class TestBoardCell {
 		cell.column = column;
 	
 	}
+	public void setRoom(boolean bool) {
+		
+		
+	}
+	
+	public boolean isRoom() {
+		return false;
+		
+	}
+	
+	public void setOccupied(boolean bool) {
+		
+	}
+	
+	public boolean getOccupied() {
+		return false;
+		
+	}
 
 
 
@@ -24,9 +42,11 @@ public class TestBoardCell {
 		adjacencyMatrix = new LinkedHashSet<TestBoardCell>();
 		adjacencyMatrix.add(cell);
 		
-		
 	}
 	
+	Set<TestBoardCell> getAdjList() {
+		return adjacencyMatrix;
+	}
 	
 	
 	
