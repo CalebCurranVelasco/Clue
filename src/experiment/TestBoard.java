@@ -19,9 +19,9 @@ public class TestBoard {
 	}
 	
 	
-	public Set<TestBoardCell> getTartgets() {
+	public Set<TestBoardCell> getTargets() {
 		
-		HashSet<TestBoardCell> newSet = new HashSet<TestBoardCell> ();
+		Set<TestBoardCell> newSet = new HashSet<TestBoardCell> ();
 		return newSet;
 		
 	}

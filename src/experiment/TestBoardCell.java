@@ -1,7 +1,6 @@
 package experiment;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class TestBoardCell {
@@ -9,16 +8,16 @@ public class TestBoardCell {
 	private int row;
 	private int column;
 	private TestBoardCell cell;
-	private Set<TestBoardCell> adjacencyMatrix;
+	private Set<TestBoardCell> adjacencyList;
 	private boolean test;
 	
 	
-	
 	public TestBoardCell(int row, int column) {
-//		cell.row = row;
-//		cell.column = column;
-	
+		this.row = row;
+		this.column = column;
+		adjacencyList = new HashSet<TestBoardCell>();
 	}
+	
 	public void setRoom(boolean bool) {
 		
 		
@@ -38,20 +37,12 @@ public class TestBoardCell {
 		
 	}
 
-
-
 	public void addAdjacency(TestBoardCell cell) {
-		adjacencyMatrix = new HashSet<TestBoardCell>();
-		adjacencyMatrix.add(cell);
-		
+		adjacencyList.add(cell);
 	}
 	
-	Set<TestBoardCell> getAdjList() {
-		return adjacencyMatrix;
+	public Set<TestBoardCell> getAdjList() {
+		return adjacencyList;
 	}
-	
-	
-	
-	
 
 }
