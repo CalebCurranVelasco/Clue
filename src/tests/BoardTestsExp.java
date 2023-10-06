@@ -22,20 +22,21 @@ public class BoardTestsExp {
 	/*
 	 * The test below tests the cell [0, 0] and ensures that [1, 0] and [0, 1] are the only adjacent spots in the list
 	 */
+	
 	@Test
 	public void testAdjacency() {
 		
-		TestBoardCell cell = board.getCell(0, 0);
-		Set<TestBoardCell> testList = cell.getAdjList();
-		Assert.assertTrue(testList.contains(board.getCell(1, 0)));
-		Assert.assertTrue(testList.contains(board.getCell(0, 1)));
+		TestBoardCell cell = board.getCell(0, 0);	// Sets cell
+		Set<TestBoardCell> testList = cell.getAdjList();	// Gets list of all adjacent spots on board
+		Assert.assertTrue(testList.contains(board.getCell(1, 0)));	// Ensures that [1, 0] is an adjacent spot from [0, 0]
+		Assert.assertTrue(testList.contains(board.getCell(0, 1)));	// Enures that [0, 1] is an adjacent spot from [0, 0]
 		Assert.assertEquals(2, testList.size());
 	}
 
 	
 	
 	/*
-	 * The test below tests the cell [0, 0] and ensures that, with a roll of 3, what are the possible cells that I could reach
+	 * The test below tests the cell [0, 0] and ensures that, with a roll of 4, what are the possible cells that I could reach
 	 * from that inital cell. 
 	 */
 	
@@ -43,7 +44,7 @@ public class BoardTestsExp {
 	public void testTargetsNormal() {
 		
 		TestBoardCell cell = board.getCell(0, 0);
-		board.calcTargets(cell, 3);
+		board.calcTargets(cell, 4);
 		Set<TestBoardCell> targets = board.getTargets();
 		Assert.assertEquals(6, targets.size());
 		Assert.assertTrue(targets.contains(board.getCell(3,0)));
@@ -86,9 +87,9 @@ public class BoardTestsExp {
 	 * The test below tests the cell [3, 0] and ensures that, with the max roll of 6, what are the possible cells that I could reach
 	 * from that initial cell.
 	 * 
-	 * 
+	 * This test should pass once the code is implemented IF AND ONLY IF the tests above pass.
 	 */
-	
+
 	@Test
 	public void testMaxRoll() {
 		
@@ -105,6 +106,32 @@ public class BoardTestsExp {
 
 	}
 	
+	/*
+	 * The test below tests the cell [2, 2] and ensures that, with a roll of 3, what are the possible cells that I could reach
+	 * from that initial cell.
+	 * 
+	 * This test should have 8 available spots for a 4x4 board. This will later have to be modified if it fails for actual clue board.
+	 */
+	
+	@Test
+	public void middleOfBoard() {
+		TestBoardCell cell = board.getCell(2, 2);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertTrue(targets.contains(board.getCell(1, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(0, 1)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 1)));
+		Assert.assertTrue(targets.contains(board.getCell(1, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(0, 3)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 3)));
+	}
+	
+	@Test
+	public void testMixedAdjacency() {
+		
+	}
 	
 	
 	
