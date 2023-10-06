@@ -128,8 +128,23 @@ public class BoardTestsExp {
 		Assert.assertTrue(targets.contains(board.getCell(2, 3)));
 	}
 	
+	
+	/*
+	 * The test below tests the cell [1, 2] and ensures that [1, 3] and [2, 2] are adjacent spots in the list.
+	 * [1, 1] and [0, 2] are adjacent spots that have occupied that cell, but we're not testing whether the cell is occupied.
+	 * We are simply testing to make sure that these 2 cells are adjacent to the initial one.
+	 */
 	@Test
 	public void testMixedAdjacency() {
+		board.getCell(1, 1).setOccupied(true);
+		board.getCell(0, 2).setOccupied(true);
+		TestBoardCell cell = board.getCell(1, 2);
+		Set<TestBoardCell> testList = cell.getAdjList();
+		Assert.assertTrue(testList.contains(board.getCell(1, 3)));
+		Assert.assertTrue(testList.contains(board.getCell(2, 2)));
+		Assert.assertTrue(testList.contains(board.getCell(0, 2)));
+		Assert.assertTrue(testList.contains(board.getCell(1, 1)));
+		
 		
 	}
 	
