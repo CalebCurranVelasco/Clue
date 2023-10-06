@@ -17,6 +17,10 @@ public class BoardTestsExp {
 		
 	}
 	
+	
+	/*
+	 * The test below tests the cell [0, 0] and ensures that [1, 0] and [0, 1] are the only adjacent spots in the list
+	 */
 	@Test
 	public void testAdjacency() {
 		TestBoardCell cell = board.getCell(0, 0);
@@ -28,7 +32,10 @@ public class BoardTestsExp {
 
 	
 	
-	
+	/*
+	 * The test below tests the cell [0, 0] and ensures that, with a roll of 3, what are the possible cells that I could reach
+	 * from that inital cell. 
+	 */
 	@Test
 	public void testTargetsNormal() {
 		TestBoardCell cell = board.getCell(0, 0);
@@ -44,6 +51,35 @@ public class BoardTestsExp {
 		
 		
 	}
+	
+	
+	/*
+	 * The test below tests the cell [0, 3] and ensures that, with a roll of 3, what are the possible cells that I could reach
+	 * from that initial cell. 
+	 * 
+	 * The cell [0, 0] is occupied and [2, 2] is a room. This means that [0, 0] is not a target, but [2, 2] should be because
+	 * that cell indicates that we can enter the room through this cell. Therefore, we want to include this cell as a target.
+	 */
+	@Test
+	public void testRoom() {
+		
+		board.getCell(0,0).setOccupied(true);
+		board.getCell(2,2).setRoom(true);
+		
+		TestBoardCell cell = board.getCell(0, 3);
+		board.calcTargets(cell, 3);
+		Set<TestBoardCell> targets = board.getTargets();
+		Assert.assertEquals(4, targets.size());
+		Assert.assertFalse(targets.contains(board.getCell(0, 0)));
+		Assert.assertTrue(targets.contains(board.getCell(1, 1)));
+		Assert.assertTrue(targets.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
+		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		
+	}
+	
+	
+	
 	
 	
 	
