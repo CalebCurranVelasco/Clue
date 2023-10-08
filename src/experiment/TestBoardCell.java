@@ -7,45 +7,45 @@ public class TestBoardCell {
 	
 	private int row;
 	private int column;
-	private TestBoardCell cell;
-	private Set<TestBoardCell> adjacencyList;
-	private boolean occupied;
-	private boolean room;
+//	private TestBoardCell cell;
+	private Set<TestBoardCell> adjList;
+	private boolean isOccupied;
+	private boolean isRoom;
 	
 	
 	public TestBoardCell(int row, int column) {
 		this.row = row;
 		this.column = column;
-		adjacencyList = new HashSet<TestBoardCell>();
+		adjList = new HashSet<TestBoardCell>();
 	}
 	
 	public void setRoom(boolean bool) {
-		room = bool;
+		isRoom = bool;
 		
 		
 	}
 	
 	public boolean getRoom() {
-		return room;
+		return isRoom;
 		
 	}
 	
 	public void setOccupied(boolean bool) {
-		occupied = bool;
+		isOccupied = bool;
 		
 	}
 	
 	public boolean getOccupied() {
-		return occupied;
+		return isOccupied;
 		
 	}
 
 	public void addAdjacency(TestBoardCell cell) {
-		adjacencyList.add(cell);
+		adjList.add(cell);
 	}
 	
 	public Set<TestBoardCell> getAdjList() {
-		return adjacencyList;
+		return adjList;
 	}
 
 }

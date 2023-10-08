@@ -37,7 +37,7 @@ public class BoardTestsExp {
 	
 	/*
 	 * The test below tests the cell [0, 0] and ensures that, with a roll of 4, what are the possible cells that I could reach
-	 * from that inital cell. 
+	 * from that initial cell. 
 	 */
 	
 	@Test
@@ -147,16 +147,6 @@ public class BoardTestsExp {
 		
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 
