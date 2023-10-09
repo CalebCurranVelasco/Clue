@@ -33,6 +33,10 @@ public class Board {
     {
     }
     
+    public void setConfigFiles(String csvFile, String txtFile) {
+    	
+    }
+    
     public void loadSetupConfig() {
     	
     }
@@ -40,6 +44,28 @@ public class Board {
     public void loadLayoutConfig() {
     	
     }
+    
+	public BoardCell getCell(int row, int column) {
+		return new BoardCell(row, column);
+	}
+	
+	public Room getRoom(char label) {
+		return new Room();
+	}
+	
+	public Room getRoom(BoardCell cell) {
+		return new Room();
+	}
+	
+	public int getNumColumns() {
+		return numCols;
+	}
+	
+	public int getNumRows() {
+		return numRows;
+	}
+	
+	
 }
 
 
