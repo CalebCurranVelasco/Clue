@@ -8,36 +8,33 @@ public class TestBoardCell {
 	private int row;
 	private int column;
 //	private TestBoardCell cell;
-	private Set<TestBoardCell> adjList;
-	private boolean isOccupied;
-	private boolean isRoom;
+	public Set<TestBoardCell> adjList;
+	public boolean isOccupied;
+	public boolean isRoom;
 	
 	
 	public TestBoardCell(int row, int column) {
 		this.row = row;
 		this.column = column;
-		adjList = new HashSet<TestBoardCell>();
+		this.adjList = new HashSet<TestBoardCell>();
+		this.isOccupied = false;
+		this.isRoom = false;
 	}
 	
 	public void setRoom(boolean bool) {
 		isRoom = bool;
-		
-		
 	}
 	
 	public boolean getRoom() {
 		return isRoom;
-		
 	}
 	
 	public void setOccupied(boolean bool) {
 		isOccupied = bool;
-		
 	}
 	
 	public boolean getOccupied() {
 		return isOccupied;
-		
 	}
 
 	public void addAdjacency(TestBoardCell cell) {
