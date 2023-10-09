@@ -1,3 +1,13 @@
+/**
+ * TestBoardCell class
+ * Is a cell in the board. Holds the value of row and column as well and whether it is occupied or a room.
+ * 
+ * @author Caleb Curran-Velasco
+ * @author Joshua Ramirez Malerva
+ * 
+ * 10/8/2023
+ */
+
 package experiment;
 
 import java.util.HashSet;
@@ -7,7 +17,6 @@ public class TestBoardCell {
 	
 	private int row;
 	private int column;
-//	private TestBoardCell cell;
 	public Set<TestBoardCell> adjList;
 	public boolean isOccupied;
 	public boolean isRoom;

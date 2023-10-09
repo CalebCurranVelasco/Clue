@@ -1,3 +1,14 @@
+/**
+ * TestBoard class
+ * Finds the adjacent nodes in the graph and calculates possible target nodes given a starting node
+ * and a roll integer.
+ * 
+ * @author Caleb Curran-Velasco
+ * @author Joshua Ramirez Malerva
+ * 
+ * 10/8/2023
+ */
+
 package experiment;
 
 import java.util.HashSet;
@@ -41,12 +52,11 @@ public class TestBoard {
 		}
 	}
 	
-	public Set<TestBoardCell> calcTargets(TestBoardCell startCell, int pathLength) {
+	public void calcTargets(TestBoardCell startCell, int pathLength) {
 		this.visited = new HashSet<TestBoardCell>();
 		this.targets = new HashSet<TestBoardCell>();
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
-		return targets;
 	}
 	
 	public void findAllTargets(TestBoardCell startCell, int pathLength) {
@@ -56,6 +66,7 @@ public class TestBoard {
 				continue;
 			} else {
 				visited.add(cell);
+				
 				if (pathLength == 1 || cell.isRoom) { // found target since adj cells are one cell away
 					targets.add(cell);
 					startCell.addAdjacency(cell);

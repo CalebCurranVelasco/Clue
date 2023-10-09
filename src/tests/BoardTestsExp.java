@@ -1,5 +1,7 @@
 package tests;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Set;
 import experiment.TestBoard;
 import experiment.TestBoardCell;
@@ -44,7 +46,7 @@ public class BoardTestsExp {
 	public void testTargetsNormal() {
 		
 		TestBoardCell cell = board.getCell(0, 0);
-		board.calcTargets(cell, 4);
+		board.calcTargets(cell, 3); //changed to 3
 		Set<TestBoardCell> targets = board.getTargets();
 		Assert.assertEquals(6, targets.size());
 		Assert.assertTrue(targets.contains(board.getCell(3,0)));
@@ -74,12 +76,14 @@ public class BoardTestsExp {
 		TestBoardCell cell = board.getCell(0, 3);
 		board.calcTargets(cell, 3);
 		Set<TestBoardCell> targets = board.getTargets();
-		Assert.assertEquals(4, targets.size()); // changed to 5
+		Assert.assertEquals(5, targets.size()); // changed to 5
 		Assert.assertFalse(targets.contains(board.getCell(0, 0)));
 		Assert.assertTrue(targets.contains(board.getCell(1, 1)));
-		Assert.assertTrue(targets.contains(board.getCell(1, 3)));
+		Assert.assertTrue(targets.contains(board.getCell(1, 3))); 
 		Assert.assertTrue(targets.contains(board.getCell(3, 3)));
 		Assert.assertTrue(targets.contains(board.getCell(2, 2)));
+		Assert.assertTrue(targets.contains(board.getCell(0, 2))); // added this
+		
 		
 	}
 	
