@@ -1,0 +1,118 @@
+I, Caleb Curran-Velasco, certify that I participated equitably in the creation of assignment C14A-1, dated 10/8/2023.
+I, Joshua Ramirez Malerva, certify that I participated equitably in the creation of this assignment C14A-1, dated 10/8/2023.
+
+commit 8a6a0521b0fb986fe2203e89c95ed747ea53dfd4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 22:08:16 2023 -0600
+
+    finished the TestBoard class and code now passes all tests
+
+commit 88f62458c090874d2909c43bebcba7865d152ac4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 18:06:27 2023 -0600
+
+    implementing adj list and finding targets algorithm
+
+commit 35f3003776a07b5f10d08555a78aaa86fc58c3f5
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 13:20:45 2023 -0600
+
+    added code to calculate adjacency list
+
+commit 298e585af6c66b1f4df77d32cd2560867ecd8bdf
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 13:18:20 2023 -0600
+
+    Implemented testMixedAdjacency() test
+
+commit 7930caebcbc1654afd08e86abdaaeef82977005e
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 12:48:41 2023 -0600
+
+    Implemented middleOfBoard() test
+
+commit e65cf6745bb35a0858fcb5ac41f5f4907b3488a9
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 12:02:08 2023 -0600
+
+    Implemented the testMaxRoll() test
+
+commit 1ec8343d592fa326f233c86dde0e113c7f50bb1c
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 11:43:16 2023 -0600
+
+    Implemented testRooms() function to test rooms using a roll of 3
+
+commit c37a50ca53b67a4bd1585267e0e5fb6c3b1410bb
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 10:30:56 2023 -0600
+
+    Added 2 tests from examples that fail without error
+
+commit 88e5cc2bcdd9fa01918b6f7381d62203ca7c863f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 15:35:12 2023 -0600
+
+    changes to the test
+
+commit 465decaf5e1c0a1fa76a667c776b4ba41670b7e9
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:48:54 2023 -0600
+
+    Added all skeleton functions! Ready to create JUnit tests
+
+commit 21fe04e5743c9ca93df6c1510ca4534f13c04f56
+Merge: 9de93c6 998a384
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:38:05 2023 -0600
+
+    Stuff
+
+commit 9de93c6de197182aecc73891af6f57bcb9bc6f58
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:33:48 2023 -0600
+
+    Test commit
+
+commit 998a384e83d217aebabc993e1042ca48a5031638
+Merge: 07c1186 956b20f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 14:31:54 2023 -0600
+
+    ignore
+
+commit 07c1186492b4f277e39e2c2dc7d0421d91e85f04
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 14:24:51 2023 -0600
+
+    gitignore file
+
+commit 956b20f542fd7e09f80a9983b02bf1145b6049e4
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:18:34 2023 -0600
+
+    Created skeleton functions
+
+commit abe0d231da8fd8241474b395f151b35a2e2d85f7
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 23:23:48 2023 -0600
+
+    Updated addAdjacency() function with a LinkedHashSet
+
+commit 3cdb83df8215743a134e8e131d4fe7a8479e2095
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:03:27 2023 -0600
+
+    Created addAdjacency() function, but not fully working yet
+
+commit 1eae531c57337802c567534d94b84f5d1ba9281f
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:02:51 2023 -0600
+
+    Added class variables and created constructor with 2 parameters
+
+commit 83fa8c6b8b4fca7b50a07fa44189cd807a3ebda5
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:01:00 2023 -0600
+
+    Adding all src and bin files to commit
