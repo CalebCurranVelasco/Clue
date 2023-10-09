@@ -1,3 +1,13 @@
+/**
+ * Room class
+ * Holds information related to a room. 
+ * 
+ * @author Caleb Curran-Velasco
+ * @author Joshua Ramirez Malerva
+ * 
+ * 10/9/2023
+ */
+
 package clueGame;
 
 public class Room {

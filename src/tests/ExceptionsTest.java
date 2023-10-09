@@ -1,3 +1,8 @@
+/*
+ * This program tests that, when loading config files, exceptions 
+ * are thrown appropriately.
+ */
+
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;

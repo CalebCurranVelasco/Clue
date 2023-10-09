@@ -1,3 +1,13 @@
+/**
+ * Board class
+ * Holds the board for the clue game. 
+ * 
+ * @author Caleb Curran-Velasco
+ * @author Joshua Ramirez Malerva
+ * 
+ * 10/9/2023
+ */
+
 package clueGame;
 
 import java.util.HashSet;
@@ -49,7 +59,7 @@ public class Board {
 		return new BoardCell(row, column);
 	}
 	
-	public Room getRoom(char label) {
+	public Room getRoom(String label) {
 		return new Room();
 	}
 	

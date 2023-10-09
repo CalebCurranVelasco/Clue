@@ -1,3 +1,13 @@
+/**
+ * BoardCell class
+ * Holds info for each cell in the board including its adjacency list. 
+ * 
+ * @author Caleb Curran-Velasco
+ * @author Joshua Ramirez Malerva
+ * 
+ * 10/9/2023
+ */
+
 package clueGame;
 
 import java.util.Set;
@@ -11,7 +21,7 @@ public class BoardCell {
 	private DoorDirection doorDirection;
 	private boolean roomLabel;
 	private boolean roomCenter;
-	private char secretPassage;
+	private String secretPassage;
 	private boolean isLabel;
 //	public boolean isOccupied; 
 //	public boolean isRoom;
@@ -45,10 +55,6 @@ public class BoardCell {
 		return initial;
 	}
 
-	public void setInitial(char initial) {
-		this.initial = initial;
-	}
-
 	public DoorDirection getDoorDirection() {
 		return doorDirection;
 	}
@@ -61,7 +67,7 @@ public class BoardCell {
 		return roomCenter;
 	}
 
-	public char getSecretPassage() {
+	public String getSecretPassage() {
 		return secretPassage;
 	}
 	
