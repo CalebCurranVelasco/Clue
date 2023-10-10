@@ -1,12 +1,12 @@
 // Rooms and room cards
 Room, Shrine, S
-Room, Hidden Room, HR
+Room, Hidden Room, H
 Room, Dojo, D
-Room, Cursed Warehouse, CW
+Room, Cursed Warehouse, C
 Room, Forest, F
-Room, Training Grounds, TG
-Room, Underground Tombs, UT
-Room, Isolation Chamber, IC
+Room, Training Grounds, G
+Room, Underground Tombs, U
+Room, Isolation Chamber, I
 Room, Temple, T
 // Other spaces on board
 Space, Unused, X

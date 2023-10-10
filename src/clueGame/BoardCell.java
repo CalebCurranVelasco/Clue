@@ -21,7 +21,7 @@ public class BoardCell {
 	private DoorDirection doorDirection;
 	private boolean roomLabel;
 	private boolean roomCenter;
-	private String secretPassage;
+	private char secretPassage;
 	private boolean isLabel;
 //	public boolean isOccupied; 
 //	public boolean isRoom;
@@ -67,7 +67,7 @@ public class BoardCell {
 		return roomCenter;
 	}
 
-	public String getSecretPassage() {
+	public char getSecretPassage() {
 		return secretPassage;
 	}
 	
