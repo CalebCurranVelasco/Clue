@@ -1,5 +1,23 @@
-I, Caleb Curran-Velasco, certify that I participated equitably in the creation of assignment C14A-1, dated 10/8/2023.
-I, Joshua Ramirez Malerva, certify that I participated equitably in the creation of this assignment C14A-1, dated 10/8/2023.
+I, Caleb Curran-Velasco, certify that I participated equitably in the creation of assignment C14A-2, dated 10/9/2023.
+I, Joshua Ramirez Malerva, certify that I participated equitably in the creation of this assignment C14A-2, dated 10/9/2023.
+
+commit 2f589f9bc17334d30b4102a49464f1f3717fe3db
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 14:29:38 2023 -0600
+
+    added Test.txt and added comment headers to the classes
+
+commit ed4a178467867befb5f7c645e6e488eba130aa10
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 13:57:12 2023 -0600
+
+    Changes to the clueGame package and tests package, all tests fail with no errors
+
+commit a2c7b807f68759279453809fa8410ed25bc0e9df
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 11:00:17 2023 -0600
+
+    Skeleton classes and basic function for clueGame package, imported clueLayout.csv and example tests and files
 
 commit 8a6a0521b0fb986fe2203e89c95ed747ea53dfd4
 Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
