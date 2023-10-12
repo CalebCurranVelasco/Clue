@@ -12,6 +12,8 @@ package clueGame;
 
 public class Room {
 	private String name;
+	private String roomName;
+	private String roomLabel;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
@@ -25,6 +27,12 @@ public class Room {
 	
 	public BoardCell getLabelCell() {
 		return labelCell;
+	}
+	
+	public Room(String name, String label) {
+		this.roomName = name;
+		this.roomLabel = label;
+		
 	}
 	
 	
