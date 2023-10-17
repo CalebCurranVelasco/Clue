@@ -80,7 +80,9 @@ public class Board {
 				
 				if(roomInfo[0] == "Room") {
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);	// Creates a new room object with room name and label
-					roomMap.put(roomInfo[2], tempRoom);
+					String tempString = roomInfo[2];
+					char roomLabel = tempString.charAt(0);
+					roomMap.put(roomLabel, tempRoom);
 				}
 				else if(roomInfo[0] == "Space") {
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);
