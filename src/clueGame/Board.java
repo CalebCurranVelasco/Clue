@@ -80,12 +80,21 @@ public class Board {
 				
 				if(roomInfo[0] == "Room") {
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);	// Creates a new room object with room name and label
-					String tempString = roomInfo[2];
-					char roomLabel = tempString.charAt(0);
+					String tempString = roomInfo[2];					
+					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
 					roomMap.put(roomLabel, tempRoom);
 				}
 				else if(roomInfo[0] == "Space") {
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);
+					String tempString = roomInfo[2];					
+					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
+					roomMap.put(roomLabel, tempRoom);
+				}
+				else {
+					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);
+					String tempString = roomInfo[2];					
+					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
+					roomMap.put(roomLabel, tempRoom);
 				}
 			}				
 		}
