@@ -90,12 +90,6 @@ public class Board {
 					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
 					roomMap.put(roomLabel, tempRoom);
 				}
-				else {
-					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);
-					String tempString = roomInfo[2];					
-					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
-					roomMap.put(roomLabel, tempRoom);
-				}
 			}				
 		}
 		 
@@ -146,7 +140,7 @@ public class Board {
 					if (roomMap.containsKey((values[i]))) {
 						continue;
 					} else {
-						throw new BadConfigFormatException();
+						throw new BadConfigFormatException("Room not found in text file");
 					}
 				}
 				
@@ -166,11 +160,14 @@ public class Board {
 	}
 	
 	public Room getRoom(char label) {
-		return new Room();
+		return roomMap.get(label);
 	}
 	
 	public Room getRoom(BoardCell cell) {
-		return new Room();
+		int cellRow = cell.getRow();
+		int cellCol = cell.getColumn();
+		BoardCell ce = grid[cellRow][cellCol];
+		return new Room("W", "walll");
 	}
 	
 	public int getNumColumns() {

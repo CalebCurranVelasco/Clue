@@ -121,7 +121,7 @@ public class FileInitTests306 {
 		
 		// this is a secret passage test
 		cell = board.getCell(3, 0);
-		room = board.getRoom( cell ) ;
+		room = board.getRoom( cell );
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Study" ) ;
 		assertTrue( cell.getSecretPassage() == 'K' );
