@@ -55,17 +55,17 @@ public class Board {
      */
     public void initialize()
     {
-		grid = new BoardCell[numRows][numCols];
-		for (int i=0; i<numRows; i++) {
-			for (int j=0; j < numCols; j++) {
-				grid[i][j] = new BoardCell(i, j);
-			}
-		}
+    	try {
+    		this.loadSetupConfig();
+    		this.loadLayoutConfig();
+		} catch (BadConfigFormatException e) {
+    		System.out.println(e.getMessage());
+    	}
     }
     
     public void setConfigFiles(String csvFile, String txtFile) {
-    	this.layoutConfigFile = String.format("data/%d", csvFile);
-    	this.setupConfigFile = String.format("data/%d", txtFile);
+    	this.layoutConfigFile = String.format("data/%s", csvFile);
+    	this.setupConfigFile = String.format("data/%s", txtFile);
     }
     
     public void loadSetupConfig() throws BadConfigFormatException {
@@ -78,21 +78,21 @@ public class Board {
 			while((line = in.readLine()) != null) {
 				String[] roomInfo = line.split(",");	// Splits line at the commas, and we store into array for easy handling
 				
-				if(roomInfo[0] == "Room") {
-					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);	// Creates a new room object with room name and label
-					String tempString = roomInfo[2];					
-					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
-					roomMap.put(roomLabel, tempRoom);
+				if("Room".equals(roomInfo[0])) {
+					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(0));	// Creates a new room object with room name and label
+					String tempString = roomInfo[2];
+					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
+					this.roomMap.put(roomLabel, tempRoom);
 				}
-				else if(roomInfo[0] == "Space") {
-					Room tempRoom = new Room(roomInfo[1], roomInfo[2]);
+				else if("Space".equals(roomInfo[0])) {
+					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(0));
 					String tempString = roomInfo[2];					
-					char roomLabel = tempString.charAt(0);	// Convert the room label from String to Char to store in map
-					roomMap.put(roomLabel, tempRoom);
+					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
+					this.roomMap.put(roomLabel, tempRoom);
 				}
-			}				
-		}
-		 
+			}
+			in.close();
+		} 
 		catch (FileNotFoundException e) {
     		System.out.println(e.getMessage());
 		} 
@@ -119,6 +119,7 @@ public class Board {
     			numRows += 1;
     		}
             br.close();
+            this.grid = new BoardCell[numRows][numCols];
     		
     	} catch (FileNotFoundException e) {
     		System.out.println(e.getMessage());
@@ -126,10 +127,8 @@ public class Board {
 			System.out.println(e1.getMessage());
 		}
     	
-        try (BufferedReader br = new BufferedReader(new FileReader(setupConfigFile))){	
+        try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){	
         	String line;
-        	String[][] valuesArray = null;
-        	valuesArray = new String[numRows][numCols];
         	
         	// populating the array with what letter it is in file
 			while ((line = br.readLine()) != null) {
@@ -137,16 +136,19 @@ public class Board {
 				
 				// checking that each room exists
 				for (int i=0; i<values.length; i++) {
-					if (roomMap.containsKey((values[i]))) {
-						continue;
+					if (this.roomMap.containsKey(values[i].charAt(0))) {
+						
+						for (int j=0; j<numCols; j++) {
+							char[] detailsArr = values[j].toCharArray();
+							System.out.println(detailsArr);
+							this.grid[i][j] = new BoardCell(i,j,detailsArr);
+						}
+						
 					} else {
 						throw new BadConfigFormatException("Room not found in text file");
 					}
 				}
 				
-				for (int i=0; i<numRows; i++) {
-					valuesArray[i] = values;
-				}
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -156,7 +158,7 @@ public class Board {
     }
     
 	public BoardCell getCell(int row, int column) {
-		return new BoardCell(row, column);
+		return this.grid[row][column];
 	}
 	
 	public Room getRoom(char label) {
@@ -164,10 +166,8 @@ public class Board {
 	}
 	
 	public Room getRoom(BoardCell cell) {
-		int cellRow = cell.getRow();
-		int cellCol = cell.getColumn();
-		BoardCell ce = grid[cellRow][cellCol];
-		return new Room("W", "walll");
+		char initial = this.getCell(cell.getRow(),cell.getColumn()).getInitial();
+		return this.getRoom(initial);
 	}
 	
 	public int getNumColumns() {
@@ -180,5 +180,3 @@ public class Board {
 	
 	
 }
-
-

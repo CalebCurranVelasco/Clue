@@ -43,7 +43,12 @@ class FileInitTests {
 	public void testRoomLabels() {
 		// To ensure data is correctly loaded, test retrieving a few rooms
 		// from the hash, including the first and last in the file and a few others
+//		System.out.println("Room 'S' name: " + board.getRoom('S'));
 		assertEquals("Underground Tombs", board.getRoom('U').getName() );
+//		System.out.println("Room 'U' name: " + board.getRoom('U').getName());
+		
+		// Add similar statements for other room labels
+
 		assertEquals("Shrine", board.getRoom('S').getName() );
 		assertEquals("Dojo", board.getRoom('D').getName() );
 		assertEquals("Isolation Chamber", board.getRoom('I').getName() );
@@ -87,6 +92,7 @@ class FileInitTests {
 		for (int row = 0; row < board.getNumRows(); row++)
 			for (int col = 0; col < board.getNumColumns(); col++) {
 				BoardCell cell = board.getCell(row, col);
+				System.out.println("helllll");
 				if (cell.isDoorway())
 					numDoors++;
 			}

@@ -10,6 +10,7 @@
 
 package clueGame;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import experiment.TestBoardCell;
@@ -22,61 +23,90 @@ public class BoardCell {
 	private boolean roomLabel;
 	private boolean roomCenter;
 	private char secretPassage;
-	private boolean isLabel;
+//	private boolean isDoorway;
 //	public boolean isOccupied; 
 //	public boolean isRoom;
 	public Set<BoardCell> adjList;
 	
 	
 	
-	public BoardCell(int row, int column) {
+	public BoardCell(int row, int column, char[] detailsArr) {
 		super();
 		this.row = row;
 		this.column = column;
+		this.initial = detailsArr[0];
+		this.roomLabel = false;
+		this.roomCenter = false;
+//		this.isDoorway = false;
+		this.doorDirection = DoorDirection.NONE;
+		this.adjList = new HashSet<BoardCell>();
+
+		
+		if (detailsArr.length > 1) {			
+			if (detailsArr[1] == '^') {
+				this.doorDirection = DoorDirection.UP;
+//				this.isDoorway = true;
+			} else if (detailsArr[1] == '<') {
+				this.doorDirection = DoorDirection.LEFT;
+//				this.isDoorway = true;
+			} else if (detailsArr[1] == '>') {
+				this.doorDirection = DoorDirection.RIGHT;
+//				this.isDoorway = true;
+			} else if (detailsArr[1] == 'v') {
+				this.doorDirection = DoorDirection.DOWN;
+//				this.isDoorway = true;
+			} else if (detailsArr[1] == '#') {
+				this.roomLabel = true;
+			} else if (detailsArr[1] == '*') {
+				this.roomCenter = true;
+			} else {
+				this.secretPassage = detailsArr[1];
+			}
+		}
 	}
+	
 
 	public void addAdj(BoardCell adj) {
 		adjList.add(adj);
 	}
 	
 	public boolean isDoorway() {
-		return false;
+		if (this.doorDirection == DoorDirection.NONE || this.doorDirection == null) {
+			return false;
+		}
+		return true;
 	}
 
 	public int getRow() {
-		return row;
+		return this.row;
 	}
 
 	public int getColumn() {
-		return column;
+		return this.column;
 	}
 
 	public char getInitial() {
-		return initial;
+		return this.initial;
 	}
 
 	public DoorDirection getDoorDirection() {
-		return doorDirection;
+		return this.doorDirection;
 	}
 
-	public boolean isRoomLabel() {
-		return roomLabel;
+	public boolean isLabel() {
+		return this.roomLabel;
 	}
 
 	public boolean isRoomCenter() {
-		return roomCenter;
+		return this.roomCenter;
 	}
 
 	public char getSecretPassage() {
-		return secretPassage;
-	}
-	
-	public boolean isLabel() {
-		return false;
+		return this.secretPassage;
 	}
 
 	public Set<BoardCell> getAdjList() {
-		return adjList;
+		return this.adjList;
 	}
 
 	public void setAdjList(Set<BoardCell> adjList) {

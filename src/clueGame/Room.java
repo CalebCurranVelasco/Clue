@@ -12,14 +12,13 @@ package clueGame;
 
 public class Room {
 	private String name;
-	private String roomName;
-	private String roomLabel;
+	private char label;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
-	public Room(String name, String label) {
-		this.roomName = name;
-		this.roomLabel = label;
+	public Room(String name, char label) {
+		this.name = name;
+		this.label = label;
 	}
 	
 	public String getName() {
@@ -33,6 +32,12 @@ public class Room {
 	public BoardCell getLabelCell() {
 		return labelCell;
 	}
+
+	@Override
+	public String toString() {
+		return "Room [name=" + name + ", label=" + label + "]";
+	}
+	
 	
 
 	
