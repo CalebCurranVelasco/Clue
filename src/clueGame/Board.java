@@ -16,11 +16,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+
+
 
 import experiment.TestBoardCell;
 
@@ -105,10 +109,20 @@ public class Board {
     
     // The CSV file
     public void loadLayoutConfig() throws BadConfigFormatException {
-    	try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){
+//    	BOMInputStream bis = new BOMInputStream(layoutConfigFile.getInputStream());
+    	try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile, StandardCharsets.UTF_8))){
     		String line;
     		numRows = 0;
     		numCols = 0;
+    		
+            // Read the file and check for BOM
+            if (br.markSupported()) {
+                br.mark(1);
+                int bomChar = br.read();
+                if (bomChar != 0xFEFF) {
+                    br.reset(); // Reset the reader position if there's no BOM
+                }
+            }
 
     		// to get numRows and numCols
     		while ((line = br.readLine()) != null) {
@@ -130,18 +144,53 @@ public class Board {
 			System.out.println(e1.getMessage());
 		}
     	
-        try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){	
+        try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile, StandardCharsets.UTF_8))){	
         	String line;
+            // Read the file and check for BOM
+            if (br.markSupported()) {
+                br.mark(1);
+                int bomChar = br.read();
+                if (bomChar != 0xFEFF) {
+                    br.reset(); // Reset the reader position if there's no BOM
+                }
+            }
         	
         	// populating the array with what letter it is in file
         	int i=0;
 			while ((line = br.readLine()) != null) {
 				String[] values = line.strip().split(",");
 				
+				
 				// checking that each room exists
 				
 				for (int j=0; j<values.length; j++) {
-					if (this.roomMap.containsKey(values[j].charAt(0))) {
+					System.out.println(values[j].length());
+//					
+					if (values[j].length() > 1 && values[j].charAt(1) != '#' && values[j].charAt(1) != '*' && values[j].charAt(1) != '^' && values[j].charAt(1) != '>' && values[j].charAt(1) != '<' && values[j].charAt(1) != 'v') {
+						System.out.println(values[j].charAt(0));
+						System.out.println(values[j].charAt(1));
+						System.out.println("heeeeee");
+						if (this.roomMap.containsKey(values[j].charAt(1))) {
+							char[] detailsArr = values[j].toCharArray();
+							this.grid[i][j] = new BoardCell(i,j);
+//							System.out.println("before");
+							grid[i][j].setDetails(detailsArr);
+//							System.out.println("after");
+							
+							if (grid[i][j].isRoomCenter()) {
+								Room room = roomMap.get(grid[i][j].getInitial());
+								room.setCenterCell(grid[i][j]);
+							}
+							else if (grid[i][j].isLabel()) {
+								Room room = roomMap.get(grid[i][j].getInitial());
+								room.setLabelCell(grid[i][j]);
+							}
+							
+						} else {
+							throw new BadConfigFormatException("Room not found in text file");
+						}
+					}
+					else if (this.roomMap.containsKey(values[j].charAt(0))) {
 						char[] detailsArr = values[j].toCharArray();
 						this.grid[i][j] = new BoardCell(i,j);
 //						System.out.println("before");
