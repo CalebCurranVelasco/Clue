@@ -38,7 +38,6 @@ public class BoardCell {
 	
 	public void setDetails(char[] detailsArr) {
 		this.initial = detailsArr[0];
-		System.out.println("Helllll");
 		this.roomLabel = false;
 		this.roomCenter = false;
 		this.isDoorway = false;

@@ -26,7 +26,7 @@ import experiment.TestBoardCell;
 
 public class Board {
 	
-	private BoardCell[][] grid;
+	public BoardCell[][] grid;
 	private int numCols;
 	private int numRows;
 	private String layoutConfigFile;
@@ -68,6 +68,7 @@ public class Board {
     	this.setupConfigFile = String.format("data/%s", txtFile);
     }
     
+    // The Text File
     public void loadSetupConfig() throws BadConfigFormatException {
     	this.roomMap = new HashMap<Character, Room>();
 		
@@ -102,6 +103,7 @@ public class Board {
 		}	
     }
     
+    // The CSV file
     public void loadLayoutConfig() throws BadConfigFormatException {
     	try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){
     		String line;
@@ -120,7 +122,7 @@ public class Board {
     			numRows += 1;
     		}
             br.close();
-            this.grid = new BoardCell[numRows][numCols];
+            this.grid = new BoardCell[numRows+1][numCols+1];
     		
     	} catch (FileNotFoundException e) {
     		System.out.println(e.getMessage());
@@ -142,9 +144,9 @@ public class Board {
 					if (this.roomMap.containsKey(values[j].charAt(0))) {
 						char[] detailsArr = values[j].toCharArray();
 						this.grid[i][j] = new BoardCell(i,j);
-						System.out.println("before");
+//						System.out.println("before");
 						grid[i][j].setDetails(detailsArr);
-						System.out.println("after");
+//						System.out.println("after");
 						
 						if (grid[i][j].isRoomCenter()) {
 							Room room = roomMap.get(grid[i][j].getInitial());
@@ -171,7 +173,7 @@ public class Board {
     }
     
 	public BoardCell getCell(int row, int column) {
-		System.out.println(row + " " + column);
+//		System.out.println(row + " " + column);
 		return grid[row][column];
 	}
 	
