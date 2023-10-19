@@ -17,12 +17,16 @@ public class Room {
 	private BoardCell labelCell;
 	
 	public Room(String name, char label) {
-		this.name = name;
+		this.name = name.strip();
 		this.label = label;
 	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	public char getLabel() {
+		return label;
 	}
 	
 	public BoardCell getCenterCell() {
@@ -31,6 +35,15 @@ public class Room {
 	
 	public BoardCell getLabelCell() {
 		return labelCell;
+	}
+	
+
+	public void setCenterCell(BoardCell cell) {
+		this.centerCell = cell;
+	}
+
+	public void setLabelCell(BoardCell cell) {
+		this.labelCell = cell;
 	}
 
 	@Override

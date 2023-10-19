@@ -11,4 +11,3 @@ Room, Temple, T
 // Other spaces on board
 Space, Unused, X
 Space, Walkway, W
-

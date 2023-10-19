@@ -78,20 +78,21 @@ public class Board {
 			while((line = in.readLine()) != null) {
 				String[] roomInfo = line.split(",");	// Splits line at the commas, and we store into array for easy handling
 				
-				if("Room".equals(roomInfo[0])) {
-					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(0));	// Creates a new room object with room name and label
+				if("Room".equals(roomInfo[0]) || "Space".equals(roomInfo[0])) {
+//					System.out.println(roomInfo[2].charAt(1));
+					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(1));	// Creates a new room object with room name and label
 					String tempString = roomInfo[2];
 					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
 					this.roomMap.put(roomLabel, tempRoom);
 				}
-				else if("Space".equals(roomInfo[0])) {
-					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(0));
-					String tempString = roomInfo[2];					
-					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
-					this.roomMap.put(roomLabel, tempRoom);
-				}
+				
 			}
 			in.close();
+//		    for (Map.Entry<Character, Room> entry : roomMap.entrySet()) {
+//		        char key = entry.getKey();
+//		        Room value = entry.getValue();
+//		        System.out.println("Key: " + key + ", Value: " + value);
+//		    }
 		} 
 		catch (FileNotFoundException e) {
     		System.out.println(e.getMessage());
@@ -109,7 +110,7 @@ public class Board {
 
     		// to get numRows and numCols
     		while ((line = br.readLine()) != null) {
-    			String[] values = line.split(",");
+    			String[] values = line.strip().split(",");
     			
     			//test that our file is a square
     			if (numCols != 0 && numCols != values.length) {
@@ -131,25 +132,37 @@ public class Board {
         	String line;
         	
         	// populating the array with what letter it is in file
+        	int i=0;
 			while ((line = br.readLine()) != null) {
-				String[] values = line.split(",");
+				String[] values = line.strip().split(",");
 				
 				// checking that each room exists
-				for (int i=0; i<values.length; i++) {
-					if (this.roomMap.containsKey(values[i].charAt(0))) {
+				
+				for (int j=0; j<values.length; j++) {
+					if (this.roomMap.containsKey(values[j].charAt(0))) {
+						char[] detailsArr = values[j].toCharArray();
+						this.grid[i][j] = new BoardCell(i,j);
+						System.out.println("before");
+						grid[i][j].setDetails(detailsArr);
+						System.out.println("after");
 						
-						for (int j=0; j<numCols; j++) {
-							char[] detailsArr = values[j].toCharArray();
-							System.out.println(detailsArr);
-							this.grid[i][j] = new BoardCell(i,j,detailsArr);
+						if (grid[i][j].isRoomCenter()) {
+							Room room = roomMap.get(grid[i][j].getInitial());
+							room.setCenterCell(grid[i][j]);
+						}
+						else if (grid[i][j].isLabel()) {
+							Room room = roomMap.get(grid[i][j].getInitial());
+							room.setLabelCell(grid[i][j]);
 						}
 						
 					} else {
 						throw new BadConfigFormatException("Room not found in text file");
 					}
 				}
+				i++;
 				
 			}
+			
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (IOException e1) {
@@ -158,7 +171,8 @@ public class Board {
     }
     
 	public BoardCell getCell(int row, int column) {
-		return this.grid[row][column];
+		System.out.println(row + " " + column);
+		return grid[row][column];
 	}
 	
 	public Room getRoom(char label) {
@@ -166,8 +180,8 @@ public class Board {
 	}
 	
 	public Room getRoom(BoardCell cell) {
-		char initial = this.getCell(cell.getRow(),cell.getColumn()).getInitial();
-		return this.getRoom(initial);
+		char label = this.grid[cell.getRow()][cell.getColumn()].getInitial();
+		return roomMap.get(label);
 	}
 	
 	public int getNumColumns() {

@@ -23,40 +23,44 @@ public class BoardCell {
 	private boolean roomLabel;
 	private boolean roomCenter;
 	private char secretPassage;
-//	private boolean isDoorway;
+	private boolean isDoorway;
 //	public boolean isOccupied; 
 //	public boolean isRoom;
 	public Set<BoardCell> adjList;
 	
 	
 	
-	public BoardCell(int row, int column, char[] detailsArr) {
+	public BoardCell(int row, int column) {
 		super();
 		this.row = row;
 		this.column = column;
+	}
+	
+	public void setDetails(char[] detailsArr) {
 		this.initial = detailsArr[0];
+		System.out.println("Helllll");
 		this.roomLabel = false;
 		this.roomCenter = false;
-//		this.isDoorway = false;
+		this.isDoorway = false;
 		this.doorDirection = DoorDirection.NONE;
 		this.adjList = new HashSet<BoardCell>();
-
 		
 		if (detailsArr.length > 1) {			
 			if (detailsArr[1] == '^') {
 				this.doorDirection = DoorDirection.UP;
-//				this.isDoorway = true;
+				this.isDoorway = true;
 			} else if (detailsArr[1] == '<') {
 				this.doorDirection = DoorDirection.LEFT;
-//				this.isDoorway = true;
+				this.isDoorway = true;
 			} else if (detailsArr[1] == '>') {
 				this.doorDirection = DoorDirection.RIGHT;
-//				this.isDoorway = true;
+				this.isDoorway = true;
 			} else if (detailsArr[1] == 'v') {
 				this.doorDirection = DoorDirection.DOWN;
-//				this.isDoorway = true;
+				this.isDoorway = true;
 			} else if (detailsArr[1] == '#') {
 				this.roomLabel = true;
+				
 			} else if (detailsArr[1] == '*') {
 				this.roomCenter = true;
 			} else {
@@ -71,10 +75,7 @@ public class BoardCell {
 	}
 	
 	public boolean isDoorway() {
-		if (this.doorDirection == DoorDirection.NONE || this.doorDirection == null) {
-			return false;
-		}
-		return true;
+		return isDoorway;
 	}
 
 	public int getRow() {
@@ -112,5 +113,13 @@ public class BoardCell {
 	public void setAdjList(Set<BoardCell> adjList) {
 		this.adjList = adjList;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardCell [row=" + row + ", column=" + column + ", initial=" + initial + ", doorDirection="
+				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", secretPassage="
+				+ secretPassage + ", isDoorway=" + isDoorway + ", adjList=" + adjList + "]";
+	}
+	
 	
 }
