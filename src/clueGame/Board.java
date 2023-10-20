@@ -18,6 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Board {
 	
@@ -27,7 +28,7 @@ public class Board {
 	private String layoutConfigFile;
 	private String setupConfigFile;
 	private Map<Character, Room> roomMap;
-//	private Set<TestBoardCell> targets; add later
+	private Set<BoardCell> targets;
 //	private Set<TestBoardCell> visited; add later
     
     /*
@@ -207,6 +208,26 @@ public class Board {
 	// Basic getter
 	public int getNumRows() {
 		return numRows;
+	}
+
+
+	public Set<BoardCell> getAdjList(int row, int column) {
+		
+
+		
+		return null;
+	}
+
+
+	public void calcTargets(BoardCell cell, int i) {
+
+		
+	}
+
+
+	public Set<BoardCell> getTargets() {
+
+		return targets;
 	}
 	
 	
