@@ -16,17 +16,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-
-
-
-
-import experiment.TestBoardCell;
 
 public class Board {
 	
@@ -67,12 +58,19 @@ public class Board {
     	}
     }
     
+    
+    /*
+     * This method simply sets the layout config file and the setup config file
+     */
     public void setConfigFiles(String csvFile, String txtFile) {
     	this.layoutConfigFile = String.format("data/%s", csvFile);
     	this.setupConfigFile = String.format("data/%s", txtFile);
     }
     
-    // The Text File
+    /*
+     * This method reads in the information from the txt file. We receive the room information including the room name and room label.
+     * We create a new room with the info read in and add that room into a hash map with the room label as the key.
+     */
     public void loadSetupConfig() throws BadConfigFormatException {
     	this.roomMap = new HashMap<Character, Room>();
 		
@@ -84,7 +82,6 @@ public class Board {
 				String[] roomInfo = line.split(",");	// Splits line at the commas, and we store into array for easy handling
 				
 				if("Room".equals(roomInfo[0]) || "Space".equals(roomInfo[0])) {
-//					System.out.println(roomInfo[2].charAt(1));
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(1));	// Creates a new room object with room name and label
 					String tempString = roomInfo[2];
 					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
@@ -102,7 +99,11 @@ public class Board {
 		}	
     }
     
-    // The CSV file
+    /*
+     * This method reads in the information from the csv file. We receive the board information including the rows and columns.
+     * We read in the file for the 1st time to receive info on rows and columns of the board. We read in the file for a 2nd time
+     * in order to populate the game board and setup room objects and assigning them to their specified cells.
+     */
     public void loadLayoutConfig() throws BadConfigFormatException {
     	try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){
     		String line;
@@ -171,24 +172,28 @@ public class Board {
 		}
     }
     
+    // Basic getter
 	public BoardCell getCell(int row, int column) {
-//		System.out.println(row + " " + column);
 		return grid[row][column];
 	}
 	
+    // Basic getter
 	public Room getRoom(char label) {
 		return roomMap.get(label);
 	}
 	
+    // Basic getter
 	public Room getRoom(BoardCell cell) {
 		char label = this.grid[cell.getRow()][cell.getColumn()].getInitial();
 		return roomMap.get(label);
 	}
 	
+    // Basic getter
 	public int getNumColumns() {
 		return numCols;
 	}
-	
+    
+	// Basic getter
 	public int getNumRows() {
 		return numRows;
 	}
