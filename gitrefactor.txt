@@ -1,0 +1,87 @@
+diff --git a/src/clueGame/Board.java b/src/clueGame/Board.java
+index 0095430..e7de93a 100644
+--- a/src/clueGame/Board.java
++++ b/src/clueGame/Board.java
+@@ -52,10 +52,25 @@ public class Board {
+     {
+     	try {
+     		this.loadSetupConfig();
++    	}
++    	
++    	catch (BadConfigFormatException e) {
++    		System.out.println(e.getMessage());
++    	}
++    	catch (FileNotFoundException e1) {
++    		System.out.println(e1.getMessage());
++    	}
++    	
++    	try {
+     		this.loadLayoutConfig();
+-		} catch (BadConfigFormatException e) {
++    	}
++    	
++    	catch (BadConfigFormatException e) {
+     		System.out.println(e.getMessage());
+     	}
++    	catch (FileNotFoundException e1) {
++    		System.out.println(e1.getMessage());
++    	}
+     }
+     
+     
+@@ -71,7 +86,7 @@ public class Board {
+      * This method reads in the information from the txt file. We receive the room information including the room name and room label.
+      * We create a new room with the info read in and add that room into a hash map with the room label as the key.
+      */
+-    public void loadSetupConfig() throws BadConfigFormatException {
++    public void loadSetupConfig() throws BadConfigFormatException, FileNotFoundException {
+     	this.roomMap = new HashMap<Character, Room>();
+ 		
+ 		try {
+@@ -91,9 +106,7 @@ public class Board {
+ 			}
+ 			in.close();
+ 		} 
+-		catch (FileNotFoundException e) {
+-    		System.out.println(e.getMessage());
+-		} 
++		
+ 		catch (IOException e1) {
+ 			System.out.println(e1.getMessage());
+ 		}	
+@@ -104,7 +117,8 @@ public class Board {
+      * We read in the file for the 1st time to receive info on rows and columns of the board. We read in the file for a 2nd time
+      * in order to populate the game board and setup room objects and assigning them to their specified cells.
+      */
+-    public void loadLayoutConfig() throws BadConfigFormatException {
++    public void loadLayoutConfig() throws BadConfigFormatException, FileNotFoundException {
++    	
+     	try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){
+     		String line;
+     		numRows = 0;
+@@ -124,10 +138,9 @@ public class Board {
+             br.close();
+             this.grid = new BoardCell[numRows+1][numCols+1];
+     		
+-    	} catch (FileNotFoundException e) {
+-    		System.out.println(e.getMessage());
+-		} catch (IOException e1) {
+-			System.out.println(e1.getMessage());
++    	
++		} catch (IOException e) {
++			System.out.println(e.getMessage());
+ 		}
+     	
+         try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))){	
+@@ -165,10 +178,8 @@ public class Board {
+ 				
+ 			}
+ 			
+-		} catch (FileNotFoundException e) {
++		} catch (IOException e) {
+ 			System.out.println(e.getMessage());
+-		} catch (IOException e1) {
+-			System.out.println(e1.getMessage());
+ 		}
+     }
+     
