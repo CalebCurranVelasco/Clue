@@ -212,6 +212,7 @@ public class Board {
 
 
 	public Set<BoardCell> getAdjList(int row, int column) {
+//		BoardCell testCell = new BoardCell(row, column);
 		
 
 		
