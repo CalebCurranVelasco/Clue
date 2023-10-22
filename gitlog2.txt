@@ -1,3 +1,6 @@
+I, Caleb Curran-Velasco, certify that I participated equitably in the creation of assignment C15A-1, dated 10/20/2023.
+I, Joshua Ramirez Malerva, certify that I participated equitably in the creation of this assignment C15A-1, dated 10/20/2023.
+
 commit 949cb07bb0b6a51b23476f2173d020e0bb4f48f2
 Author: Joshua Ramirez <jramirezmalerv@gmail.com>
 Date:   Sun Oct 22 16:50:48 2023 -0600
