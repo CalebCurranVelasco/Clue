@@ -24,9 +24,10 @@ public class BoardCell {
 	private boolean roomCenter;
 	private char secretPassage;
 	private boolean isDoorway;
-	public boolean isOccupied; 
-	public boolean isRoom;
-	public Set<BoardCell> adjList;
+	private boolean isOccupied; 
+	private boolean isRoom;
+	private boolean isSecretPassage;
+	private Set<BoardCell> adjList;
 	
 	
 	
@@ -41,6 +42,7 @@ public class BoardCell {
 		this.roomLabel = false;
 		this.roomCenter = false;
 		this.isDoorway = false;
+		this.isSecretPassage = false;
 		this.doorDirection = DoorDirection.NONE;
 		this.adjList = new HashSet<BoardCell>();
 		
@@ -64,6 +66,7 @@ public class BoardCell {
 				this.roomCenter = true;
 			} else {
 				this.secretPassage = detailsArr[1];
+				this.isSecretPassage = true;
 			}
 		}
 	}
@@ -73,6 +76,10 @@ public class BoardCell {
 	
 	public boolean isDoorway() {
 		return isDoorway;
+	}
+	
+	public boolean isSecretPassage() {
+		return isSecretPassage;
 	}
 
 	public int getRow() {
@@ -116,7 +123,16 @@ public class BoardCell {
 	}
 	
 	public void addAdjacency(BoardCell cell) {
-		adjList.add(cell);
+		this.adjList.add(cell);
+	}
+	
+
+	public boolean isOccupied() {
+		return isOccupied;
+	}
+
+	public boolean isRoom() {
+		return isRoom;
 	}
 
 	@Override

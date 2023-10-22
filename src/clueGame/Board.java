@@ -75,6 +75,8 @@ public class Board {
     	catch (FileNotFoundException e1) {
     		System.out.println(e1.getMessage());
     	}
+    	
+    	calculateAdjacencies();
     }
     
     
@@ -189,6 +191,134 @@ public class Board {
     
     
     
+    
+    
+    public void calculateAdjacencies() {
+		int [][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // left, right, up, down
+		char roomInitial;
+		DoorDirection doorDirection;
+		for (int i=0; i<numRows; i++) {
+			for (int j=0; j<numCols; j++) {
+				BoardCell currCell = grid[i][j];
+				
+				// for walkways
+				if (currCell.getInitial() == 'W') {
+					
+					// add room center to adjList of door and visa versa
+					if (currCell.isDoorway() == true) {
+						
+						doorDirection = currCell.getDoorDirection();
+						if (doorDirection == DoorDirection.UP) {
+							roomInitial = grid[i-1][j].getInitial();
+						}
+						else if (doorDirection == DoorDirection.DOWN) {
+							roomInitial = grid[i+1][j].getInitial();
+						}
+						else if (doorDirection == DoorDirection.LEFT) {
+							roomInitial = grid[i][j-1].getInitial();
+						}
+						else {
+							roomInitial = grid[i][j+1].getInitial();
+						}
+						
+						for (int x=0; x<numRows; x++) {
+							for (int y=0; y<numCols; y++) {
+								if (grid[x][y].getInitial() == roomInitial && grid[x][y].isRoomCenter()) {
+									currCell.addAdjacency(grid[x][y]); // make sure addAdjacency is working
+									grid[x][y].addAdjacency(currCell);
+								}
+							}
+						}
+						
+					}
+					
+					// iterate through all four possible directions
+					for (int k=0; k<directions.length; k++) {
+						// update coordinates and see if legal
+						int newRow = i + directions[k][0];
+						int newCol = j + directions[k][1];
+						if (newRow >= 0 && newCol >= 0 && newRow < numRows && newCol < numCols && grid[newRow][newCol].getInitial() == 'W') {
+							currCell.addAdjacency(grid[newRow][newCol]);
+							
+						}
+					}
+				
+					
+				}
+				
+				// for room center add secret Passage to adjList
+				if (currCell.isRoomCenter()) {
+					roomInitial = currCell.getInitial();
+					char roomToAdd = ' ';
+					boolean secretPass = false;
+					for (int x=0; x<numRows; x++) {
+						if (secretPass == false) {
+							for (int y=0; y<numCols; y++) {
+								if (grid[x][y].getInitial() == roomInitial && grid[x][y].isSecretPassage()) {
+									roomToAdd = grid[x][y].getSecretPassage();
+									secretPass = true;
+									break;
+								}
+							}
+						}
+					}
+					if (secretPass == true) {
+						boolean found = false;
+						for (int x=0; x<numRows; x++) {
+							if (found == false) {
+								for (int y=0; y<numCols; y++) {
+									if (grid[x][y].getInitial() == roomToAdd && grid[x][y].isRoomCenter()) {
+										currCell.addAdjacency(grid[x][y]);
+										found = true;
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+
+			}
+		}
+	}
+    
+    
+    
+    
+	public void findAllTargets(BoardCell startCell, int pathLength) {
+		Set<BoardCell> adjList = startCell.getAdjList();
+		for (BoardCell cell : adjList) {
+			if (visited.contains(cell) || (cell.isOccupied() && !cell.isRoomCenter())) {
+				continue;
+			} else {
+				visited.add(cell);
+				
+				if (pathLength == 1 || cell.isRoomCenter()) { // found target since adj cells are one cell away
+					targets.add(cell);
+					startCell.addAdjacency(cell);
+				} else {
+					findAllTargets(cell, pathLength-1); // recursive call 
+				}
+				visited.remove(cell);
+			}
+		}
+	}
+	
+	
+	
+	public void calcTargets(BoardCell startCell, int pathLength) {
+		this.visited = new HashSet<BoardCell>();
+		this.targets = new HashSet<BoardCell>();
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
+	}
+	
+	
+	
+	
+    
+    
+    
     // Basic getter
 	public BoardCell getCell(int row, int column) {
 		return grid[row][column];
@@ -214,36 +344,11 @@ public class Board {
 	public int getNumRows() {
 		return numRows;
 	}
-	
-	public void findAllTargets(BoardCell startCell, int pathLength) {
-		Set<BoardCell> adjList = startCell.adjList;
-		for (BoardCell cell : adjList) {
-			if (visited.contains(cell) || cell.isOccupied) {
-				continue;
-			} else {
-				visited.add(cell);
-				
-				if (pathLength == 1 || cell.isRoom) { // found target since adj cells are one cell away
-					targets.add(cell);
-					startCell.addAdjacency(cell);
-				} else {
-					findAllTargets(cell, pathLength-1); // recursive call 
-				}
-				visited.remove(cell);
-			}
-		}
-	}
-	
-	public void calcTargets(BoardCell startCell, int pathLength) {
-		this.visited = new HashSet<BoardCell>();
-		this.targets = new HashSet<BoardCell>();
-		visited.add(startCell);
-		findAllTargets(startCell, pathLength);
-	}
+
 	
 	
 	public Set<BoardCell> getAdjList(int row, int col) {
-		return grid[row][col].adjList;
+		return grid[row][col].getAdjList();
 	}
 	
 	public Set<BoardCell> getTargets() {
