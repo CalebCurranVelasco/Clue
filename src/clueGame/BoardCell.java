@@ -141,6 +141,11 @@ public class BoardCell {
 				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", secretPassage="
 				+ secretPassage + ", isDoorway=" + isDoorway + ", adjList=" + adjList + "]";
 	}
+
+	public void setOccupied(boolean b) {
+
+		
+	}
 	
 	
 }
