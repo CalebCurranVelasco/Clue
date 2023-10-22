@@ -192,7 +192,10 @@ public class Board {
     
     
     
-    
+    /*
+     * This method calculates the adjacencies of the current cell in our board
+     * 
+     */
     public void calculateAdjacencies() {
 		int [][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // left, right, up, down
 		char roomInitial;
@@ -243,8 +246,7 @@ public class Board {
 						}
 					}
 				
-					
-				}
+				} // End of big if-statement
 				
 				// for room center add secret Passage to adjList
 				if (currCell.isRoomCenter()) {
@@ -262,6 +264,7 @@ public class Board {
 							}
 						}
 					}
+					
 					if (secretPass == true) {
 						boolean found = false;
 						for (int x=0; x<numRows; x++) {
@@ -312,13 +315,7 @@ public class Board {
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
-	
-	
-	
-	
-    
-    
-    
+
     // Basic getter
 	public BoardCell getCell(int row, int column) {
 		return grid[row][column];
@@ -344,8 +341,6 @@ public class Board {
 	public int getNumRows() {
 		return numRows;
 	}
-
-	
 	
 	public Set<BoardCell> getAdjList(int row, int col) {
 		return grid[row][col].getAdjList();
@@ -354,10 +349,5 @@ public class Board {
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
-	
-	
-	
-	
-	
 	
 }
