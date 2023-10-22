@@ -17,7 +17,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import experiment.TestBoardCell;
 
 public class Board {
 	
@@ -27,8 +31,8 @@ public class Board {
 	private String layoutConfigFile;
 	private String setupConfigFile;
 	private Map<Character, Room> roomMap;
-//	private Set<TestBoardCell> targets; add later
-//	private Set<TestBoardCell> visited; add later
+	private Set<BoardCell> targets; 
+	private Set<BoardCell> visited;
     
     /*
     * variable and methods used for singleton pattern
@@ -183,6 +187,8 @@ public class Board {
 		}
     }
     
+    
+    
     // Basic getter
 	public BoardCell getCell(int row, int column) {
 		return grid[row][column];
@@ -208,6 +214,43 @@ public class Board {
 	public int getNumRows() {
 		return numRows;
 	}
+	
+	public void findAllTargets(BoardCell startCell, int pathLength) {
+		Set<BoardCell> adjList = startCell.adjList;
+		for (BoardCell cell : adjList) {
+			if (visited.contains(cell) || cell.isOccupied) {
+				continue;
+			} else {
+				visited.add(cell);
+				
+				if (pathLength == 1 || cell.isRoom) { // found target since adj cells are one cell away
+					targets.add(cell);
+					startCell.addAdjacency(cell);
+				} else {
+					findAllTargets(cell, pathLength-1); // recursive call 
+				}
+				visited.remove(cell);
+			}
+		}
+	}
+	
+	public void calcTargets(BoardCell startCell, int pathLength) {
+		this.visited = new HashSet<BoardCell>();
+		this.targets = new HashSet<BoardCell>();
+		visited.add(startCell);
+		findAllTargets(startCell, pathLength);
+	}
+	
+	
+	public Set<BoardCell> getAdjList(int row, int col) {
+		return grid[row][col].adjList;
+	}
+	
+	public Set<BoardCell> getTargets() {
+		return targets;
+	}
+	
+	
 	
 	
 	

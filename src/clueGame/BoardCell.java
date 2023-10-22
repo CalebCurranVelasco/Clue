@@ -13,6 +13,8 @@ package clueGame;
 import java.util.HashSet;
 import java.util.Set;
 
+import experiment.TestBoardCell;
+
 public class BoardCell {
 	private int row;
 	private int column;
@@ -22,8 +24,8 @@ public class BoardCell {
 	private boolean roomCenter;
 	private char secretPassage;
 	private boolean isDoorway;
-//	public boolean isOccupied; 
-//	public boolean isRoom;
+	public boolean isOccupied; 
+	public boolean isRoom;
 	public Set<BoardCell> adjList;
 	
 	
@@ -67,9 +69,7 @@ public class BoardCell {
 	}
 	
 
-	public void addAdj(BoardCell adj) {
-		adjList.add(adj);
-	}
+
 	
 	public boolean isDoorway() {
 		return isDoorway;
@@ -109,6 +109,14 @@ public class BoardCell {
 
 	public void setAdjList(Set<BoardCell> adjList) {
 		this.adjList = adjList;
+	}
+	
+	public void setOccupied(boolean bool) {
+		isOccupied = bool;
+	}
+	
+	public void addAdjacency(BoardCell cell) {
+		adjList.add(cell);
 	}
 
 	@Override
