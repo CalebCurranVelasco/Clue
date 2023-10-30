@@ -42,8 +42,7 @@ public class Board {
     private Board() {
            super() ;
     }
-    
-    
+     
     // this method returns the only Board
     public static Board getInstance() {
            return theInstance;
@@ -75,10 +74,8 @@ public class Board {
     	catch (FileNotFoundException e1) {
     		System.out.println(e1.getMessage());
     	}
-    	
     	calculateAdjacencies();
     }
-    
     
     /*
      * This method simply sets the layout config file and the setup config file
@@ -108,11 +105,9 @@ public class Board {
 					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
 					this.roomMap.put(roomLabel, tempRoom);
 				}
-				
 			}
 			in.close();
 		} 
-		
 		catch (IOException e1) {
 			System.out.println(e1.getMessage());
 		}	
@@ -144,7 +139,6 @@ public class Board {
             br.close();
             this.grid = new BoardCell[numRows+1][numCols+1];
     		
-    	
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -156,7 +150,6 @@ public class Board {
         	int i=0;
 			while ((line = br.readLine()) != null) {
 				String[] values = line.strip().split(",");
-				
 				
 				// checking that each room exists
 				
@@ -180,18 +173,12 @@ public class Board {
 						throw new BadConfigFormatException("Room not found in text file");
 					}
 				}
-				i++;
-				
+				i++;	
 			}
-			
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
     }
-    
-    
-    
-    
     
     public void calculateAdjacencies() {
 		int [][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // left, right, up, down
@@ -226,7 +213,6 @@ public class Board {
 						BoardCell centerCell = centerRoom.getCenterCell();
 						currCell.addAdjacency(centerCell);
 						centerCell.addAdjacency(currCell);
-						
 					}
 					
 					// iterate through all four possible directions
@@ -235,12 +221,9 @@ public class Board {
 						int newRow = i + directions[k][0];
 						int newCol = j + directions[k][1];
 						if (newRow >= 0 && newCol >= 0 && newRow < numRows && newCol < numCols && grid[newRow][newCol].getInitial() == 'W') {
-							currCell.addAdjacency(grid[newRow][newCol]);
-							
+							currCell.addAdjacency(grid[newRow][newCol]);	
 						}
 					}
-				
-					
 				}
 				
 				// for room center add secret Passage to adjList
@@ -274,13 +257,9 @@ public class Board {
 						}
 					}
 				}
-
 			}
 		}
-	}
-    
-    
-    
+	}    
     
 	public void findAllTargets(BoardCell startCell, int pathLength) {
 		Set<BoardCell> adjList = startCell.getAdjList();
@@ -301,20 +280,12 @@ public class Board {
 		}
 	}
 	
-	
-	
 	public void calcTargets(BoardCell startCell, int pathLength) {
 		this.visited = new HashSet<BoardCell>();
 		this.targets = new HashSet<BoardCell>();
 		visited.add(startCell);
 		findAllTargets(startCell, pathLength);
 	}
-	
-	
-	
-	
-    
-    
     
     // Basic getter
 	public BoardCell getCell(int row, int column) {
@@ -342,8 +313,6 @@ public class Board {
 		return numRows;
 	}
 
-	
-	
 	public Set<BoardCell> getAdjList(int row, int col) {
 		return grid[row][col].getAdjList();
 	}

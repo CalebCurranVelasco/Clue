@@ -29,8 +29,6 @@ public class BoardCell {
 	private boolean isSecretPassage;
 	private Set<BoardCell> adjList;
 	
-	
-	
 	public BoardCell(int row, int column) {
 		super();
 		this.row = row;
@@ -76,13 +74,9 @@ public class BoardCell {
 			        this.isSecretPassage = true;
 			        break;
 			}
-
 		}
 	}
-	
 
-
-	
 	public boolean isDoorway() {
 		return isDoorway;
 	}
