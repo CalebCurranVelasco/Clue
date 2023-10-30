@@ -1,0 +1,125 @@
+Name: Joshua Ramirez Malerva, Caleb Curran Velasco
+
+Course Section: Section C (2:00 - 3:15pm Tues. and Thurs.)
+
+Assignment C19A – 2: Refactoring (Clue Pair)
+
+Oustide Resources: None
+
+
+
+commit a39c17e96e78ba93adf82af1c9e87fb9fbe6b089
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:28:34 2023 -0600
+
+    Refactor 4 (Major): Reformatted initalize() try/catch statements to include important information contained within the message
+
+commit 5902e95e729c2e66b424944d32f63f38d0a59f60
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:24:36 2023 -0600
+
+    Refactor 3: Added proper spacing in between code in Board.java that was giving users a hard time reading our code
+
+commit d20d4cfec152e2dbf3b2173297a54018d23c394c
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:15:02 2023 -0600
+
+    Refactor 2: Renamed 'currCell' variable in Board.java to 'currentCell' for clarity. Also added meaningful mesages to refactor 1
+
+commit e5cdcd6a44690d219d68044ca5e4ec878655064f
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 16:46:12 2023 -0600
+
+    Refactor 1: Added comments to lines 57 and 58 to describe the difference between 2 different try/catch statements
+
+commit a906f993c9546a8ea83eea7eaade96a1151c7788
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:30:29 2023 -0600
+
+    removed unnecessary code in DoorDirection
+
+commit 0bb69b7586bdd76f877108c2982cd30e68eabe8e
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:29:28 2023 -0600
+
+    Fixed new line spacing to make all files look more readable
+
+commit 4df5c685b53cf7e1b4d29aa23b7b83bcc5f2a028
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:26:08 2023 -0600
+
+    Changed code in calculate Adjacencies so that instead of iterating through the whole grid to add the roomCenter to the doorway's adjList and visa versa we use room.getCenterCell so that it is faster
+
+commit 8f9c268f21d5127bf0b58d222fe57f122447e3e2
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:05:16 2023 -0600
+
+    Changed the if else code to switch statements in BoardCell
+    
+    
+    
+Major refactor:
+
+Before:
+
+ public void initialize()
+    {
+    	// We have 2 different try/catch statements that will each catch their own badConfigFormatException
+    	// This way, we know which file exactly is giving us the error.
+    	try {
+    		
+    		this.loadSetupConfig();
+    		this.loadLayoutConfig();
+    	}
+    	
+    	catch (BadConfigFormatException e) {
+    		System.out.println(e.getMessage());
+    	}
+    	catch (FileNotFoundException e1) {
+    		System.out.println(e1.getMessage());
+    	}
+    	
+    	calculateAdjacencies();
+    }
+    
+    
+After:
+
+ public void initialize()
+    {
+    	// We have 2 different try/catch statements that will each catch their own badConfigFormatException
+    	// This way, we know which file exactly is giving us the error.
+    	try {
+    		
+    		this.loadSetupConfig();
+    	}
+    	
+    	catch (BadConfigFormatException e) {
+    		System.out.println("Error occurred while processing ClueSetup.txt");
+    	}
+    	catch (FileNotFoundException e1) {
+    		System.out.println("Error loading in ClueSetup.txt file");
+    	}
+    	
+    	try {
+    		this.loadLayoutConfig();
+    	}
+    	
+    	catch (BadConfigFormatException e) {
+    		System.out.println("Error occurred while processing ClueLayout.csv");
+    	}
+    	catch (FileNotFoundException e1) {
+    		System.out.println("Error loading ClueLayout.csv");
+    	}
+    	
+    	calculateAdjacencies();
+    }    
+    
+    
+    
+    
+    
+    
+    
+    
+    
