@@ -65,7 +65,7 @@ public class Board {
     		System.out.println("Error occurred while processing ClueSetup.txt");
     	}
     	catch (FileNotFoundException e1) {
-    		System.out.println("Error loading ClueSetup.txt file");
+    		System.out.println("Error loading in ClueSetup.txt file");
     	}
     	
     	try {
@@ -78,6 +78,7 @@ public class Board {
     	catch (FileNotFoundException e1) {
     		System.out.println("Error loading ClueLayout.csv");
     	}
+    	
     	calculateAdjacencies();
     }
     
