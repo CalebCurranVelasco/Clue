@@ -9,11 +9,11 @@ public class BadConfigFormatException extends Exception{
 	private String error;
 
 	public BadConfigFormatException() {
-		super("Bad Configuration File Error");
+		super();
 	}
 	
 	public BadConfigFormatException(String message) {
-		super("The error: " + message);
+		super(message);
 		error = message;
 	}
 }

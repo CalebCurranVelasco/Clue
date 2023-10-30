@@ -57,14 +57,15 @@ public class Board {
     	// We have 2 different try/catch statements that will each catch their own badConfigFormatException
     	// This way, we know which file exactly is giving us the error.
     	try {
+    		
     		this.loadSetupConfig();
     	}
     	
     	catch (BadConfigFormatException e) {
-    		System.out.println(e.getMessage());
+    		System.out.println("Error occurred while processing ClueSetup.txt");
     	}
     	catch (FileNotFoundException e1) {
-    		System.out.println(e1.getMessage());
+    		System.out.println("Error loading ClueSetup.txt file");
     	}
     	
     	try {
@@ -72,10 +73,10 @@ public class Board {
     	}
     	
     	catch (BadConfigFormatException e) {
-    		System.out.println(e.getMessage());
+    		System.out.println("Error occurred while processing ClueLayout.csv");
     	}
     	catch (FileNotFoundException e1) {
-    		System.out.println(e1.getMessage());
+    		System.out.println("Error loading ClueLayout.csv");
     	}
     	calculateAdjacencies();
     }
@@ -189,15 +190,15 @@ public class Board {
 		DoorDirection doorDirection;
 		for (int i=0; i<numRows; i++) {
 			for (int j=0; j<numCols; j++) {
-				BoardCell currCell = grid[i][j];
+				BoardCell currentCell = grid[i][j];
 				
 				// for walkways
-				if (currCell.getInitial() == 'W') {
+				if (currentCell.getInitial() == 'W') {
 					
 					// add room center to adjList of door and visa versa
-					if (currCell.isDoorway() == true) {
+					if (currentCell.isDoorway() == true) {
 						
-						doorDirection = currCell.getDoorDirection();
+						doorDirection = currentCell.getDoorDirection();
 						if (doorDirection == DoorDirection.UP) {
 							roomInitial = grid[i-1][j].getInitial();
 						}
@@ -214,8 +215,8 @@ public class Board {
 						// setting the roomCenter cell as an adjCell to doorway and visa versa
 						Room centerRoom = roomMap.get(roomInitial);
 						BoardCell centerCell = centerRoom.getCenterCell();
-						currCell.addAdjacency(centerCell);
-						centerCell.addAdjacency(currCell);
+						currentCell.addAdjacency(centerCell);
+						centerCell.addAdjacency(currentCell);
 					}
 					
 					// iterate through all four possible directions
@@ -224,14 +225,14 @@ public class Board {
 						int newRow = i + directions[k][0];
 						int newCol = j + directions[k][1];
 						if (newRow >= 0 && newCol >= 0 && newRow < numRows && newCol < numCols && grid[newRow][newCol].getInitial() == 'W') {
-							currCell.addAdjacency(grid[newRow][newCol]);	
+							currentCell.addAdjacency(grid[newRow][newCol]);	
 						}
 					}
 				}
 				
 				// for room center add secret Passage to adjList
-				if (currCell.isRoomCenter()) {
-					roomInitial = currCell.getInitial();
+				if (currentCell.isRoomCenter()) {
+					roomInitial = currentCell.getInitial();
 					char roomToAdd = ' ';
 					boolean secretPass = false;
 					for (int x=0; x<numRows; x++) {
@@ -251,7 +252,7 @@ public class Board {
 							if (found == false) {
 								for (int y=0; y<numCols; y++) {
 									if (grid[x][y].getInitial() == roomToAdd && grid[x][y].isRoomCenter()) {
-										currCell.addAdjacency(grid[x][y]);
+										currentCell.addAdjacency(grid[x][y]);
 										found = true;
 										break;
 									}
