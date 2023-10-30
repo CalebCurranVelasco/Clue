@@ -220,6 +220,7 @@ public class Board {
 						else {
 							roomInitial = grid[i][j+1].getInitial();
 						}
+						
 						// can iterate through rooms instead
 						for (int x=0; x<numRows; x++) {
 							for (int y=0; y<numCols; y++) {
