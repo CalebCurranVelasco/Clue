@@ -137,13 +137,16 @@ public class Board {
     			if (numCols != 0 && numCols != values.length) {
     				throw new BadConfigFormatException();
     			}
+    			
     			numCols = values.length;
     			numRows += 1;
     		}
+    		
             br.close();
             this.grid = new BoardCell[numRows+1][numCols+1];
     		
-		} catch (IOException e) {
+		} 
+    	catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
     	
@@ -168,18 +171,21 @@ public class Board {
 							Room room = roomMap.get(grid[i][j].getInitial());
 							room.setCenterCell(grid[i][j]);
 						}
+						
 						else if (grid[i][j].isLabel()) {
 							Room room = roomMap.get(grid[i][j].getInitial());
 							room.setLabelCell(grid[i][j]);
 						}
 						
-					} else {
+					}
+					else {
 						throw new BadConfigFormatException("Room not found in text file");
 					}
 				}
 				i++;	
 			}
-		} catch (IOException e) {
+		} 
+        catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
     }
@@ -202,12 +208,15 @@ public class Board {
 						if (doorDirection == DoorDirection.UP) {
 							roomInitial = grid[i-1][j].getInitial();
 						}
+						
 						else if (doorDirection == DoorDirection.DOWN) {
 							roomInitial = grid[i+1][j].getInitial();
 						}
+						
 						else if (doorDirection == DoorDirection.LEFT) {
 							roomInitial = grid[i][j-1].getInitial();
 						}
+						
 						else {
 							roomInitial = grid[i][j+1].getInitial();
 						}
@@ -224,6 +233,7 @@ public class Board {
 						// update coordinates and see if legal
 						int newRow = i + directions[k][0];
 						int newCol = j + directions[k][1];
+						
 						if (newRow >= 0 && newCol >= 0 && newRow < numRows && newCol < numCols && grid[newRow][newCol].getInitial() == 'W') {
 							currentCell.addAdjacency(grid[newRow][newCol]);	
 						}
@@ -235,8 +245,10 @@ public class Board {
 					roomInitial = currentCell.getInitial();
 					char roomToAdd = ' ';
 					boolean secretPass = false;
+					
 					for (int x=0; x<numRows; x++) {
 						if (secretPass == false) {
+							
 							for (int y=0; y<numCols; y++) {
 								if (grid[x][y].getInitial() == roomInitial && grid[x][y].isSecretPassage()) {
 									roomToAdd = grid[x][y].getSecretPassage();
@@ -248,8 +260,10 @@ public class Board {
 					}
 					if (secretPass == true) {
 						boolean found = false;
+						
 						for (int x=0; x<numRows; x++) {
 							if (found == false) {
+								
 								for (int y=0; y<numCols; y++) {
 									if (grid[x][y].getInitial() == roomToAdd && grid[x][y].isRoomCenter()) {
 										currentCell.addAdjacency(grid[x][y]);
@@ -270,13 +284,15 @@ public class Board {
 		for (BoardCell cell : adjList) {
 			if (visited.contains(cell) || (cell.isOccupied() && !cell.isRoomCenter())) {
 				continue;
-			} else {
+			} 
+			else {
 				visited.add(cell);
 				
 				if (pathLength == 1 || cell.isRoomCenter()) { // found target since adj cells are one cell away
 					targets.add(cell);
 					startCell.addAdjacency(cell);
-				} else {
+				} 
+				else {
 					findAllTargets(cell, pathLength-1); // recursive call 
 				}
 				visited.remove(cell);
