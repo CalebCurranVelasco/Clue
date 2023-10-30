@@ -38,6 +38,7 @@ public class Board {
     * variable and methods used for singleton pattern
     */
     private static Board theInstance = new Board();
+    
     // constructor is private to ensure only one can be created
     private Board() {
            super() ;
@@ -53,6 +54,8 @@ public class Board {
      */
     public void initialize()
     {
+    	// We have 2 different try/catch statements that will each catch their own badConfigFormatException
+    	// This way, we know which file exactly is giving us the error.
     	try {
     		this.loadSetupConfig();
     	}
