@@ -47,28 +47,7 @@ public class BoardCell {
 		this.adjList = new HashSet<BoardCell>();
 		
 		// change to switch
-		if (detailsArr.length > 1) {			
-//			if (detailsArr[1] == '^') {
-//				this.doorDirection = DoorDirection.UP;
-//				this.isDoorway = true;
-//			} else if (detailsArr[1] == '<') {
-//				this.doorDirection = DoorDirection.LEFT;
-//				this.isDoorway = true;
-//			} else if (detailsArr[1] == '>') {
-//				this.doorDirection = DoorDirection.RIGHT;
-//				this.isDoorway = true;
-//			} else if (detailsArr[1] == 'v') {
-//				this.doorDirection = DoorDirection.DOWN;
-//				this.isDoorway = true;
-//			} else if (detailsArr[1] == '#') {
-//				this.roomLabel = true;
-//				
-//			} else if (detailsArr[1] == '*') {
-//				this.roomCenter = true;
-//			} else {
-//				this.secretPassage = detailsArr[1];
-//				this.isSecretPassage = true;
-//			}
+		if (detailsArr.length > 1) {
 			switch (detailsArr[1]) {
 			    case '^':
 			        this.doorDirection = DoorDirection.UP;

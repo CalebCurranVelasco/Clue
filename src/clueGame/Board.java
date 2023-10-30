@@ -221,15 +221,11 @@ public class Board {
 							roomInitial = grid[i][j+1].getInitial();
 						}
 						
-						// can iterate through rooms instead
-						for (int x=0; x<numRows; x++) {
-							for (int y=0; y<numCols; y++) {
-								if (grid[x][y].getInitial() == roomInitial && grid[x][y].isRoomCenter()) {
-									currCell.addAdjacency(grid[x][y]); // make sure addAdjacency is working
-									grid[x][y].addAdjacency(currCell);
-								}
-							}
-						}
+						// setting the roomCenter cell as an adjCell to doorway and visa versa
+						Room centerRoom = roomMap.get(roomInitial);
+						BoardCell centerCell = centerRoom.getCenterCell();
+						currCell.addAdjacency(centerCell);
+						centerCell.addAdjacency(currCell);
 						
 					}
 					
