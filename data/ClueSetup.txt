@@ -11,3 +11,17 @@ Room, Temple, T
 // Other spaces on board
 Space, Unused, X
 Space, Walkway, W
+// Players
+Player, Gojo, Blue
+Player, Toji, Purple
+Player, Sukuna, Red
+Player, Geto, Green
+Player, Panda, Black
+Player, Mahito, White
+// Weapons
+Weapons, Inverted Spear of Heaven
+Weapons, Split Soul Katana
+Weapons, Chain of a Thousand Miles
+Weapons, Meimei's Battle Axe
+Weapons, Gakuganji's Guitar
+Weapons, Nanami's Sword
