@@ -110,6 +110,11 @@ public class Board {
 					char roomLabel = tempString.charAt(1);	// Convert the room label from String to Char to store in map
 					this.roomMap.put(roomLabel, tempRoom);
 				}
+				else if ("Player".equals(roomInfo[0])) {
+					
+				} else if ("Weapons".equals(roomInfo)[0]) {
+					
+				}
 			}
 			in.close();
 		} 
