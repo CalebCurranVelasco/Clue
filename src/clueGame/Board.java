@@ -30,13 +30,13 @@ public class Board {
 	private int numRows;
 	private String layoutConfigFile;
 	private String setupConfigFile;
-	private Map<Character, Room> roomMap;
+	private Map<Character, Room> roomMap;	// Room map for our board
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
-	private ArrayList<Player> playerList;
-	private ArrayList<Card> cardDeck;
-	private boolean human = false;
-	private Color currentColor;
+	private ArrayList<Player> playerList;	// Player list for multiple uses
+	private ArrayList<Card> cardDeck;	// Deck of all cards (weapons, players, rooms)
+	private boolean human = false;	// Check to ensure we only read in one human player
+	private Color currentColor;	// The current color of the player
 
 	/*
 	 * variable and methods used for singleton pattern
