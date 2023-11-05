@@ -109,12 +109,12 @@ public class Board {
 
 			while ((line = in.readLine()) != null) {
 				String[] roomInfo = line.split(","); // Splits line at the commas, and we store into array for easy
-														// handling
+				// handling
 
 				// Only rooms should have a card made for them (9 room cards ONLY)
 				if ("Room".equals(roomInfo[0])) {
 					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(1)); // Creates a new room object with room
-																					// name and label
+					// name and label
 					String tempString = roomInfo[2];
 					char roomLabel = tempString.charAt(1); // Convert the room label from String to Char to store in map
 					this.roomMap.put(roomLabel, tempRoom);
@@ -126,50 +126,48 @@ public class Board {
 
 				// We want to add the unused spaces and walkway spaces to the room map, but
 				// don't make it a card
-//				else if ("Space".equals(roomInfo[0])) {
-//					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(1));
-//					String tempString = roomInfo[2];
-//					char roomLabel = tempString.charAt(1); // Convert the room label from String to Char to store in map
-//					this.roomMap.put(roomLabel, tempRoom);
-//				}
+				else if ("Space".equals(roomInfo[0])) {
+					Room tempRoom = new Room(roomInfo[1], roomInfo[2].charAt(1));
+					String tempString = roomInfo[2];
+					char roomLabel = tempString.charAt(1); // Convert the room label from String to Char to store in map
+					this.roomMap.put(roomLabel, tempRoom);
+				}
 
-				// NOT COMPLETE
-//				else if ("Player".equals(roomInfo[0])) {
-//					if (human == false) {
-//						int playerRow = Integer.parseInt(roomInfo[3]); // Reads in the row as int
-//						int playerCol = Integer.parseInt(roomInfo[4]); // Reads in the col as int
-//						Color playerColor = Color.getColor(roomInfo[2]); // Use Color class to convert string color to
-//																			// color object
-//
-//						Player humanPlayer = new HumanPlayer(roomInfo[1], playerColor, playerRow, playerCol); // Create
-//																												// human
-//																												// player
-//						Card humanCard = new Card(roomInfo[1], CardType.PERSON); // Need to create player card
-//						playerList.add(humanPlayer);
-//						cardDeck.add(humanCard); // Add human card to card deck
-//						human = true; // No longer need any more human players
-//					}
+				// Code below creates all players from the txt file
+				else if ("Player".equals(roomInfo[0])) {
+					if (human == false) {
+						int playerRow = Integer.parseInt(roomInfo[3]); // Reads in the row as int
+						int playerCol = Integer.parseInt(roomInfo[4]); // Reads in the col as int
+						Color playerColor = Color.getColor(roomInfo[2]); // Use Color class to convert string color to
+						// color object
+
+						Player humanPlayer = new HumanPlayer(roomInfo[1], playerColor, playerRow, playerCol); // Create human player
+						Card humanCard = new Card(roomInfo[1], CardType.PERSON); // Need to create player card
+						playerList.add(humanPlayer);
+						cardDeck.add(humanCard); // Add human card to card deck
+						human = true; // No longer need any more human players
+					}
 					// The code below works the same way as the code above
-//					else {
-//						int computerRow = Integer.parseInt(roomInfo[3]);
-//						int computerCol = Integer.parseInt(roomInfo[4]);
-//						Color computerColor = Color.getColor(roomInfo[2]);
-//
-//						Player computerPlayer = new ComputerPlayer(roomInfo[1], computerColor, computerRow,
-//								computerCol);
-//						Card computerCard = new Card(roomInfo[1], CardType.PERSON);
-//						playerList.add(computerPlayer);
-//						cardDeck.add(computerCard);
-//					}
-//
-//					// Weapons don't need much declaration since they're meant to be a type of card
-//					// only
-//				} else if ("Weapons".equals(roomInfo[0])) {
-//					Card weaponCard = new Card(roomInfo[1], CardType.WEAPON);
-//					cardDeck.add(weaponCard);
-//
-//				}
-//			}
+					else {
+						int computerRow = Integer.parseInt(roomInfo[3]);
+						int computerCol = Integer.parseInt(roomInfo[4]);
+						Color computerColor = Color.getColor(roomInfo[2]);
+
+						Player computerPlayer = new ComputerPlayer(roomInfo[1], computerColor, computerRow,
+								computerCol);
+						Card computerCard = new Card(roomInfo[1], CardType.PERSON);
+						playerList.add(computerPlayer);
+						cardDeck.add(computerCard);
+					}
+
+					// Weapons don't need much declaration since they're meant to be a type of card
+					// only
+				} else if ("Weapons".equals(roomInfo[0])) {
+					Card weaponCard = new Card(roomInfo[1], CardType.WEAPON);
+					cardDeck.add(weaponCard);
+
+				}
+			}
 			in.close();
 		} catch (IOException e1) {
 			System.out.println(e1.getMessage());
@@ -409,6 +407,10 @@ public class Board {
 		return null;
 	}
 
+	/*
+	 * Function below is supposed to convert the string color representation
+	 * into a proper Color object for GUI use later.
+	 */
 	public Color getColor(String colorName) {
 		switch (colorName.toLowerCase()) {
 		case "blue":
