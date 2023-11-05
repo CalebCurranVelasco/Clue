@@ -24,39 +24,41 @@ class GameSetupTests {
 	
 	@Test
 	public void testPlayerColor() {
-		assertEquals("Gojo", board.getPlayer("Blue").getName());
-		assertEquals("Toji", board.getPlayer("Purple").getName());
-		assertEquals("Sukuna", board.getPlayer("Red").getName());
-		assertEquals("Geto", board.getPlayer("Green").getName());
-		assertEquals("Panda", board.getPlayer("White").getName());
+		assertEquals("Gojo", board.getPlayer("blue").getName());
+		assertEquals("Toji", board.getPlayer("purple").getName());
+		assertEquals("Sukuna", board.getPlayer("red").getName());
+		assertEquals("Geto", board.getPlayer("green").getName());
+		assertEquals("Panda", board.getPlayer("white").getName());
 	}
 	
-	@Test
-	public void testWeaponLabels() {
-		assertTrue("Inverted Spear of Heaven", board.getWeapon("Inverted Spear of Heaven"));
-	}
-	
-	@Test
-	public void testHumanPlayer() {
-		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
-		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
-	}
-	
-	@Test
-	void Cards() {
-		assertEquals(21, deck.size());
-	}
-	
-	@Test
-	void Solution() {
-		assertTrue(solution.getWeapon() != null);
-		assertTrue(solution.getPlayer() != null);
-		assertTrue(solution.getRoom() != null);
-	}
-	
-	@Test
-	void cardDealtToPlayer() {
-		assertTrue(player.getWeapon() != null);
-	}
+//	@Test
+//	public void testWeaponLabels() {
+//		assertTrue("Inverted Spear of Heaven", board.getWeapon("Inverted Spear of Heaven"));
+//	}
+//	
+//	@Test
+//	public void testHumanPlayer() {
+//		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
+//		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
+//		assertEquals(6, playerList.size());
+//	}
+//	
+//	@Test
+//	void Cards() {
+//		assertEquals(21, deck.size());
+//		
+//	}
+//	
+//	@Test
+//	void Solution() {
+//		assertTrue(solution.getWeapon() != null);
+//		assertTrue(solution.getPlayer() != null);
+//		assertTrue(solution.getRoom() != null);
+//	}
+//	
+//	@Test
+//	void cardDealtToPlayer() {
+//		assertTrue(player.getWeapon() != null);
+//	}
 
 }

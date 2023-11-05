@@ -12,12 +12,12 @@ Room, Temple, T
 Space, Unused, X
 Space, Walkway, W
 // Players
-Player, Gojo, Blue
-Player, Toji, Purple
-Player, Sukuna, Red
-Player, Geto, Green
-Player, Panda, Black
-Player, Mahito, White
+Player,Gojo, blue,0,9
+Player,Toji, magenta,0,15
+Player,Sukuna, red,5,0
+Player,Geto, green,7,23
+Player,Panda, black,13,23
+Player,Mahito, white,24,15
 // Weapons
 Weapons, Inverted Spear of Heaven
 Weapons, Split Soul Katana
