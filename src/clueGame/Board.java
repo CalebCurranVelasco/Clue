@@ -134,6 +134,7 @@ public class Board {
 				}
 
 				// Code below creates all players from the txt file
+				// and creates the player card for the game's card deck
 				else if ("Player".equals(roomInfo[0])) {
 					if (human == false) {
 						int playerRow = Integer.parseInt(roomInfo[3]); // Reads in the row as int
@@ -147,7 +148,9 @@ public class Board {
 						cardDeck.add(humanCard); // Add human card to card deck
 						human = true; // No longer need any more human players
 					}
+					
 					// The code below works the same way as the code above
+					// except these are for computer players
 					else {
 						int computerRow = Integer.parseInt(roomInfo[3]);
 						int computerCol = Integer.parseInt(roomInfo[4]);
@@ -396,6 +399,9 @@ public class Board {
 		return targets;
 	}
 
+	/*
+	 * This getter is supposed to get the correct player based off the current color
+	 */
 	public Player getPlayer(String playerColor) {
 		currentColor = Color.getColor(playerColor);
 		for (Player player : playerList) {
