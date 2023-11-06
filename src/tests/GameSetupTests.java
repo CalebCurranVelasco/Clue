@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import clueGame.Board;
+import clueGame.CardType;
 
 class GameSetupTests {
 	
@@ -31,10 +32,12 @@ class GameSetupTests {
 		assertEquals("Panda", board.getPlayer("black").getName());
 	}
 	
-//	@Test
-//	public void testWeaponLabels() {
-//		assertTrue("Inverted Spear of Heaven", board.getWeapon("Inverted Spear of Heaven"));
-//	}
+	@Test
+	public void testDeck() {
+		assertEquals(CardType.PERSON, board.getCardType("Gojo"));
+		assertEquals(CardType.WEAPON, board.getCardType("Inverted Spear of Heaven"));
+		assertEquals(CardType.ROOM, board.getCardType("Training Grounds"));
+	}
 //	
 //	@Test
 //	public void testHumanPlayer() {

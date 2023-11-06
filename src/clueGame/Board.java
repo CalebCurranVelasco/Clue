@@ -58,6 +58,14 @@ public class Board {
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize() {
+		
+		colorMap = new HashMap<>();
+		colorMap.put("blue", Color.BLUE);
+		colorMap.put("magenta", Color.MAGENTA);
+		colorMap.put("red", Color.RED);
+		colorMap.put("green", Color.GREEN);
+		colorMap.put("black", Color.BLACK);
+		colorMap.put("white", Color.WHITE);
 		// We have 2 different try/catch statements that will each catch their own
 		// badConfigFormatException
 		// This way, we know which file exactly is giving us the error.
@@ -83,13 +91,7 @@ public class Board {
 		}
 
 		calculateAdjacencies();
-		colorMap = new HashMap<>();
-		colorMap.put("blue", Color.BLUE);
-		colorMap.put("magenta", Color.MAGENTA);
-		colorMap.put("red", Color.RED);
-		colorMap.put("green", Color.GREEN);
-		colorMap.put("black", Color.BLACK);
-		colorMap.put("white", Color.WHITE);
+
 	}
 
 	/*
@@ -127,7 +129,7 @@ public class Board {
 					char roomLabel = tempString.charAt(1); // Convert the room label from String to Char to store in map
 					this.roomMap.put(roomLabel, tempRoom);
 
-					Card roomCard = new Card(roomInfo[1], CardType.ROOM); // Added the room as a card object here
+					Card roomCard = new Card(roomInfo[1].strip(), CardType.ROOM); // Added the room as a card object here
 					cardDeck.add(roomCard); // Send card to card deck
 
 				}
@@ -150,8 +152,8 @@ public class Board {
 						Color playerColor = colorMap.get(roomInfo[2].strip()); // Use Color class to convert string color to
 						// color object
 
-						Player humanPlayer = new HumanPlayer(roomInfo[1], playerColor, playerRow, playerCol); // Create human player
-						Card humanCard = new Card(roomInfo[1], CardType.PERSON); // Need to create player card
+						Player humanPlayer = new HumanPlayer(roomInfo[1].strip(), playerColor, playerRow, playerCol); // Create human player
+						Card humanCard = new Card(roomInfo[1].strip(), CardType.PERSON); // Need to create player card
 						playerList.add(humanPlayer);
 						cardDeck.add(humanCard); // Add human card to card deck
 						human = true; // No longer need any more human players
@@ -164,9 +166,9 @@ public class Board {
 						int computerCol = Integer.parseInt(roomInfo[4]);
 						Color computerColor = colorMap.get(roomInfo[2].strip());
 
-						Player computerPlayer = new ComputerPlayer(roomInfo[1], computerColor, computerRow,
+						Player computerPlayer = new ComputerPlayer(roomInfo[1].strip(), computerColor, computerRow,
 								computerCol);
-						Card computerCard = new Card(roomInfo[1], CardType.PERSON);
+						Card computerCard = new Card(roomInfo[1].strip(), CardType.PERSON);
 						playerList.add(computerPlayer);
 						cardDeck.add(computerCard);
 					}
@@ -174,7 +176,7 @@ public class Board {
 					// Weapons don't need much declaration since they're meant to be a type of card
 					// only
 				} else if ("Weapons".equals(roomInfo[0])) {
-					Card weaponCard = new Card(roomInfo[1], CardType.WEAPON);
+					Card weaponCard = new Card(roomInfo[1].strip(), CardType.WEAPON);
 					cardDeck.add(weaponCard);
 
 				}
@@ -408,14 +410,11 @@ public class Board {
 	}
 
 	/*
-	 * This getter is supposed to get the correct player based off the current color
+//	 * This getter is supposed to get the correct player based off the current color
 	 */
 	public Player getPlayer(String playerColor) {
 		currentColor = colorMap.get(playerColor.toLowerCase());
-		System.out.println("he");
-		System.out.println(currentColor);
 		for (Player player : playerList) {
-			System.out.println(player.getColor());
 			if (player.getColor() == currentColor) {
 				return player;
 			}
@@ -423,7 +422,16 @@ public class Board {
 		return null;
 	}
 	
-	
+	public Enum<CardType> getCardType(String name) {
+		for (Card card : cardDeck) {
+			System.out.println(card.getCardName());
+			if (card.getCardName().equals(name)) {
+				return card.getTypeOfCard();
+			}
+		}
+		return null;
+			
+	}
 
 	/*
 	 * Function below is supposed to convert the string color representation
