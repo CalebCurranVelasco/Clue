@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class HumanPlayer extends Player {
 
-	public HumanPlayer(String name, Color color, int row, int col) {
-		super(name, color, row, col);
+	public HumanPlayer(String name, Color color, int row, int col, boolean human) {
+		super(name, color, row, col, human);
 	}
 	
 	
@@ -15,5 +15,7 @@ public class HumanPlayer extends Player {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }

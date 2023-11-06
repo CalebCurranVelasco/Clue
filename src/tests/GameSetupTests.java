@@ -39,12 +39,12 @@ class GameSetupTests {
 		assertEquals(CardType.ROOM, board.getCardType("Training Grounds"));
 	}
 //	
-//	@Test
-//	public void testHumanPlayer() {
-//		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
-//		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
-//		assertEquals(6, playerList.size());
-//	}
+	@Test
+	public void testHumanComputerPlayer() {
+		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
+		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
+		assertEquals(6, board.getPlayerList().size());
+	}
 //	
 //	@Test
 //	void Cards() {

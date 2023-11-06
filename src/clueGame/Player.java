@@ -8,18 +8,32 @@ public abstract class Player {
 	private int row;
 	private int col;
 	private ArrayList<Card> cardsHeld;
+	private boolean human;
 
 	public abstract void updateHand(Card card);
 
-	public Player(String name, Color color, int row, int col) {
+	public Player(String name, Color color, int row, int col, boolean human) {
 		super();
 		this.name = name;
 		this.color = color;
 		this.row = row;
 		this.col = col;
+		this.human = human;
 	}
 	
 	
+	public boolean isHuman() {
+		return human;
+	}
+
+	public void setHuman(boolean human) {
+		this.human = human;
+	}
+
+	public void setCardsHeld(ArrayList<Card> cardsHeld) {
+		this.cardsHeld = cardsHeld;
+	}
+
 	public ArrayList<Card> getCardsHeld() {
 		return cardsHeld;
 	}

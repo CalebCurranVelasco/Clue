@@ -35,9 +35,10 @@ public class Board {
 	private Set<BoardCell> visited;
 	private ArrayList<Player> playerList;	// Player list for multiple uses
 	private ArrayList<Card> cardDeck;	// Deck of all cards (weapons, players, rooms)
-	private boolean human = false;	// Check to ensure we only read in one human player
+	private boolean human = true;	// Check to ensure we only read in one human player
 	private Color currentColor;	// The current color of the player
 	private Map<String, Color> colorMap;
+	private Player humanPlayer;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -146,17 +147,17 @@ public class Board {
 				// Code below creates all players from the txt file
 				// and creates the player card for the game's card deck
 				else if ("Player".equals(roomInfo[0])) {
-					if (human == false) {
+					if (human == true) {
 						int playerRow = Integer.parseInt(roomInfo[3]); // Reads in the row as int
 						int playerCol = Integer.parseInt(roomInfo[4]); // Reads in the col as int
 						Color playerColor = colorMap.get(roomInfo[2].strip()); // Use Color class to convert string color to
 						// color object
 
-						Player humanPlayer = new HumanPlayer(roomInfo[1].strip(), playerColor, playerRow, playerCol); // Create human player
+						humanPlayer = new HumanPlayer(roomInfo[1].strip(), playerColor, playerRow, playerCol, human); // Create human player
 						Card humanCard = new Card(roomInfo[1].strip(), CardType.PERSON); // Need to create player card
 						playerList.add(humanPlayer);
 						cardDeck.add(humanCard); // Add human card to card deck
-						human = true; // No longer need any more human players
+						human = false; // No longer need any more human players
 					}
 					
 					// The code below works the same way as the code above
@@ -167,7 +168,7 @@ public class Board {
 						Color computerColor = colorMap.get(roomInfo[2].strip());
 
 						Player computerPlayer = new ComputerPlayer(roomInfo[1].strip(), computerColor, computerRow,
-								computerCol);
+								computerCol, human);
 						Card computerCard = new Card(roomInfo[1].strip(), CardType.PERSON);
 						playerList.add(computerPlayer);
 						cardDeck.add(computerCard);
@@ -408,6 +409,10 @@ public class Board {
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
+	
+	public ArrayList<Player> getPlayerList() {
+		return this.playerList;
+	}
 
 	/*
 //	 * This getter is supposed to get the correct player based off the current color
@@ -424,7 +429,6 @@ public class Board {
 	
 	public Enum<CardType> getCardType(String name) {
 		for (Card card : cardDeck) {
-			System.out.println(card.getCardName());
 			if (card.getCardName().equals(name)) {
 				return card.getTypeOfCard();
 			}
@@ -459,7 +463,20 @@ public class Board {
 			break;
 		}
 		return currentColor;
-
+	}
+	
+	public Player getHumanPlayer(){
+		return humanPlayer;
+	}
+	
+	public Player getComputerPlayer(String playerColor) {
+		currentColor = colorMap.get(playerColor.toLowerCase());
+		for (Player player : playerList) {
+			if (player.getColor() == currentColor && player.isHuman()) {
+				return player;
+			}
+		}
+		return null;
 	}
 
 }
