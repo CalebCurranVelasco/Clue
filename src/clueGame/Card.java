@@ -4,6 +4,11 @@ public class Card {
 	private String cardName;
 	private CardType typeOfCard = null;
 	
+	public Card(String cardName, CardType typeOfCard) {
+		super();
+		this.cardName = cardName;
+		this.typeOfCard = typeOfCard;
+	}
 	
 	// THIS FUNCTION NOT COMPLETE
 	public boolean equals(Card target) {
@@ -17,11 +22,7 @@ public class Card {
 	}
 
 
-	public Card(String cardName, CardType typeOfCard) {
-		super();
-		this.cardName = cardName;
-		this.typeOfCard = typeOfCard;
-	}
+
 	
 	
 	

@@ -25,10 +25,10 @@ class GameSetupTests {
 	@Test
 	public void testPlayerColor() {
 		assertEquals("Gojo", board.getPlayer("blue").getName());
-		assertEquals("Toji", board.getPlayer("purple").getName());
+		assertEquals("Toji", board.getPlayer("magenta").getName());
 		assertEquals("Sukuna", board.getPlayer("red").getName());
 		assertEquals("Geto", board.getPlayer("green").getName());
-		assertEquals("Panda", board.getPlayer("white").getName());
+		assertEquals("Panda", board.getPlayer("black").getName());
 	}
 	
 //	@Test

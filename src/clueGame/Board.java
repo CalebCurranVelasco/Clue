@@ -37,6 +37,7 @@ public class Board {
 	private ArrayList<Card> cardDeck;	// Deck of all cards (weapons, players, rooms)
 	private boolean human = false;	// Check to ensure we only read in one human player
 	private Color currentColor;	// The current color of the player
+	private Map<String, Color> colorMap;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -82,6 +83,13 @@ public class Board {
 		}
 
 		calculateAdjacencies();
+		colorMap = new HashMap<>();
+		colorMap.put("blue", Color.BLUE);
+		colorMap.put("magenta", Color.MAGENTA);
+		colorMap.put("red", Color.RED);
+		colorMap.put("green", Color.GREEN);
+		colorMap.put("black", Color.BLACK);
+		colorMap.put("white", Color.WHITE);
 	}
 
 	/*
@@ -139,7 +147,7 @@ public class Board {
 					if (human == false) {
 						int playerRow = Integer.parseInt(roomInfo[3]); // Reads in the row as int
 						int playerCol = Integer.parseInt(roomInfo[4]); // Reads in the col as int
-						Color playerColor = Color.getColor(roomInfo[2]); // Use Color class to convert string color to
+						Color playerColor = colorMap.get(roomInfo[2].strip()); // Use Color class to convert string color to
 						// color object
 
 						Player humanPlayer = new HumanPlayer(roomInfo[1], playerColor, playerRow, playerCol); // Create human player
@@ -154,7 +162,7 @@ public class Board {
 					else {
 						int computerRow = Integer.parseInt(roomInfo[3]);
 						int computerCol = Integer.parseInt(roomInfo[4]);
-						Color computerColor = Color.getColor(roomInfo[2]);
+						Color computerColor = colorMap.get(roomInfo[2].strip());
 
 						Player computerPlayer = new ComputerPlayer(roomInfo[1], computerColor, computerRow,
 								computerCol);
@@ -403,15 +411,19 @@ public class Board {
 	 * This getter is supposed to get the correct player based off the current color
 	 */
 	public Player getPlayer(String playerColor) {
-		currentColor = Color.getColor(playerColor);
+		currentColor = colorMap.get(playerColor.toLowerCase());
+		System.out.println("he");
+		System.out.println(currentColor);
 		for (Player player : playerList) {
+			System.out.println(player.getColor());
 			if (player.getColor() == currentColor) {
 				return player;
-
 			}
 		}
 		return null;
 	}
+	
+	
 
 	/*
 	 * Function below is supposed to convert the string color representation
