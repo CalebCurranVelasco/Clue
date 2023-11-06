@@ -472,7 +472,7 @@ public class Board {
 	public Player getComputerPlayer(String playerColor) {
 		currentColor = colorMap.get(playerColor.toLowerCase());
 		for (Player player : playerList) {
-			if (player.getColor() == currentColor && player.isHuman()) {
+			if (player.getColor() == currentColor && !player.isHuman()) {
 				return player;
 			}
 		}
