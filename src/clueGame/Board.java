@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Random;
 
 import experiment.TestBoardCell;
 
@@ -39,6 +40,10 @@ public class Board {
 	private Color currentColor;	// The current color of the player
 	private Map<String, Color> colorMap;
 	private Player humanPlayer;
+	private ArrayList<Card> roomCards;
+	private ArrayList<Card> weaponCards;
+	private ArrayList<Card> personCards;
+	private Solution solution;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -92,6 +97,7 @@ public class Board {
 		}
 
 		calculateAdjacencies();
+//		dealDeck();
 
 	}
 
@@ -113,6 +119,10 @@ public class Board {
 		this.roomMap = new HashMap<Character, Room>();
 		this.playerList = new ArrayList<Player>();
 		this.cardDeck = new ArrayList<Card>();
+		this.roomCards = new ArrayList<Card>();
+		this.weaponCards = new ArrayList<Card>();
+		this.personCards = new ArrayList<Card>();
+		
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(setupConfigFile));
@@ -131,6 +141,7 @@ public class Board {
 					this.roomMap.put(roomLabel, tempRoom);
 
 					Card roomCard = new Card(roomInfo[1].strip(), CardType.ROOM); // Added the room as a card object here
+					roomCards.add(roomCard);
 					cardDeck.add(roomCard); // Send card to card deck
 
 				}
@@ -157,6 +168,7 @@ public class Board {
 						Card humanCard = new Card(roomInfo[1].strip(), CardType.PERSON); // Need to create player card
 						playerList.add(humanPlayer);
 						cardDeck.add(humanCard); // Add human card to card deck
+						personCards.add(humanCard);
 						human = false; // No longer need any more human players
 					}
 					
@@ -171,6 +183,7 @@ public class Board {
 								computerCol, human);
 						Card computerCard = new Card(roomInfo[1].strip(), CardType.PERSON);
 						playerList.add(computerPlayer);
+						personCards.add(computerCard);
 						cardDeck.add(computerCard);
 					}
 
@@ -179,6 +192,7 @@ public class Board {
 				} else if ("Weapons".equals(roomInfo[0])) {
 					Card weaponCard = new Card(roomInfo[1].strip(), CardType.WEAPON);
 					cardDeck.add(weaponCard);
+					weaponCards.add(weaponCard);
 
 				}
 			}
@@ -481,6 +495,40 @@ public class Board {
 			}
 		}
 		return null;
+	}
+	
+	public void dealDeck() {
+		Random random = new Random();
+		
+		// find a random player, room, and weapon as the solution
+		int solutionPersonIndex = random.nextInt(personCards.size());
+		Card solutionPerson = personCards.get(solutionPersonIndex);
+		
+		int solutionRoomIndex = random.nextInt(roomCards.size());
+		Card solutionRoom = roomCards.get(solutionRoomIndex);
+		
+		int solutionWeaponIndex = random.nextInt(weaponCards.size());
+		Card solutionWeapon = weaponCards.get(solutionWeaponIndex);
+		
+		solution = new Solution(solutionRoom, solutionPerson, solutionWeapon);
+		
+		// remove those cards from the deck
+		ArrayList<Card> tempCardDeck = new ArrayList<>(cardDeck); // created a tempCardDeck to not change the actual deck
+		tempCardDeck.remove(solutionWeaponIndex);
+		tempCardDeck.remove(solutionRoomIndex);
+		tempCardDeck.remove(solutionPersonIndex);
+		
+		int i = 0;
+		while (tempCardDeck.size() > 0) {
+			int index = random.nextInt(tempCardDeck.size());
+			playerList.get(i%playerList.size()).addCardsHeld(tempCardDeck.get(index));
+			tempCardDeck.remove(index);
+			i++;
+		}
+	}
+	
+	public Solution getSolution() {
+		return this.solution;
 	}
 
 }

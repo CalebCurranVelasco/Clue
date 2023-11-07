@@ -19,6 +19,7 @@ public abstract class Player {
 		this.row = row;
 		this.col = col;
 		this.human = human;
+		this.cardsHeld = new ArrayList<Card>();
 	}
 	
 	
@@ -30,16 +31,12 @@ public abstract class Player {
 		this.human = human;
 	}
 
-	public void setCardsHeld(ArrayList<Card> cardsHeld) {
-		this.cardsHeld = cardsHeld;
-	}
-
 	public ArrayList<Card> getCardsHeld() {
 		return cardsHeld;
 	}
 
-	public void setCardsHeld(Card cardsHeld) {
-		this.cardsHeld.add(cardsHeld);
+	public void addCardsHeld(Card card) {
+		this.cardsHeld.add(card);
 	}
 
 	public String getName() {
