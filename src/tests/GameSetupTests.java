@@ -45,12 +45,12 @@ class GameSetupTests {
 		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
 		assertEquals(6, board.getPlayerList().size());
 	}
-//	
-//	@Test
-//	void Cards() {
-//		assertEquals(21, deck.size());
-//		
-//	}
+
+	@Test
+	void Cards() {
+		assertEquals(21, board.getCardDeck().size());
+		
+	}
 //	
 //	@Test
 //	void Solution() {

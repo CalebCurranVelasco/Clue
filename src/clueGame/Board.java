@@ -413,6 +413,10 @@ public class Board {
 	public ArrayList<Player> getPlayerList() {
 		return this.playerList;
 	}
+	
+	public ArrayList<Card> getCardDeck() {
+		return this.cardDeck;
+	}
 
 	/*
 //	 * This getter is supposed to get the correct player based off the current color
