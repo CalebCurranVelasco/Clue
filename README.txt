@@ -2,7 +2,7 @@ Name: Joshua Ramirez Malerva
 
 Course Section: Section C (2:00 - 3:15pm Tues. and Thurs.)
 
-Assignment C15A – 1: Clue Init 2 (Clue Pair)
+Assignment C20A: Clue Players 1 (Clue Pair)
 
 Oustide Resources: Office hours
 

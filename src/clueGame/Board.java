@@ -445,6 +445,9 @@ public class Board {
 		return null;
 	}
 	
+	/*
+	 * Getter function returns an enum of the type of card the card is.
+	 */
 	public Enum<CardType> getCardType(String name) {
 		for (Card card : cardDeck) {
 			if (card.getCardName().equals(name)) {
@@ -487,6 +490,9 @@ public class Board {
 		return humanPlayer;
 	}
 	
+	/*
+	 * Getter that returns a player object
+	 */
 	public Player getComputerPlayer(String playerColor) {
 		currentColor = colorMap.get(playerColor.toLowerCase());
 		for (Player player : playerList) {
@@ -497,6 +503,11 @@ public class Board {
 		return null;
 	}
 	
+	/*
+	 * The function below picks a random weapon, person, and room to place in the solution deck.
+	 * We make sure to remove these 3 cards from the temporary card deck. This way we ensure we don't 
+	 * unneccasrily delete any cards we might actually still need.
+	 */
 	public void dealDeck() {
 		Random random = new Random();
 		

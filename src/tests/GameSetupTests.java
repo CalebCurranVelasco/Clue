@@ -24,6 +24,10 @@ class GameSetupTests {
 		board.dealDeck();
 	}
 	
+	/*
+	 * The test below tests the players are read in properly from the txt file.
+	 * We ensure that the color assigned to each player matches the character it's assigned to.
+	 */
 	@Test
 	public void testPlayerColor() {
 		assertEquals("Gojo", board.getPlayer("blue").getName());
@@ -33,13 +37,23 @@ class GameSetupTests {
 		assertEquals("Panda", board.getPlayer("black").getName());
 	}
 	
+	
+	/*
+	 * The test below tests a weapon, person, and room to ensure that 
+	 * the weapon, person, and room objects contain the correct enum within theeir attributes.
+	 */
 	@Test
 	public void testDeck() {
 		assertEquals(CardType.PERSON, board.getCardType("Gojo"));
 		assertEquals(CardType.WEAPON, board.getCardType("Inverted Spear of Heaven"));
 		assertEquals(CardType.ROOM, board.getCardType("Training Grounds"));
 	}
-//	
+
+	/*
+	 * The test below tests the human player and computer player and ensures that
+	 * the human player is Gojo, which is assigned the color blue. Everyone else
+	 * is set as a computer player (1 human, 5 computers).
+	 */
 	@Test
 	public void testHumanComputerPlayer() {
 		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
@@ -47,12 +61,20 @@ class GameSetupTests {
 		assertEquals(6, board.getPlayerList().size());
 	}
 
+	/*
+	 * The test below tests the card deck and just ensures that the card deck
+	 * contains 21 cards (6 players, 6 weapons, 9 rooms).
+	 */
 	@Test
 	void Cards() {
 		assertEquals(21, board.getCardDeck().size());
 	}
 	
-	// tests that the solution cards are dealt correctly
+	/*
+	 * The test below tests the solution deck and ensures that
+	 * 1. The player, weapon, and room cards aren't null
+	 * 2. The player, weapon, and room cards contain the right enum for classification.
+	 */
 	@Test
 	void Solution() {
 		assertTrue(board.getSolution().getPerson() != null);
@@ -63,8 +85,11 @@ class GameSetupTests {
 		assertTrue(board.getSolution().getRoom().getTypeOfCard() == CardType.ROOM);
 	}
 	
-	// tests that players have cards and that they do not have any of the solution cards and it is
-	// the correct number of cards
+	
+	/*
+	 * The test below tests that playeres have cards dealt to them that don't include the solution cards
+	 * and the correct number of cards are dealt to the player.
+	 */
 	@Test
 	void cardDealtToPlayer() {
 		assertTrue(board.getPlayerList().get(0).getCardsHeld() != null);
