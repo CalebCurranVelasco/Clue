@@ -72,6 +72,7 @@ class GameSetupTests {
 		assertTrue(board.getPlayerList().get(0).getCardsHeld().get(0) != board.getSolution().getWeapon());
 		assertTrue(board.getPlayerList().get(0).getCardsHeld().get(0) != board.getSolution().getRoom());
 		assertTrue(21 == 3 + board.getPlayerList().get(0).getCardsHeld().size() + board.getPlayerList().get(1).getCardsHeld().size() + board.getPlayerList().get(2).getCardsHeld().size() + board.getPlayerList().get(3).getCardsHeld().size() + board.getPlayerList().get(4).getCardsHeld().size() + board.getPlayerList().get(5).getCardsHeld().size());
+		assertEquals(board.getPlayerList().get(0).getCardsHeld().size(), board.getPlayerList().get(1).getCardsHeld().size());
 	}
 
 }
