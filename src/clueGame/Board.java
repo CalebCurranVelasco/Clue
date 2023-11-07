@@ -36,7 +36,7 @@ public class Board {
 	private Set<BoardCell> visited;
 	private ArrayList<Player> playerList;	// Player list for multiple uses
 	private ArrayList<Card> cardDeck;	// Deck of all cards (weapons, players, rooms)
-	private boolean human = true;	// Check to ensure we only read in one human player
+	private boolean human;	// Check to ensure we only read in one human player
 	private Color currentColor;	// The current color of the player
 	private Map<String, Color> colorMap;
 	private Player humanPlayer;
@@ -97,7 +97,6 @@ public class Board {
 		}
 
 		calculateAdjacencies();
-//		dealDeck();
 
 	}
 
@@ -122,6 +121,7 @@ public class Board {
 		this.roomCards = new ArrayList<Card>();
 		this.weaponCards = new ArrayList<Card>();
 		this.personCards = new ArrayList<Card>();
+		this.human = true;
 		
 
 		try {
@@ -540,6 +540,14 @@ public class Board {
 	
 	public Solution getSolution() {
 		return this.solution;
+	}
+	
+	public boolean checkAccusation(Card person, Card weapon, Card room) {
+		if (person.equals(solution.getPerson()) && weapon.equals(solution.getWeapon()) && room.equals((solution.getRoom()))) {
+			return true;
+		}
+		return false;
+		
 	}
 
 }

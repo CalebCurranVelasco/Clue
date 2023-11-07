@@ -36,7 +36,6 @@ public class Card {
 
 
 
-	// THIS FUNCTION NOT COMPLETE
 	public boolean equals(Card target) {
 		if (this.cardName == target.cardName && this.typeOfCard == target.typeOfCard) {
 			return true;
@@ -44,10 +43,6 @@ public class Card {
 			return false;
 		}
 	}
-
-
-
-	
 	
 	
 	

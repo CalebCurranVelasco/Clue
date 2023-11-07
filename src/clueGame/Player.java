@@ -7,7 +7,7 @@ public abstract class Player {
 	private Color color;
 	private int row;
 	private int col;
-	private ArrayList<Card> cardsHeld;
+	private ArrayList<Card> hand;
 	private boolean human;
 
 	public abstract void updateHand(Card card);
@@ -19,7 +19,20 @@ public abstract class Player {
 		this.row = row;
 		this.col = col;
 		this.human = human;
-		this.cardsHeld = new ArrayList<Card>();
+		this.hand = new ArrayList<Card>();
+	}
+	
+	public Card disproveSuggestion(Card person, Card weapon, Card room) {
+		if (hand.contains(person)) {
+			return person;
+		}
+		if (hand.contains(weapon)) {
+			return weapon;
+		}
+		if (hand.contains(room)) {
+			return room;
+		}
+		return null;
 	}
 	
 	
@@ -32,11 +45,11 @@ public abstract class Player {
 	}
 
 	public ArrayList<Card> getCardsHeld() {
-		return cardsHeld;
+		return hand;
 	}
 
 	public void addCardsHeld(Card card) {
-		this.cardsHeld.add(card);
+		this.hand.add(card);
 	}
 
 	public String getName() {
