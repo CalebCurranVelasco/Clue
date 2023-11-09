@@ -43,7 +43,7 @@ public class Board {
 	private ArrayList<Card> roomCards;
 	private ArrayList<Card> weaponCards;
 	private ArrayList<Card> personCards;
-	private Solution solution;
+	private Solution theAnswer;
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -65,6 +65,7 @@ public class Board {
 	 */
 	public void initialize() {
 		
+		theAnswer = new Solution();
 		colorMap = new HashMap<>();
 		colorMap.put("blue", Color.BLUE);
 		colorMap.put("magenta", Color.MAGENTA);
@@ -521,7 +522,9 @@ public class Board {
 		int solutionWeaponIndex = random.nextInt(weaponCards.size());
 		Card solutionWeapon = weaponCards.get(solutionWeaponIndex);
 		
-		solution = new Solution(solutionRoom, solutionPerson, solutionWeapon);
+		theAnswer.setPerson(solutionPerson);
+		theAnswer.setWeapon(solutionWeapon);
+		theAnswer.setRoom(solutionRoom);
 		
 		// remove those cards from the deck
 		ArrayList<Card> tempCardDeck = new ArrayList<>(cardDeck); // created a tempCardDeck to not change the actual deck
@@ -538,16 +541,35 @@ public class Board {
 		}
 	}
 	
+	public void setSolution(Card person, Card weapon, Card room) {
+		theAnswer.setPerson(person);
+		theAnswer.setWeapon(weapon);
+		theAnswer.setRoom(room);
+		
+	}
+	
 	public Solution getSolution() {
-		return this.solution;
+		return this.theAnswer;
 	}
 	
 	public boolean checkAccusation(Card person, Card weapon, Card room) {
-		if (person.equals(solution.getPerson()) && weapon.equals(solution.getWeapon()) && room.equals((solution.getRoom()))) {
+		if (person.equals(theAnswer.getPerson()) && weapon.equals(theAnswer.getWeapon()) && room.equals((theAnswer.getRoom()))) {
 			return true;
 		}
 		return false;
-		
+	}
+	
+	public Card handleSuggestion(Card person, Card weapon, Card room, Player suggestor) {
+		int indexSuggestor = playerList.indexOf(suggestor);
+		int counter = (indexSuggestor + 1)%6;
+		while (counter != indexSuggestor) {
+			Card result = playerList.get(counter).disproveSuggestion(person, weapon, room);
+			if (result != null) {
+				return result;
+			}
+			counter = (counter + 1) % playerList.size();
+		}
+		return null;
 	}
 
 }

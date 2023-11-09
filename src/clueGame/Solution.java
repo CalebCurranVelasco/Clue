@@ -4,7 +4,10 @@ public class Solution {
 	private Card room;
 	private Card person;
 	private Card weapon;
-	public Solution(Card room, Card person, Card weapon) {
+	public Solution() {
+		super();
+	}
+	public Solution(Card person, Card weapon, Card room) {
 		super();
 		this.room = room;
 		this.person = person;
