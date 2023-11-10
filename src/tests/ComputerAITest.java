@@ -112,6 +112,14 @@ class ComputerAITest {
 		assertFalse(card.equals(board.getPlayer("red").createSuggestion(card, personList, weaponList, roomList).getRoom()));
 	}
 	
+	
+	/*
+	 * The test below creates a test for a target room
+	 * that has not been seen yet. The test below asserts true
+	 * for the line of code below because the computer player has
+	 * the room within its list of targets. This happens only after we 
+	 * calculate the targets.
+	 */
 	@Test
 	void selectTargetRoomNotSeen() {
 		board.calcTargets(board.getCell(9, 6), 1);
