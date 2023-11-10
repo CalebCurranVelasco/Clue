@@ -1,8 +1,8 @@
-Name: Joshua Ramirez Malerva
+Name: Joshua Ramirez Malerva, Caleb Curran Velasco
 
 Course Section: Section C (2:00 - 3:15pm Tues. and Thurs.)
 
-Assignment C20A: Clue Players 1 (Clue Pair)
+Assignment C21A: Clue Players 2 (Clue Pair)
 
 Oustide Resources: Office hours
 

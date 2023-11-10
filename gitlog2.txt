@@ -1,0 +1,467 @@
+
+I, Caleb Curran-Velasco, certify that I participated equitably in the creation of assignment C21A, dated 11/09/2023.
+I, Joshua Ramirez Malerva, certify that I participated equitably in the creation of this assignment C21A, dated 11/09/2023.
+
+commit 7133e373b0a0c87b5dc0950200cf7b32c7f449d7
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Nov 9 23:51:05 2023 -0700
+
+    Added comments for test in ComputerAITest
+
+commit bba2920bfe4fde45d17db0253d6a9815496b7775
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Nov 9 23:47:33 2023 -0700
+
+    Added comments to all tests in GameSolutionTest
+
+commit 789db2cbc89ee81fdbbddaa04128fa8851317e89
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Nov 9 22:38:55 2023 -0700
+
+    passes select Target tests now. Also fixed a bug in DealingDeck
+
+commit db60735092970d35dba78cd05318c586cabc11ff
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Nov 9 19:26:09 2023 -0700
+
+    passes all createSuggestion tests for the computer player
+
+commit 5849f8638dbbedd41743175ae7d6142c4f2e9200
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Nov 9 17:58:35 2023 -0700
+
+    Passes all handle suggesstion tests, added more tests
+
+commit 669a2866a4095ab387b05d5832620887bdc33c17
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Nov 9 15:16:40 2023 -0700
+
+    passing the handleSuggestion tests
+
+commit 800384d66d8fb51dd42f24e180295c3a5f890479
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Nov 7 16:53:23 2023 -0700
+
+    tests added for testing handleling suggestions
+
+commit 9bb5f1d2ecbcb991248abcbd1415ef506e233e90
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Nov 6 23:00:28 2023 -0700
+
+    Successfully completed C20A
+
+commit 6481d5503a6611d9a0c720e459b241bbcaa373fc
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 19:41:27 2023 -0700
+
+    added more tests to cardDealtToPlayer
+
+commit e22cbfa6b83d6c52ea4f11c2f68dab57baa2fefd
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 19:38:45 2023 -0700
+
+    passes the Solution test and cardDealtToPlayer test
+
+commit aaa90e12f6262d8f19ce2556200253d3857e468e
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 18:19:06 2023 -0700
+
+    passes the card test
+
+commit 08506ec6216832017d2ca2dcdcc99261f3aaa070
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 16:43:09 2023 -0700
+
+    testHumanComputerPlayer is now passing
+
+commit c214af076b08e1977b8a9ec2b1c566e901ec8acb
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 16:41:59 2023 -0700
+
+    testHumanComputerPlayer failing but not erroring
+
+commit c56362bb127f403d098a1eff6417260fe1d812cd
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 16:24:32 2023 -0700
+
+    passes testDeck which makes sure the deck is populated with perons, weapons, and rooms
+
+commit 9e94299a9d23e72b3cd392c17af3bedf0cb05ab8
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Nov 6 15:43:06 2023 -0700
+
+    passes testPlayerColor
+
+commit 9f1592d8a8a225223b71d312d0572aa658ffd248
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Sun Nov 5 15:22:14 2023 -0700
+
+    Everything ready for push
+
+commit dff85fd46cb38d40d1fb64d5580ebb9b7416c88a
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Sun Nov 5 15:20:05 2023 -0700
+
+    Added proper commenting on Board.java for better understanding of changess made for partner
+
+commit fb49486b6bf2bde3c3554804c5ebbec3cd62bb97
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Sun Nov 5 15:17:46 2023 -0700
+
+    Wrote players and weapons code for creating card objects of weapons and players in loadSeetupConfig(); Also added getColor() function
+
+commit ce76d8ba44de79b699d9c9ce72c3d909a46033f5
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Sun Nov 5 15:14:22 2023 -0700
+
+    Begin writing code for testPlayerColor()
+
+commit 1a44fc667c42ae24e4bdba09940d73295bf3f24e
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Oct 31 18:48:49 2023 -0600
+
+    added some classes and their constructors and getters and setters
+
+commit 4fc5a2e0a0cd0bcaa46d8eb63cc21479d49a44a9
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Oct 31 15:58:33 2023 -0600
+
+    added players and weapons to setup.txt and added erroring tests
+
+commit c688092f5e3af920ea0a3ed34d406a026d098707
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:36:34 2023 -0600
+
+    Added C19A_2.txt file
+
+commit a39c17e96e78ba93adf82af1c9e87fb9fbe6b089
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:28:34 2023 -0600
+
+    Refactor 4 (Major): Reformatted initalize() try/catch statements to include important information contained within the message
+
+commit 5902e95e729c2e66b424944d32f63f38d0a59f60
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:24:36 2023 -0600
+
+    Refactor 3: Added proper spacing in between code in Board.java that was giving users a hard time reading our code
+
+commit d20d4cfec152e2dbf3b2173297a54018d23c394c
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 17:15:02 2023 -0600
+
+    Refactor 2: Renamed 'currCell' variable in Board.java to 'currentCell' for clarity. Also added meaningful mesages to refactor 1
+
+commit e5cdcd6a44690d219d68044ca5e4ec878655064f
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 30 16:46:12 2023 -0600
+
+    Refactor 1: Added comments to lines 57 and 58 to describe the difference between 2 different try/catch statements
+
+commit a906f993c9546a8ea83eea7eaade96a1151c7788
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:30:29 2023 -0600
+
+    removed unnecessary code in DoorDirection
+
+commit 0bb69b7586bdd76f877108c2982cd30e68eabe8e
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:29:28 2023 -0600
+
+    Fixed new line spacing to make all files look more readable
+
+commit 4df5c685b53cf7e1b4d29aa23b7b83bcc5f2a028
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:26:08 2023 -0600
+
+    Changed code in calculate Adjacencies so that instead of iterating through the whole grid to add the roomCenter to the doorway's adjList and visa versa we use room.getCenterCell so that it is faster
+
+commit 8f9c268f21d5127bf0b58d222fe57f122447e3e2
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 30 13:05:16 2023 -0600
+
+    Changed the if else code to switch statements in BoardCell
+
+commit b66154209f7d9d676fadf8bb8603ba59813f7392
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 26 14:59:00 2023 -0600
+
+    test
+
+commit 3a991ad6ef3b8906bce180d0a74b4f3b77db2eee
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 22 16:38:39 2023 -0600
+
+    all tests are passing both 306 and our own for BoardAdjTargetTest
+
+commit 65f3defd0666bc96e5dac6a86041b380243e2ba6
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 22 12:19:54 2023 -0600
+
+    code with our tests
+
+commit ee27906bd3918f764878b37e88ce5226427b23c6
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 22 12:10:30 2023 -0600
+
+    Working code with some failing tests
+
+commit bc7a4efdb00da44f2c5eb994425954a77d06801f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 22 02:45:47 2023 -0600
+
+    code that passes all the 306 tests sucessfully for targets and adjacencies
+
+commit 5c3ff502d147aeb7aba85c850aa04cf7b7174870
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sat Oct 21 22:32:00 2023 -0600
+
+    306 tests fail with no error
+
+commit fac9efa1ff6bee665de75b50a5c32a92b5456286
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 20 13:35:39 2023 -0600
+
+    Started C15A_2
+
+commit de4f13f68f52f5fbbf3ce2de5ef8fc7b6805f07e
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 20 12:14:44 2023 -0600
+
+    Successfully completed C15A–1
+
+commit aa5c2092c2f0d41827330bd0c55f6bdefcdb1698
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 20 12:06:36 2023 -0600
+
+    Refactored our code by simplifying exceptions
+
+commit d6a8eaa292992f3a343c345f9a8806b31cc967b2
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 20 11:56:45 2023 -0600
+
+    All tests passing
+
+commit fafc564386e0c60240a85bad2288cd5b5d73cfca
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 20 00:24:39 2023 -0600
+
+    Created gitlog
+
+commit 09f08f02739fe041d8854ed0f1e381882e823c39
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 19 12:54:05 2023 -0600
+
+    Finished code passing all tests and looking prettier
+
+commit 05939f0df20cf661c65696af3ebe34d488cce2c8
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 19 12:46:57 2023 -0600
+
+    Finally working code passing all tests!
+
+commit 574af51ee7057d39a7738c325ab5d73695a18a6f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 19 02:59:16 2023 -0600
+
+    More debugging
+
+commit 0b1161529958d88719352ee4aacfaaa844ab1450
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 19 02:32:49 2023 -0600
+
+    Passes all tests except FileInitTests
+
+commit 24a2a4f861f3aa2e8e46d7cd9ed9d99ba1fdc6d7
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Wed Oct 18 21:43:51 2023 -0600
+
+    Changes to Board and BoardCell
+
+commit 50786f1adf9222e066d3b3bab7558c4b25fce8ae
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Wed Oct 18 15:38:51 2023 -0600
+
+    Worked on the getRoom method
+
+commit 49c36cba060602b5b1938679f9f25c47ae8c10b7
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 16 22:44:33 2023 -0600
+
+    Implemented prototype version of loadSetupConfig(). REQUIRES TESTING
+
+commit 87824da529be29864caf4fb7007ab4ddd6df9a48
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Mon Oct 16 22:42:07 2023 -0600
+
+    Currently implementing loadSetupConfig()
+
+commit 9b4ab6ea7501bc69b8ed34da6dba02f0569ab8e9
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 12 15:48:20 2023 -0600
+
+    IGNORE
+
+commit dc64c53e66fc245d468cd5aedfbb346d2eebfda5
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 12 15:20:30 2023 -0600
+
+    Work on the file setup
+
+commit 0a2d86d6bce88fb70980bd15d480daa11b39c6d4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Oct 10 15:29:22 2023 -0600
+
+    Fixed String and Characters
+
+commit 762a714737b770e35a02a066e9e5b337bbccda71
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 10 14:19:47 2023 -0600
+
+    First commit in new branch
+
+commit 6ed0a47c224f274d8f520a8939c4ae8565c798b7
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 10 14:10:53 2023 -0600
+
+    IGNORE RANDOM COMMIT
+
+commit 459e21f781c4272d13ec966ca4deb46f817cc997
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 22:58:29 2023 -0600
+
+    test
+
+commit 2f589f9bc17334d30b4102a49464f1f3717fe3db
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 14:29:38 2023 -0600
+
+    added Test.txt and added comment headers to the classes
+
+commit ed4a178467867befb5f7c645e6e488eba130aa10
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 13:57:12 2023 -0600
+
+    Changes to the clueGame package and tests package, all tests fail with no errors
+
+commit a2c7b807f68759279453809fa8410ed25bc0e9df
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Mon Oct 9 11:00:17 2023 -0600
+
+    Skeleton classes and basic function for clueGame package, imported clueLayout.csv and example tests and files
+
+commit 8a6a0521b0fb986fe2203e89c95ed747ea53dfd4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 22:08:16 2023 -0600
+
+    finished the TestBoard class and code now passes all tests
+
+commit 88f62458c090874d2909c43bebcba7865d152ac4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 18:06:27 2023 -0600
+
+    implementing adj list and finding targets algorithm
+
+commit 35f3003776a07b5f10d08555a78aaa86fc58c3f5
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Oct 8 13:20:45 2023 -0600
+
+    added code to calculate adjacency list
+
+commit 298e585af6c66b1f4df77d32cd2560867ecd8bdf
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 13:18:20 2023 -0600
+
+    Implemented testMixedAdjacency() test
+
+commit 7930caebcbc1654afd08e86abdaaeef82977005e
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 12:48:41 2023 -0600
+
+    Implemented middleOfBoard() test
+
+commit e65cf6745bb35a0858fcb5ac41f5f4907b3488a9
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 12:02:08 2023 -0600
+
+    Implemented the testMaxRoll() test
+
+commit 1ec8343d592fa326f233c86dde0e113c7f50bb1c
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 11:43:16 2023 -0600
+
+    Implemented testRooms() function to test rooms using a roll of 3
+
+commit c37a50ca53b67a4bd1585267e0e5fb6c3b1410bb
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Fri Oct 6 10:30:56 2023 -0600
+
+    Added 2 tests from examples that fail without error
+
+commit 88e5cc2bcdd9fa01918b6f7381d62203ca7c863f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 15:35:12 2023 -0600
+
+    changes to the test
+
+commit 465decaf5e1c0a1fa76a667c776b4ba41670b7e9
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:48:54 2023 -0600
+
+    Added all skeleton functions! Ready to create JUnit tests
+
+commit 21fe04e5743c9ca93df6c1510ca4534f13c04f56
+Merge: 9de93c6 998a384
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:38:05 2023 -0600
+
+    Stuff
+
+commit 9de93c6de197182aecc73891af6f57bcb9bc6f58
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:33:48 2023 -0600
+
+    Test commit
+
+commit 998a384e83d217aebabc993e1042ca48a5031638
+Merge: 07c1186 956b20f
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 14:31:54 2023 -0600
+
+    ignore
+
+commit 07c1186492b4f277e39e2c2dc7d0421d91e85f04
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Thu Oct 5 14:24:51 2023 -0600
+
+    gitignore file
+
+commit 956b20f542fd7e09f80a9983b02bf1145b6049e4
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Oct 5 14:18:34 2023 -0600
+
+    Created skeleton functions
+
+commit abe0d231da8fd8241474b395f151b35a2e2d85f7
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 23:23:48 2023 -0600
+
+    Updated addAdjacency() function with a LinkedHashSet
+
+commit 3cdb83df8215743a134e8e131d4fe7a8479e2095
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:03:27 2023 -0600
+
+    Created addAdjacency() function, but not fully working yet
+
+commit 1eae531c57337802c567534d94b84f5d1ba9281f
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:02:51 2023 -0600
+
+    Added class variables and created constructor with 2 parameters
+
+commit 83fa8c6b8b4fca7b50a07fa44189cd807a3ebda5
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Oct 3 22:01:00 2023 -0600
+
+    Adding all src and bin files to commit
