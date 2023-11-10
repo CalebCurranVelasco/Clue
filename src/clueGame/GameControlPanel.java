@@ -34,50 +34,49 @@ public class GameControlPanel extends JPanel {
 	 * The function below creates a new JPanel for displaying 
 	 * the player's turn, the dice roll, and the buttons.
 	 */
-//	private JPanel createUserPanel() {	
-//		setLayout(new GridLayout(1, 4));
-//		JPanel newPanel = new JPanel();
-//		newPanel = createNamePanel();
-//		add(newPanel);
-//		newPanel = createButtonPanel();
-//		add(newPanel);
-//		
-//		
-//		return newPanel;
-//	}
+	private JPanel createUserPanel() {	
+		setLayout(new GridLayout(1, 4));
+		JPanel newPanel = new JPanel();
+		newPanel = createNamePanel();
+		add(newPanel);
+		newPanel = createButtonPanel();
+		add(newPanel);
+		
+		
+		return newPanel;
+	}
 	
-//	private JPanel createGuessPanel() {
-//		setLayout(new GridLayout(0, 2));
-//		JPanel guessPanel = new JPanel();
-//		
-//		
-//		return guessPanel;
-//		
-//	}
-//
-//
-//
-//	private JPanel createButtonPanel() {
-//		// no layout specified, so this is flow
-//		JButton agree = new JButton("Make Accusation");
-//		JButton disagree = new JButton("NEXT!");
-//		JPanel panel = new JPanel();
-//		panel.add(agree);
-//		panel.add(disagree);
-//		return panel;		
-//	}
-//
-//	private JPanel createNamePanel() {
-//		JPanel panel = new JPanel();
-//		// Use a grid layout, 1 row, 2 elements (label, text)
-//		panel.setLayout(new GridLayout(2,1));
-//		JLabel nameLabel = new JLabel("Whose turn?");
-//		name = new JTextField(20);
-//		panel.add(nameLabel);
-//		panel.add(name);
-//		panel.setBorder(new TitledBorder (new EtchedBorder(), "Who are you?"));
-//		return panel;
-//	}
+	private JPanel createGuessPanel() {
+		setLayout(new GridLayout(0, 2));
+		JPanel guessPanel = new JPanel();
+		
+		
+		return guessPanel;
+		
+	}
+
+	
+	private JPanel createButtonPanel() {
+		// no layout specified, so this is flow
+		JButton agree = new JButton("Make Accusation");
+		JButton disagree = new JButton("NEXT!");
+		JPanel panel = new JPanel();
+		panel.add(agree);
+		panel.add(disagree);
+		return panel;		
+	}
+
+	private JPanel createNamePanel() {
+		JPanel panel = new JPanel();
+		// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(2,1));
+		JLabel nameLabel = new JLabel("Whose turn?");
+		name = new JTextField(20);
+		panel.add(nameLabel);
+		panel.add(name);
+		panel.setBorder(new TitledBorder (new EtchedBorder(), "Who are you?"));
+		return panel;
+	}
 
 	private void setTurn(ComputerPlayer computerPlayer, int i) {
 		
