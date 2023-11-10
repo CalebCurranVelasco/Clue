@@ -17,17 +17,17 @@ public class GameControlPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 
-//	public GameControlPanel() {
-//		
-//		// Create a layout with 2 rows
-//		setLayout(new GridLayout(2,0));
-//		JPanel userPanel = createUserPanel();	// Creates the panel containing player turn, roll, and buttons
-//		add(userPanel);
-//		userPanel = createGuessPanel();
-//		add(userPanel);
-//		
-//		
-//	}
+	public GameControlPanel() {
+		
+		// Create a layout with 2 rows
+		setLayout(new GridLayout(2,0));
+		JPanel userPanel = createUserPanel();	// Creates the panel containing player turn, roll, and buttons
+		add(userPanel);
+		userPanel = createGuessPanel();
+		add(userPanel);
+		
+		
+	}
 
 	
 	/*
@@ -79,18 +79,18 @@ public class GameControlPanel extends JPanel {
 //		return panel;
 //	}
 
-//	private void setTurn(ComputerPlayer computerPlayer, int i) {
-//		
-//		
-//	}
+	private void setTurn(ComputerPlayer computerPlayer, int i) {
+		
+		
+	}
 	
 //	public void setGuess(String guess) {
 //	    theGuess.setText(guess);
 //	}
 	
-//	public void setText(String g) {
-//		this.text = g;
-//	}
+	public void setText(String g) {
+		this.text = g;
+	}
 
 
 	public static void main(String[] args) {
