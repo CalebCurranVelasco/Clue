@@ -8,11 +8,12 @@ public abstract class Player {
 	private Color color;
 	private int row;
 	private int col;
-	private ArrayList<Card> hand;
-	private Set<Card> seenCards;
+	protected ArrayList<Card> hand;
+	protected ArrayList<Card> cardsSeen;
 	private boolean human;
 	
 	public abstract void updateHand(Card card);
+	public abstract Solution createSuggestion(Card currRoom, ArrayList<Card> personList, ArrayList<Card> weaponList, ArrayList<Card> roomList);
 
 	public Player(String name, Color color, int row, int col, boolean human) {
 		super();
@@ -22,8 +23,9 @@ public abstract class Player {
 		this.col = col;
 		this.human = human;
 		this.hand = new ArrayList<Card>();
+		this.cardsSeen = new ArrayList<Card>();
 	}
-	
+
 	public Card disproveSuggestion(Card person, Card weapon, Card room) {
 		if (hand.contains(person)) {
 			return person;
@@ -52,6 +54,14 @@ public abstract class Player {
 
 	public void addCardsHeld(Card card) {
 		this.hand.add(card);
+	}
+	
+	public ArrayList<Card> getCardsSeen() {
+		return cardsSeen;
+	}
+
+	public void addCardsSeen(Card card) {
+		this.cardsSeen.add(card);
 	}
 
 	public String getName() {

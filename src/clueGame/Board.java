@@ -44,6 +44,8 @@ public class Board {
 	private ArrayList<Card> weaponCards;
 	private ArrayList<Card> personCards;
 	private Solution theAnswer;
+	
+
 
 	/*
 	 * variable and methods used for singleton pattern
@@ -431,6 +433,18 @@ public class Board {
 	
 	public ArrayList<Card> getCardDeck() {
 		return this.cardDeck;
+	}
+	
+	public ArrayList<Card> getRoomCards() {
+		return this.roomCards;
+	}
+	
+	public ArrayList<Card> getPersonCards() {
+		return this.personCards;
+	}
+	
+	public ArrayList<Card> getWeaponCards() {
+		return this.weaponCards;
 	}
 
 	/*
