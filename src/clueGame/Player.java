@@ -1,6 +1,7 @@
 package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class Player {
@@ -14,7 +15,8 @@ public abstract class Player {
 	
 	public abstract void updateHand(Card card);
 	public abstract Solution createSuggestion(Card currRoom, ArrayList<Card> personList, ArrayList<Card> weaponList, ArrayList<Card> roomList);
-
+	public abstract BoardCell selectTarget(Set<BoardCell> targets, Map<Character, Room> roomMap, ArrayList<Card> cards);
+	
 	public Player(String name, Color color, int row, int col, boolean human) {
 		super();
 		this.name = name;

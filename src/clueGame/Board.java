@@ -422,6 +422,11 @@ public class Board {
 	public Set<BoardCell> getAdjList(int row, int col) {
 		return grid[row][col].getAdjList();
 	}
+	
+	
+	public Map<Character, Room> getRoomMap() {
+		return this.roomMap;
+	}
 
 	public Set<BoardCell> getTargets() {
 		return targets;
@@ -542,9 +547,12 @@ public class Board {
 		
 		// remove those cards from the deck
 		ArrayList<Card> tempCardDeck = new ArrayList<>(cardDeck); // created a tempCardDeck to not change the actual deck
-		tempCardDeck.remove(solutionWeaponIndex);
-		tempCardDeck.remove(solutionRoomIndex);
-		tempCardDeck.remove(solutionPersonIndex);
+		int personindex = tempCardDeck.indexOf(solutionPerson);
+		tempCardDeck.remove(personindex);
+		int weaponindex = tempCardDeck.indexOf(solutionWeapon);
+		tempCardDeck.remove(weaponindex);
+		int roomindex = tempCardDeck.indexOf(solutionRoom);
+		tempCardDeck.remove(roomindex);
 		
 		int i = 0;
 		while (tempCardDeck.size() > 0) {

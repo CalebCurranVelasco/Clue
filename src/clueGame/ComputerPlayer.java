@@ -2,7 +2,9 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	
@@ -57,6 +59,27 @@ public class ComputerPlayer extends Player {
 		
 		Solution suggestion = new Solution(personCard, weaponCard, roomCard);
 		return suggestion;
+	}
+	
+	
+	public BoardCell selectTarget(Set<BoardCell> targets, Map<Character, Room> roomMap, ArrayList<Card> cards) {
+		for (BoardCell target : targets) {
+			if (target.isRoomCenter()) {
+				Room room = roomMap.get(target.getInitial());
+				String roomName = room.getName();
+				Card roomCard = null;
+				for (Card card : cards) {
+					if (card.getCardName().equals(roomName)) {
+						roomCard = card;
+					}
+				}
+				if (!hand.contains(roomCard) && !cardsSeen.contains(roomCard)) {
+					return target;
+				}
+			}
+		}
+		// if no unseen room, return random target
+		return targets.stream().findAny().get();
 	}
 
 

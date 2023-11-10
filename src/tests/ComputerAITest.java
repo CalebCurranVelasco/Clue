@@ -3,11 +3,14 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import clueGame.Board;
+import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 
@@ -68,6 +71,7 @@ class ComputerAITest {
 		assertTrue(card2.equals(board.getPlayer("red").createSuggestion(card8, personList, weaponList, roomList).getPerson()));
 		assertTrue(card8.equals(board.getPlayer("red").createSuggestion(card8, personList, weaponList, roomList).getRoom()));
 	}
+	
 	// tests that if the computer has seen the room its in it doesn't suggest it
 	@Test
 	void createSuggestionSeenRoom() {
@@ -109,8 +113,12 @@ class ComputerAITest {
 	}
 	
 	@Test
-	void selectTarget() {
-		fail("Not yet implemented");
+	void selectTargetRoomNotSeen() {
+		board.calcTargets(board.getCell(9, 6), 1);
+		Set<BoardCell> targets = board.getTargets();
+		ArrayList<Card> cards = board.getCardDeck();
+		assertTrue(board.getComputerPlayer("Red").selectTarget(targets, board.getRoomMap(), cards).isRoomCenter());
+		
 	}
 
 }
