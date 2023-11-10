@@ -2,7 +2,7 @@ package clueGame;
 
 public class Card {
 	private String cardName;
-	private CardType typeOfCard = null;
+	private CardType typeOfCard;
 	
 	public Card(String cardName, CardType typeOfCard) {
 		super();

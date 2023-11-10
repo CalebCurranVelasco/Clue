@@ -37,13 +37,20 @@ class GameSolutionTest {
 	void testAccusation() {
 		board.setSolution(new Card("Gojo", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Dojo", CardType.ROOM));
 		assertTrue(board.checkAccusation(new Card("Gojo", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Dojo", CardType.ROOM)));
+		assertFalse(board.checkAccusation(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Dojo", CardType.ROOM)));
+		assertFalse(board.checkAccusation(new Card("Gojo", CardType.PERSON), new Card("Nanami's Sword", CardType.WEAPON), new Card("Dojo", CardType.ROOM)));
+		assertFalse(board.checkAccusation(new Card("Gojo", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Temple", CardType.ROOM)));
 	}
 	
 	@Test
 	void disproveSuggestion() {
 		Card card = new Card("Dojo", CardType.ROOM);
+		Card card1 = new Card("Gojo", CardType.PERSON);
 		board.getPlayer("blue").addCardsHeld(card);
-		assertTrue(card.equals(board.getPlayer("blue").disproveSuggestion(new Card("Gojo", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), card)));
+		board.getPlayer("blue").addCardsHeld(card1);
+		assertTrue(card.equals(board.getPlayer("blue").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), card)));
+		assertTrue(card.equals(board.getPlayer("blue").disproveSuggestion(card, new Card("Split Soul Katana", CardType.WEAPON), card)));
+		assertEquals(null, board.getPlayer("blue").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Temple", CardType.ROOM)));
 	}
 	
 	@Test
@@ -64,7 +71,7 @@ class GameSolutionTest {
 	}
 	
 	@Test
-	void handleSuggesstionNull() {
+	void onlyPlayerCanDisprove() {
 		Card card = new Card("Dojo", CardType.ROOM);
 		Card card1 = new Card("Split Soul Katana", CardType.WEAPON);
 		Card card2 = new Card("Gojo", CardType.PERSON);
@@ -80,6 +87,46 @@ class GameSolutionTest {
 		board.getPlayer("black").addCardsHeld(card4);
 		board.getPlayer("white").addCardsHeld(card5);
 		assertEquals(null, board.handleSuggestion(card6, card7, card, board.getPlayer("blue")));
+	}
+	
+	@Test
+	void noneCanDisprove() {
+		Card card = new Card("Dojo", CardType.ROOM);
+		Card card1 = new Card("Split Soul Katana", CardType.WEAPON);
+		Card card2 = new Card("Gojo", CardType.PERSON);
+		Card card3 = new Card("Geto", CardType.PERSON);
+		Card card4 = new Card("Nanami's Sword", CardType.WEAPON);
+		Card card5 = new Card("Cursed Warehouse", CardType.ROOM);
+		Card card6 = new Card("Sukuna", CardType.PERSON);
+		Card card7 = new Card("Chain of a Thousand Miles", CardType.WEAPON);
+		Card card8 = new Card("Temple", CardType.ROOM);
+		board.getPlayer("blue").addCardsHeld(card);
+		board.getPlayer("magenta").addCardsHeld(card1);
+		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("green").addCardsHeld(card3);
+		board.getPlayer("black").addCardsHeld(card4);
+		board.getPlayer("white").addCardsHeld(card5);
+		assertEquals(null, board.handleSuggestion(card6, card7, card8, board.getPlayer("red")));
+	}
+	
+	@Test
+	void twoCanDisprove() {
+		Card card = new Card("Dojo", CardType.ROOM);
+		Card card1 = new Card("Split Soul Katana", CardType.WEAPON);
+		Card card2 = new Card("Gojo", CardType.PERSON);
+		Card card3 = new Card("Geto", CardType.PERSON);
+		Card card4 = new Card("Nanami's Sword", CardType.WEAPON);
+		Card card5 = new Card("Cursed Warehouse", CardType.ROOM);
+		Card card6 = new Card("Sukuna", CardType.PERSON);
+		Card card7 = new Card("Chain of a Thousand Miles", CardType.WEAPON);
+		Card card8 = new Card("Temple", CardType.ROOM);
+		board.getPlayer("blue").addCardsHeld(card);
+		board.getPlayer("magenta").addCardsHeld(card1);
+		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("green").addCardsHeld(card3);
+		board.getPlayer("black").addCardsHeld(card4);
+		board.getPlayer("white").addCardsHeld(card5);
+		assertEquals(card4, board.handleSuggestion(card6, card4, card, board.getPlayer("red")));
 	}
 
 }
