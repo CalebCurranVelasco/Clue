@@ -20,16 +20,26 @@ public class GameControlPanel extends JPanel {
 	private JTextField roll;
 	private Player currPlayer;
 
+	
+	/*
+	 * The Game Control Panel creates the full GUI panel that displays
+	 * using a 2 x 1 matrix layout
+	 */
 	public GameControlPanel() {
 		
 		setLayout(new GridLayout(2,1));
-		JPanel topHalfPanel = createTopHalfPanel();
-		JPanel botHalfPanel = createBotHalfPanel();
+		JPanel topHalfPanel = createTopHalfPanel();	// Displays top half of display
+		JPanel botHalfPanel = createBotHalfPanel();	// Displays bottom half of display
 		
 		add(topHalfPanel);
 		add(botHalfPanel);
 	}
 	
+	/*
+	 * This function creates the top half panel which includes 
+	 * the name and roll panels. The buttons are created and
+	 * included in this panel.
+	 */
 	private JPanel createTopHalfPanel() {
 		JPanel topHalfPanel = new JPanel();
 		topHalfPanel.setLayout(new GridLayout(1, 4));
@@ -48,6 +58,11 @@ public class GameControlPanel extends JPanel {
 		return topHalfPanel;
 	}
 	
+	
+	/*
+	 * This function creates the name panel for displaying
+	 * the current turn and which player's turn it is.
+	 */
 	private JPanel createNamePanel() {
 		JPanel namePanel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
@@ -58,6 +73,10 @@ public class GameControlPanel extends JPanel {
 		return namePanel;
 	}
 	
+	/*
+	 * This function creates the roll panel for displaying 
+	 * the roll number.
+	 */
 	private JPanel createRollPanel() {
 		JPanel rollPanel = new JPanel();
 		// Use a grid layout, 1 row, 2 elements (label, text)
@@ -68,6 +87,10 @@ public class GameControlPanel extends JPanel {
 		return rollPanel;
 	}
 	
+	/*
+	 * This function creates the bottom half panel which includes
+	 * the guess panel.
+	 */
 	private JPanel createBotHalfPanel() {
 		JPanel botHalfPanel = new JPanel();
 		botHalfPanel.setLayout(new GridLayout(1,2));
@@ -81,6 +104,10 @@ public class GameControlPanel extends JPanel {
 		return botHalfPanel;
 	}
 	
+	/*
+	 * This function creates the guess panel which displays
+	 * the guess result.
+	 */
 	private JPanel createGuessPanel(String title) {
 		JPanel guessPanel = new JPanel();
 		guessPanel.setLayout(new GridLayout(0, 1));
@@ -101,6 +128,11 @@ public class GameControlPanel extends JPanel {
 		theGuess.setText(guess);
 	}
 	
+	/*
+	 * This function sets our instance variables properly
+	 * so that we may use the player's information such as
+	 * name and dice roll.
+	 */
 	private void setTurn(Player player, Integer roll) {
 		currPlayer = player;
 		turn.setText(currPlayer.getName());
