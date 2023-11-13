@@ -1,6 +1,7 @@
 package clueGame;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,12 +11,20 @@ public abstract class Player {
 	private int row;
 	private int col;
 	protected ArrayList<Card> hand;
-	protected ArrayList<Card> cardsSeen;
+	protected Map<Card, Player> cardsSeen;
 	private boolean human;
 	
 	public abstract void updateHand(Card card);
 	public abstract Solution createSuggestion(Card currRoom, ArrayList<Card> personList, ArrayList<Card> weaponList, ArrayList<Card> roomList);
 	public abstract BoardCell selectTarget(Set<BoardCell> targets, Map<Character, Room> roomMap, ArrayList<Card> cards);
+	
+	public Player(String name, Color color) {
+		super();
+		this.name = name;
+		this.color = color;
+		this.hand = new ArrayList<Card>();
+		this.cardsSeen = new HashMap<>();
+	}
 	
 	public Player(String name, Color color, int row, int col, boolean human) {
 		super();
@@ -25,7 +34,7 @@ public abstract class Player {
 		this.col = col;
 		this.human = human;
 		this.hand = new ArrayList<Card>();
-		this.cardsSeen = new ArrayList<Card>();
+		this.cardsSeen = new HashMap<>();
 	}
 
 	public Card disproveSuggestion(Card person, Card weapon, Card room) {
@@ -58,12 +67,16 @@ public abstract class Player {
 		this.hand.add(card);
 	}
 	
-	public ArrayList<Card> getCardsSeen() {
+	public Map<Card, Player> getCardsSeen() {
 		return cardsSeen;
 	}
 
-	public void addCardsSeen(Card card) {
-		this.cardsSeen.add(card);
+//	public void addCardsSeen(Card card) {
+//		this.cardsSeen.put(card);
+//	}
+	
+	public void addCardsSeen(Card card, Player seenFrom) {
+		this.cardsSeen.put(card, seenFrom);
 	}
 
 	public String getName() {

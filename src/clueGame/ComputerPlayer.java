@@ -8,6 +8,10 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player {
 	
+	public ComputerPlayer(String name, Color color) {
+		super(name, color);
+	}
+	
 
 	public ComputerPlayer(String name, Color color, int row, int col, boolean human) {
 		super(name, color, row, col, human);
@@ -31,12 +35,12 @@ public class ComputerPlayer extends Player {
 		ArrayList<Card> possibleWeapon = new ArrayList<Card>();
 		ArrayList<Card> possibleRoom = new ArrayList<Card>();
 		for (Card person : personList) {
-			if (!hand.contains(person) && !cardsSeen.contains(person)) {
+			if (!hand.contains(person) && !cardsSeen.containsKey(person)) {
 				possiblePerson.add(person);
 			}
 		}
 		for (Card weapon : weaponList) {
-			if (!hand.contains(weapon) && !cardsSeen.contains(weapon)) {
+			if (!hand.contains(weapon) && !cardsSeen.containsKey(weapon)) {
 				possibleWeapon.add(weapon);
 			} 
 		}
@@ -46,9 +50,9 @@ public class ComputerPlayer extends Player {
 		Card weaponCard = possibleWeapon.get(indexWeapon % weaponList.size());
 		Card roomCard = null;
 		// if the room we in we have already seen, randomly pick another one
-		if (hand.contains(currRoom) ||  cardsSeen.contains(currRoom)) {
+		if (hand.contains(currRoom) ||  cardsSeen.containsKey(currRoom)) {
 			for (Card room : roomList) {
-				if (!hand.contains(room) && !cardsSeen.contains(room)) {
+				if (!hand.contains(room) && !cardsSeen.containsKey(room)) {
 					possibleRoom.add(room);
 				}
 			}
@@ -75,7 +79,7 @@ public class ComputerPlayer extends Player {
 						roomCard = card;
 					}
 				}
-				if (!hand.contains(roomCard) && !cardsSeen.contains(roomCard)) {
+				if (!hand.contains(roomCard) && !cardsSeen.containsKey(roomCard)) {
 					return target;
 				}
 			}

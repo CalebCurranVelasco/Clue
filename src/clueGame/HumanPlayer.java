@@ -6,6 +6,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class HumanPlayer extends Player {
+	
+	public HumanPlayer(String name, Color color) {
+		super(name, color);
+	}
 
 	public HumanPlayer(String name, Color color, int row, int col, boolean human) {
 		super(name, color, row, col, human);

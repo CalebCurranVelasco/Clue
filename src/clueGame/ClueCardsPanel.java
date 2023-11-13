@@ -30,12 +30,6 @@ public class ClueCardsPanel extends JPanel {
 		panel.add(createHandPanel(cardType));
 		panel.add(createSeenPanel(cardType));
 		
-//		TitledBorder titleHand = BorderFactory.createTitledBorder("In Hand: ");
-//		JPanel handPanel = new JPanel();
-//		
-//		
-//		TitledBorder titleSeen = BorderFactory.createTitledBorder("Seen: ");
-		
 		return panel;
 	}
 	
@@ -78,10 +72,10 @@ public class ClueCardsPanel extends JPanel {
 		panel.removeAll();
 		int counter = 0;
 		JTextField field;
-		for (Card card : humanPlayer.getCardsSeen()) {
+		for (Card card : humanPlayer.getCardsSeen().keySet()) {
 			if (card.getTypeOfCard().toString().toLowerCase().equals(cardType.toLowerCase())) {
 				field = new JTextField(card.getCardName());
-				field.setBackground(humanPlayer.getColor());
+				field.setBackground(humanPlayer.getCardsSeen().get(card).getColor());
 				panel.add(field);
 				counter++;
 			}
@@ -95,7 +89,10 @@ public class ClueCardsPanel extends JPanel {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		humanPlayer = new HumanPlayer("Gojo", Color.BLUE, 0, 0, false);
+		humanPlayer = new HumanPlayer("Gojo", Color.BLUE);
+		Player player1 = new ComputerPlayer("Sukuna", Color.RED);
+		Player player2 = new ComputerPlayer("Panda",Color.BLACK);
+		Player player3 = new ComputerPlayer("Toji", Color.MAGENTA);
 		// create hand
 		humanPlayer.addCardsHeld(new Card("Sukuna", CardType.PERSON));
 		humanPlayer.addCardsHeld(new Card("Geto", CardType.PERSON));
@@ -103,15 +100,15 @@ public class ClueCardsPanel extends JPanel {
 		humanPlayer.addCardsHeld(new Card("Inverted Spear of Heaven", CardType.WEAPON));
 		
 		//adding cards seen
-		humanPlayer.addCardsSeen(new Card("Shrine", CardType.ROOM));
-		humanPlayer.addCardsSeen(new Card("Dojo", CardType.ROOM));
-		humanPlayer.addCardsSeen(new Card("Forest", CardType.ROOM));
-		humanPlayer.addCardsSeen(new Card("Toji", CardType.PERSON));
-		humanPlayer.addCardsSeen(new Card("Panda", CardType.PERSON));
-		humanPlayer.addCardsSeen(new Card("Mahito", CardType.PERSON));
-		humanPlayer.addCardsSeen(new Card("Meimei's Battle Axe", CardType.WEAPON));
-		humanPlayer.addCardsSeen(new Card("Gakuganji's Guitar", CardType.WEAPON));
-		humanPlayer.addCardsSeen(new Card("Nanami's Sword", CardType.WEAPON));
+		humanPlayer.addCardsSeen(new Card("Shrine", CardType.ROOM), player1);
+		humanPlayer.addCardsSeen(new Card("Dojo", CardType.ROOM), player2);
+		humanPlayer.addCardsSeen(new Card("Forest", CardType.ROOM), player3);
+		humanPlayer.addCardsSeen(new Card("Toji", CardType.PERSON), player1);
+		humanPlayer.addCardsSeen(new Card("Panda", CardType.PERSON), player2);
+		humanPlayer.addCardsSeen(new Card("Mahito", CardType.PERSON), player3);
+		humanPlayer.addCardsSeen(new Card("Meimei's Battle Axe", CardType.WEAPON), player1);
+		humanPlayer.addCardsSeen(new Card("Gakuganji's Guitar", CardType.WEAPON), player2);
+		humanPlayer.addCardsSeen(new Card("Nanami's Sword", CardType.WEAPON), player3);
 		
 		ClueCardsPanel panel = new ClueCardsPanel();
 		JFrame frame = new JFrame();
