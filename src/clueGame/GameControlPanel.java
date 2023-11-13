@@ -19,8 +19,6 @@ public class GameControlPanel extends JPanel {
 	private JTextField turn;
 	private JTextField roll;
 	private Player currPlayer;
-	
-//	private static final long serialVersionUID = 1L;
 
 	public GameControlPanel() {
 		
@@ -46,8 +44,7 @@ public class GameControlPanel extends JPanel {
 		topHalfPanel.add(rollPanel);
 		topHalfPanel.add(makeAccusationButton);
 		topHalfPanel.add(nextPlayerButton);
-		
-		
+			
 		return topHalfPanel;
 	}
 	
@@ -109,7 +106,6 @@ public class GameControlPanel extends JPanel {
 		turn.setText(currPlayer.getName());
 		turn.setBackground(currPlayer.getColor());
 		this.roll.setText(String.valueOf(roll));
-		
 	}
 	
 	public void setGuessResult(String guessResult) {
@@ -119,7 +115,6 @@ public class GameControlPanel extends JPanel {
 	public void setText(String g) {
 		this.setText(g);
 	}
-
 
 	public static void main(String[] args) {
 		GameControlPanel panel = new GameControlPanel();  // create the panel
@@ -134,7 +129,4 @@ public class GameControlPanel extends JPanel {
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}
-
-
-	
 }
