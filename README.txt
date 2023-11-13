@@ -2,9 +2,9 @@ Name: Joshua Ramirez Malerva, Caleb Curran Velasco
 
 Course Section: Section C (2:00 - 3:15pm Tues. and Thurs.)
 
-Assignment C21A: Clue Players 2 (Clue Pair)
+Assignment C21A – 1: Clue Control GUI (Clue Pair)
 
-Oustide Resources: Office hours
+Oustide Resources: Figure template provied from assignment
 
 Tests:
 
