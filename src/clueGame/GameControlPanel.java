@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private JTextField theGuess;
 	private JTextField guessResult;
 	private JTextField text;
@@ -69,6 +70,7 @@ public class GameControlPanel extends JPanel {
 		namePanel.setLayout(new GridLayout(2,1));
 		namePanel.add(new JLabel("Whose turn?"));
 		turn = new JTextField("");
+		turn.setEditable(false);
 		namePanel.add(turn);
 		return namePanel;
 	}
@@ -83,6 +85,7 @@ public class GameControlPanel extends JPanel {
 		rollPanel.setLayout(new GridLayout(2, 2)); // maybe change to grid 1,2
 		rollPanel.add(new JLabel("Roll: "), BorderLayout.WEST);
 		roll = new JTextField("");
+		roll.setEditable(false);
 		rollPanel.add(roll);
 		return rollPanel;
 	}
@@ -116,9 +119,11 @@ public class GameControlPanel extends JPanel {
 		
 		if (title.equals("Guess")) {
 			theGuess = new JTextField();
+			theGuess.setEditable(false);	// Refactor Item
 			guessPanel.add(theGuess);
 		} else {
 			guessResult = new JTextField();
+			guessResult.setEditable(false);
 			guessPanel.add(guessResult);
 		}
 		return guessPanel;

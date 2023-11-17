@@ -13,6 +13,10 @@ import javax.swing.border.TitledBorder;
 public class ClueCardsPanel extends JPanel {
 	private static HumanPlayer humanPlayer;
 	
+	/*
+	 * This function creates the panel which displays
+	 * all the card information using a 3 x 1 matrix.
+	 */
 	public ClueCardsPanel() {
 		setLayout(new GridLayout(3, 1));
 		
@@ -21,6 +25,11 @@ public class ClueCardsPanel extends JPanel {
 		add(createPanel("Weapon"));
 	}
 	
+	/*
+	 * This function creates a panel for displaying
+	 * the person, room, and weapon cards that are in hand
+	 * and seen by the player.
+	 */
 	private JPanel createPanel(String cardType) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -34,6 +43,11 @@ public class ClueCardsPanel extends JPanel {
 		return panel;
 	}
 	
+	/*
+	 * This function creates a panel for displaying the player's 
+	 * cards that are in its hand. This function is called 
+	 * from the function above.
+	 */
 	private JPanel createHandPanel(String cardType) {
 		JPanel handPanel = new JPanel();
 		TitledBorder titleHand = BorderFactory.createTitledBorder("In Hand: ");
@@ -42,6 +56,10 @@ public class ClueCardsPanel extends JPanel {
 		return handPanel;
 	}
 	
+	/*
+	 * This function updates the display by clearing it
+	 * and re-displays the player's cards in hand. 
+	 */
 	private void updateHandPanel(JPanel panel, String cardType) {
 		panel.removeAll();
 		int counter = 0;
@@ -61,6 +79,10 @@ public class ClueCardsPanel extends JPanel {
 		panel.setLayout(new GridLayout(counter,1));
 	}
 	
+	/*
+	 * This function creates a panel which displays
+	 * the cards that the player has seen by others.
+	 */
 	private JPanel createSeenPanel(String cardType) {
 		JPanel seenPanel = new JPanel();
 		TitledBorder titleSeen = BorderFactory.createTitledBorder("Seen: ");
@@ -69,6 +91,10 @@ public class ClueCardsPanel extends JPanel {
 		return seenPanel;
 	}
 	
+	/*
+	 * This function updates the display by clearing it 
+	 * and re-displays the player's seen cards.
+	 */
 	private void updateSeenPanel(JPanel panel, String cardType) {
 		panel.removeAll();
 		int counter = 0;
