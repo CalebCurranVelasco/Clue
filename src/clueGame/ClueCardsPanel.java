@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ public class ClueCardsPanel extends JPanel {
 	 * all the card information using a 3 x 1 matrix.
 	 */
 	public ClueCardsPanel() {
-		setLayout(new GridLayout(3, 1));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		add(createPanel("Person"));
 		add(createPanel("Room"));
