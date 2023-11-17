@@ -16,7 +16,7 @@ public class BoardPanel extends JPanel{
 		setTitle("Clue Game – CSCI306");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		ClueCardsPanel cardsPanel = new ClueCardsPanel();
+		CardsPanel cardsPanel = new CardsPanel();
 		add(cardsPanel, BorderLayout.EAST);
 		
 		GameControlPanel controlPanel = new GameControlPanel();

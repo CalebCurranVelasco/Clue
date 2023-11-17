@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-public class ClueCardsPanel extends JPanel {
+public class CardsPanel extends JPanel {
 	private static HumanPlayer humanPlayer;
 	
 	/*
 	 * This function creates the panel which displays
 	 * all the card information using a 3 x 1 matrix.
 	 */
-	public ClueCardsPanel() {
+	public CardsPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		add(createPanel("Person"));
@@ -138,7 +138,7 @@ public class ClueCardsPanel extends JPanel {
 		humanPlayer.addCardsSeen(new Card("Gakuganji's Guitar", CardType.WEAPON), player2);
 		humanPlayer.addCardsSeen(new Card("Nanami's Sword", CardType.WEAPON), player3);
 		
-		ClueCardsPanel panel = new ClueCardsPanel();
+		CardsPanel panel = new CardsPanel();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel); // put the panel in the frame
 		frame.setSize(180, 750);  // size the frame
