@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,7 +23,7 @@ public class ClueCardsPanel extends JPanel {
 	
 	private JPanel createPanel(String cardType) {
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2,1));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		TitledBorder title = BorderFactory.createTitledBorder(cardType);
 		panel.setBorder(title);
