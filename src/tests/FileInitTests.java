@@ -43,7 +43,7 @@ class FileInitTests {
 		// from the hash, including the first and last in the file and a few others
 		assertEquals("Underground Tombs", board.getRoom('U').getName() );
 		assertEquals("Shrine", board.getRoom('S').getName() );
-		assertEquals("Dojo", board.getRoom('D').getName() );
+		assertEquals("Cursed Warehouse", board.getRoom('D').getName() );
 		assertEquals("Isolation Chamber", board.getRoom('I').getName() );
 		assertEquals("Walkway", board.getRoom('W').getName() );
 	}
@@ -98,13 +98,13 @@ class FileInitTests {
 		BoardCell cell = board.getCell( 2, 21);
 		Room room = board.getRoom( cell ) ;
 		assertTrue( room != null );
-		assertEquals( room.getName(), "Dojo" ) ;
+		assertEquals( room.getName(), "Cursed Warehouse" ) ;
 		assertFalse( cell.isLabel() );
 		assertFalse( cell.isRoomCenter() ) ;
 		assertFalse( cell.isDoorway()) ;
 
 		// this is a label cell to test
-		cell = board.getCell(23, 11);
+		cell = board.getCell(22, 8);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Underground Tombs" ) ;
@@ -123,7 +123,7 @@ class FileInitTests {
 		cell = board.getCell(0, 23);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
-		assertEquals( room.getName(), "Dojo" ) ;
+		assertEquals( room.getName(), "Cursed Warehouse" ) ;
 		assertTrue( cell.getSecretPassage() == 'G' );
 		
 		// test a walkway

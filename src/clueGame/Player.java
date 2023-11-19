@@ -1,5 +1,6 @@
 package clueGame;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +49,14 @@ public abstract class Player {
 			return room;
 		}
 		return null;
+	}
+
+	public void draw(Graphics g, int dimension) {
+		g.setColor(this.color);
+		int radius = dimension/2;
+		int circleX = (col * dimension) + radius;
+		int circleY = (row * dimension) + radius;
+		g.fillOval(circleX - radius, circleY - radius, radius * 2, radius * 2);
 	}
 	
 	

@@ -13,20 +13,21 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class GameControlPanel extends JPanel {
-	private static final long serialVersionUID = 1L;
 	private JTextField theGuess;
 	private JTextField guessResult;
 	private JTextField text;
 	private JTextField turn;
 	private JTextField roll;
 	private Player currPlayer;
+	private static Board board;
 
 	
 	/*
 	 * The Game Control Panel creates the full GUI panel that displays
 	 * using a 2 x 1 matrix layout
 	 */
-	public GameControlPanel() {
+	public GameControlPanel(Board board) {
+		this.board = board;  // create the panel
 		
 		setLayout(new GridLayout(2,1));
 		JPanel topHalfPanel = createTopHalfPanel();	// Displays top half of display
@@ -153,17 +154,17 @@ public class GameControlPanel extends JPanel {
 		this.setText(g);
 	}
 
-	public static void main(String[] args) {
-		GameControlPanel panel = new GameControlPanel();  // create the panel
-		JFrame frame = new JFrame();  // create the frame 
-		frame.setContentPane(panel); // put the panel in the frame
-		frame.setSize(750, 180);  // size the frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
-		frame.setVisible(true); // make it visible
-		
-//		 test filling in the data
-		panel.setTurn(new ComputerPlayer( "Sukuna", Color.RED, 0, 0, false), 5);
-		panel.setGuess( "I have no guess!");
-		panel.setGuessResult( "So you have nothing?");
-	}
+//	public static void main(String[] args) {
+//		GameControlPanel panel = new GameControlPanel();  // create the panel
+//		JFrame frame = new JFrame();  // create the frame 
+//		frame.setContentPane(panel); // put the panel in the frame
+//		frame.setSize(750, 180);  // size the frame
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
+//		frame.setVisible(true); // make it visible
+//		
+////		 test filling in the data
+//		panel.setTurn(new ComputerPlayer( "Sukuna", Color.RED, 0, 0, false), 5);
+//		panel.setGuess( "I have no guess!");
+//		panel.setGuessResult( "So you have nothing?");
+//	}
 }

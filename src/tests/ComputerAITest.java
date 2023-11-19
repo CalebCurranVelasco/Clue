@@ -55,25 +55,25 @@ class ComputerAITest {
 		weaponList.add(card4);
 		weaponList.add(card7);
 		// Has not seen card7
-		board.getPlayer("red").addCardsHeld(card1);
-		board.getPlayer("red").addCardsSeen(card4, player);
+		board.getPlayer("orange").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsSeen(card4, player);
 		// person
 		personList.add(card2);
 		personList.add(card3);
 		personList.add(card6);
 		// hasn't seen card 2
-		board.getPlayer("red").addCardsHeld(card3);
-		board.getPlayer("red").addCardsSeen(card6, player);
+		board.getPlayer("orange").addCardsHeld(card3);
+		board.getPlayer("orange").addCardsSeen(card6, player);
 		//rooms
 		roomList.add(card);
 		roomList.add(card5);
 		roomList.add(card8);
-		board.getPlayer("red").addCardsSeen(card, player);
+		board.getPlayer("orange").addCardsSeen(card, player);
 		// test weapon
 
-		assertTrue(card7.equals(board.getPlayer("red").createSuggestion(card8, personList, weaponList, roomList).getWeapon()));
-		assertTrue(card2.equals(board.getPlayer("red").createSuggestion(card8, personList, weaponList, roomList).getPerson()));
-		assertTrue(card8.equals(board.getPlayer("red").createSuggestion(card8, personList, weaponList, roomList).getRoom()));
+		assertTrue(card7.equals(board.getPlayer("orange").createSuggestion(card8, personList, weaponList, roomList).getWeapon()));
+		assertTrue(card2.equals(board.getPlayer("orange").createSuggestion(card8, personList, weaponList, roomList).getPerson()));
+		assertTrue(card8.equals(board.getPlayer("orange").createSuggestion(card8, personList, weaponList, roomList).getRoom()));
 	}
 	
 	// tests that if the computer has seen the room its in it doesn't suggest it
@@ -96,25 +96,25 @@ class ComputerAITest {
 		weaponList.add(card4);
 		weaponList.add(card7);
 		// Has not seen card7
-		board.getPlayer("red").addCardsHeld(card1);
-		board.getPlayer("red").addCardsSeen(card4, player);
+		board.getPlayer("orange").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsSeen(card4, player);
 		// person
 		personList.add(card2);
 		personList.add(card3);
 		personList.add(card6);
 		// hasn't seen card 2
-		board.getPlayer("red").addCardsHeld(card3);
-		board.getPlayer("red").addCardsSeen(card6, player);
+		board.getPlayer("orange").addCardsHeld(card3);
+		board.getPlayer("orange").addCardsSeen(card6, player);
 		//rooms
 		roomList.add(card);
 		roomList.add(card5);
 		roomList.add(card8);
-		board.getPlayer("red").addCardsSeen(card, player);
+		board.getPlayer("orange").addCardsSeen(card, player);
 		// test weapon
 
-		assertTrue(card7.equals(board.getPlayer("red").createSuggestion(card, personList, weaponList, roomList).getWeapon()));
-		assertTrue(card2.equals(board.getPlayer("red").createSuggestion(card, personList, weaponList, roomList).getPerson()));
-		assertFalse(card.equals(board.getPlayer("red").createSuggestion(card, personList, weaponList, roomList).getRoom()));
+		assertTrue(card7.equals(board.getPlayer("orange").createSuggestion(card, personList, weaponList, roomList).getWeapon()));
+		assertTrue(card2.equals(board.getPlayer("orange").createSuggestion(card, personList, weaponList, roomList).getPerson()));
+		assertFalse(card.equals(board.getPlayer("orange").createSuggestion(card, personList, weaponList, roomList).getRoom()));
 	}
 	
 	
@@ -130,7 +130,7 @@ class ComputerAITest {
 		board.calcTargets(board.getCell(9, 6), 1);
 		Set<BoardCell> targets = board.getTargets();
 		ArrayList<Card> cards = board.getCardDeck();
-		assertTrue(board.getComputerPlayer("Red").selectTarget(targets, board.getRoomMap(), cards).isRoomCenter());
+		assertTrue(board.getComputerPlayer("Orange").selectTarget(targets, board.getRoomMap(), cards).isRoomCenter());
 		
 	}
 

@@ -1,8 +1,8 @@
 // Rooms and room cards
 Room, Shrine, S
 Room, Hidden Room, H
-Room, Dojo, D
-Room, Cursed Warehouse, C
+Room, Cursed Warehouse, D
+Room, Dojo, C
 Room, Forest, F
 Room, Training Grounds, G
 Room, Underground Tombs, U
@@ -12,12 +12,12 @@ Room, Temple, T
 Space, Unused, X
 Space, Walkway, W
 // Players
-Player,Gojo, blue,0,9
-Player,Toji, magenta,0,15
-Player,Sukuna, red,5,0
+Player,Gojo, cyan,0,9
+Player,Toji, pink,0,15
+Player,Sukuna, orange,5,0
 Player,Geto, green,7,23
-Player,Panda, black,13,23
-Player,Mahito, white,24,15
+Player,Panda, white,13,23
+Player,Mahito, yellow,24,15
 // Weapons
 Weapons, Inverted Spear of Heaven
 Weapons, Split Soul Katana

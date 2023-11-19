@@ -58,11 +58,11 @@ class GameSolutionTest {
 	void disproveSuggestion() {
 		Card card = new Card("Dojo", CardType.ROOM);
 		Card card1 = new Card("Gojo", CardType.PERSON);
-		board.getPlayer("blue").addCardsHeld(card);
-		board.getPlayer("blue").addCardsHeld(card1);
-		assertTrue(card.equals(board.getPlayer("blue").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), card)));
-		assertTrue(card.equals(board.getPlayer("blue").disproveSuggestion(card, new Card("Split Soul Katana", CardType.WEAPON), card)));
-		assertEquals(null, board.getPlayer("blue").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Temple", CardType.ROOM)));
+		board.getPlayer("cyan").addCardsHeld(card);
+		board.getPlayer("cyan").addCardsHeld(card1);
+		assertTrue(card.equals(board.getPlayer("cyan").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), card)));
+		assertTrue(card.equals(board.getPlayer("cyan").disproveSuggestion(card, new Card("Split Soul Katana", CardType.WEAPON), card)));
+		assertEquals(null, board.getPlayer("cyan").disproveSuggestion(new Card("Geto", CardType.PERSON), new Card("Split Soul Katana", CardType.WEAPON), new Card("Temple", CardType.ROOM)));
 	}
 	
 	
@@ -81,13 +81,13 @@ class GameSolutionTest {
 		Card card3 = new Card("Geto", CardType.PERSON);
 		Card card4 = new Card("Nanami's Sword", CardType.WEAPON);
 		Card card5 = new Card("Cursed Warehouse", CardType.ROOM);
-		board.getPlayer("blue").addCardsHeld(card);
-		board.getPlayer("magenta").addCardsHeld(card1);
-		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("cyan").addCardsHeld(card);
+		board.getPlayer("pink").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsHeld(card2);
 		board.getPlayer("green").addCardsHeld(card3);
-		board.getPlayer("black").addCardsHeld(card4);
-		board.getPlayer("white").addCardsHeld(card5);
-		assertTrue(card3.equals(board.handleSuggestion(card3, card4, card5, board.getPlayer("white"))));
+		board.getPlayer("white").addCardsHeld(card4);
+		board.getPlayer("yellow").addCardsHeld(card5);
+		assertTrue(card3.equals(board.handleSuggestion(card3, card4, card5, board.getPlayer("yellow"))));
 	}
 	
 	
@@ -109,13 +109,13 @@ class GameSolutionTest {
 		Card card5 = new Card("Cursed Warehouse", CardType.ROOM);
 		Card card6 = new Card("Sukuna", CardType.PERSON);
 		Card card7 = new Card("Chain of a Thousand Miles", CardType.WEAPON);
-		board.getPlayer("blue").addCardsHeld(card);
-		board.getPlayer("magenta").addCardsHeld(card1);
-		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("cyan").addCardsHeld(card);
+		board.getPlayer("pink").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsHeld(card2);
 		board.getPlayer("green").addCardsHeld(card3);
-		board.getPlayer("black").addCardsHeld(card4);
-		board.getPlayer("white").addCardsHeld(card5);
-		assertEquals(null, board.handleSuggestion(card6, card7, card, board.getPlayer("blue")));
+		board.getPlayer("white").addCardsHeld(card4);
+		board.getPlayer("yellow").addCardsHeld(card5);
+		assertEquals(null, board.handleSuggestion(card6, card7, card, board.getPlayer("cyan")));
 	}
 	
 	/*
@@ -133,13 +133,13 @@ class GameSolutionTest {
 		Card card6 = new Card("Sukuna", CardType.PERSON);
 		Card card7 = new Card("Chain of a Thousand Miles", CardType.WEAPON);
 		Card card8 = new Card("Temple", CardType.ROOM);
-		board.getPlayer("blue").addCardsHeld(card);
-		board.getPlayer("magenta").addCardsHeld(card1);
-		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("cyan").addCardsHeld(card);
+		board.getPlayer("pink").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsHeld(card2);
 		board.getPlayer("green").addCardsHeld(card3);
-		board.getPlayer("black").addCardsHeld(card4);
-		board.getPlayer("white").addCardsHeld(card5);
-		assertEquals(null, board.handleSuggestion(card6, card7, card8, board.getPlayer("red")));
+		board.getPlayer("white").addCardsHeld(card4);
+		board.getPlayer("yellow").addCardsHeld(card5);
+		assertEquals(null, board.handleSuggestion(card6, card7, card8, board.getPlayer("orange")));
 	}
 	
 	/*
@@ -157,13 +157,13 @@ class GameSolutionTest {
 		Card card6 = new Card("Sukuna", CardType.PERSON);
 		Card card7 = new Card("Chain of a Thousand Miles", CardType.WEAPON);
 		Card card8 = new Card("Temple", CardType.ROOM);
-		board.getPlayer("blue").addCardsHeld(card);
-		board.getPlayer("magenta").addCardsHeld(card1);
-		board.getPlayer("red").addCardsHeld(card2);
+		board.getPlayer("cyan").addCardsHeld(card);
+		board.getPlayer("pink").addCardsHeld(card1);
+		board.getPlayer("orange").addCardsHeld(card2);
 		board.getPlayer("green").addCardsHeld(card3);
-		board.getPlayer("black").addCardsHeld(card4);
-		board.getPlayer("white").addCardsHeld(card5);
-		assertEquals(card4, board.handleSuggestion(card6, card4, card, board.getPlayer("red")));
+		board.getPlayer("white").addCardsHeld(card4);
+		board.getPlayer("yellow").addCardsHeld(card5);
+		assertEquals(card4, board.handleSuggestion(card6, card4, card, board.getPlayer("orange")));
 	}
 
 }

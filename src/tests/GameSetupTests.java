@@ -30,11 +30,11 @@ class GameSetupTests {
 	 */
 	@Test
 	public void testPlayerColor() {
-		assertEquals("Gojo", board.getPlayer("blue").getName());
-		assertEquals("Toji", board.getPlayer("magenta").getName());
-		assertEquals("Sukuna", board.getPlayer("red").getName());
+		assertEquals("Gojo", board.getPlayer("cyan").getName());
+		assertEquals("Toji", board.getPlayer("pink").getName());
+		assertEquals("Sukuna", board.getPlayer("orange").getName());
 		assertEquals("Geto", board.getPlayer("green").getName());
-		assertEquals("Panda", board.getPlayer("black").getName());
+		assertEquals("Panda", board.getPlayer("white").getName());
 	}
 	
 	
@@ -56,8 +56,8 @@ class GameSetupTests {
 	 */
 	@Test
 	public void testHumanComputerPlayer() {
-		assertEquals(board.getPlayer("Blue"), board.getHumanPlayer());
-		assertEquals(board.getPlayer("Red"), board.getComputerPlayer("Red"));
+		assertEquals(board.getPlayer("Cyan"), board.getHumanPlayer());
+		assertEquals(board.getPlayer("Orange"), board.getComputerPlayer("Orange"));
 		assertEquals(6, board.getPlayerList().size());
 	}
 

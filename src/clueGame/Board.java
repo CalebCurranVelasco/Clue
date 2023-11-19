@@ -69,17 +69,16 @@ public class Board {
 		
 		theAnswer = new Solution();
 		colorMap = new HashMap<>();
-		colorMap.put("blue", Color.BLUE);
-		colorMap.put("magenta", Color.MAGENTA);
-		colorMap.put("red", Color.RED);
+		colorMap.put("cyan", Color.CYAN);
+		colorMap.put("pink", Color.PINK);
+		colorMap.put("orange", Color.ORANGE);
 		colorMap.put("green", Color.GREEN);
-		colorMap.put("black", Color.BLACK);
+		colorMap.put("yellow", Color.YELLOW);
 		colorMap.put("white", Color.WHITE);
 		// We have 2 different try/catch statements that will each catch their own
 		// badConfigFormatException
 		// This way, we know which file exactly is giving us the error.
 		try {
-
 			this.loadSetupConfig();
 		}
 

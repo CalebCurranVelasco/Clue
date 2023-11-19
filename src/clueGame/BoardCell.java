@@ -10,6 +10,8 @@
 
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +29,7 @@ public class BoardCell {
 	private boolean isOccupied; 
 	private boolean isRoom;
 	private boolean isSecretPassage;
+	private Color color;
 	private Set<BoardCell> adjList;
 	
 	public BoardCell(int row, int column) {
@@ -41,8 +44,22 @@ public class BoardCell {
 		this.roomCenter = false;
 		this.isDoorway = false;
 		this.isSecretPassage = false;
+		this.isOccupied = false;
+		this.isRoom = false;
 		this.doorDirection = DoorDirection.NONE;
 		this.adjList = new HashSet<BoardCell>();
+		
+		switch(initial) {
+		case 'X':
+			color = Color.RED;
+			break;
+		case 'W':
+			color = Color.DARK_GRAY;
+			break;
+		default:
+			color = Color.BLUE;
+		
+		}
 		
 		// change to switch
 		if (detailsArr.length > 1) {
@@ -75,6 +92,12 @@ public class BoardCell {
 			        break;
 			}
 		}
+	}
+	
+	public void draw(Graphics g, int size) {
+		g.setColor(this.color);
+		g.fillRect(column*size, row*size, size, size);
+		
 	}
 
 	public boolean isDoorway() {
@@ -141,8 +164,7 @@ public class BoardCell {
 	@Override
 	public String toString() {
 		return "BoardCell [row=" + row + ", column=" + column + ", initial=" + initial + ", doorDirection="
-				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", secretPassage="
-				+ secretPassage + ", isDoorway=" + isDoorway + ", adjList=" + adjList + "]";
+				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", isDoorway=" + isDoorway ;
 	}
 	
 	
