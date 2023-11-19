@@ -2,6 +2,7 @@ package clueGame;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	
@@ -14,6 +15,7 @@ public class ClueGame extends JFrame {
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		createPanels();
+		splashScreen();
 		add(boardPanel, BorderLayout.CENTER);
 		add(cardsPanel, BorderLayout.EAST);
 		add(gameControlPanel, BorderLayout.SOUTH);
@@ -23,6 +25,11 @@ public class ClueGame extends JFrame {
 		boardPanel = new BoardPanel(board);
 		cardsPanel = new CardsPanel(board);
 		gameControlPanel = new GameControlPanel(board);
+	}
+	
+	private static void splashScreen() {
+		String message = "You are Gojo Satoru.\nCan you find the solution \nbefore the the advanced AI players?";
+        JOptionPane.showMessageDialog(null, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public static void main(String[] args) {

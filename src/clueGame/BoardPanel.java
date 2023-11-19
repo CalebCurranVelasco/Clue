@@ -17,6 +17,7 @@ public class BoardPanel extends JPanel{
 
 	public BoardPanel(Board board) {
 		this.board = board;
+		board.setBoardPanel(this);
 	}
 	
 	@Override
@@ -79,8 +80,15 @@ public class BoardPanel extends JPanel{
                 }
             
 	        }
+            if (board.getCurrPlayer().isHuman()==true) {
+        		board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+        		for (BoardCell target : board.getTargets()) {
+        			target.drawTarget(g, cellDimension);
+        		}
+            }
         }
 	}
+	
 }
 //		setSize(new Dimension(400, 250));
 //		setTitle("Clue Game – CSCI306");

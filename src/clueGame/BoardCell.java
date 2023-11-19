@@ -99,6 +99,12 @@ public class BoardCell {
 		g.fillRect(column*size, row*size, size, size);
 		
 	}
+	
+	public void drawTarget(Graphics g, int size) {
+		g.setColor(Color.magenta);
+		g.fillRect(column*size, row*size, size, size);
+		
+	}
 
 	public boolean isDoorway() {
 		return isDoorway;

@@ -3,11 +3,14 @@ package clueGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -50,6 +53,8 @@ public class GameControlPanel extends JPanel {
 		JPanel rollPanel = createRollPanel();
 		
 		JButton nextPlayerButton = new JButton("NEXT!");
+		NextPlayerListener nextPlayerListener = new NextPlayerListener(board, turn, roll);
+		nextPlayerButton.addActionListener(nextPlayerListener);
 		JButton makeAccusationButton = new JButton("Make Accusation");
 		
 		topHalfPanel.add(userPanel);
@@ -70,7 +75,8 @@ public class GameControlPanel extends JPanel {
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		namePanel.setLayout(new GridLayout(2,1));
 		namePanel.add(new JLabel("Whose turn?"));
-		turn = new JTextField("");
+		turn = new JTextField(board.getCurrPlayer().getName());
+		turn.setBackground(board.getCurrPlayer().getColor());
 		turn.setEditable(false);
 		namePanel.add(turn);
 		return namePanel;
@@ -85,7 +91,7 @@ public class GameControlPanel extends JPanel {
 		// Use a grid layout, 1 row, 2 elements (label, text)
 		rollPanel.setLayout(new GridLayout(2, 2)); // maybe change to grid 1,2
 		rollPanel.add(new JLabel("Roll: "), BorderLayout.WEST);
-		roll = new JTextField("");
+		roll = new JTextField(Integer.toString(board.roll()));
 		roll.setEditable(false);
 		rollPanel.add(roll);
 		return rollPanel;
@@ -154,17 +160,49 @@ public class GameControlPanel extends JPanel {
 		this.setText(g);
 	}
 
-//	public static void main(String[] args) {
-//		GameControlPanel panel = new GameControlPanel();  // create the panel
-//		JFrame frame = new JFrame();  // create the frame 
-//		frame.setContentPane(panel); // put the panel in the frame
-//		frame.setSize(750, 180);  // size the frame
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
-//		frame.setVisible(true); // make it visible
-//		
-////		 test filling in the data
-//		panel.setTurn(new ComputerPlayer( "Sukuna", Color.RED, 0, 0, false), 5);
-//		panel.setGuess( "I have no guess!");
-//		panel.setGuessResult( "So you have nothing?");
-//	}
+class NextPlayerListener implements ActionListener {
+	private Board board;
+	private JTextField currPlayer;
+	private JTextField roll;
+	
+	public NextPlayerListener(Board board, JTextField currPlayer, JTextField roll) {
+		this.board = board;
+		this.currPlayer = currPlayer;
+		this.roll = roll;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (board.getCurrPlayer().isHuman() == true) {
+			int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
+					"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (ans == JOptionPane.YES_OPTION) {
+				updateGame();
+			} else {
+				showError();
+			}
+		} else {
+			updateGame();
+		}
+	}
+	
+	private void showError() {
+		JOptionPane.showMessageDialog(null,
+				"Player not done with turn.",
+				"Error!",
+				JOptionPane.INFORMATION_MESSAGE
+				);
+	}
+	
+	private void updateGame() {
+		String newRoll = Integer.toString(board.roll());
+		roll.setText(newRoll);
+		board.updateTurn();
+		currPlayer.setText(board.getCurrPlayer().getName());
+		currPlayer.setBackground(board.getCurrPlayer().getColor());
+		board.getBoardPanel().repaint();
+	}
+	
+}
 }

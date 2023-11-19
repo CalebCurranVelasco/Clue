@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import javax.swing.JPanel;
+
 import java.util.Random;
 
 import experiment.TestBoardCell;
@@ -44,6 +47,9 @@ public class Board {
 	private ArrayList<Card> weaponCards;
 	private ArrayList<Card> personCards;
 	private Solution theAnswer;
+	private Player currPlayer;
+	private JPanel boardPanel;
+	private int currRoll;
 	
 
 
@@ -171,6 +177,7 @@ public class Board {
 						playerList.add(humanPlayer);
 						cardDeck.add(humanCard); // Add human card to card deck
 						personCards.add(humanCard);
+						currPlayer = humanPlayer;
 						human = false; // No longer need any more human players
 					}
 					
@@ -591,6 +598,34 @@ public class Board {
 			counter = (counter + 1) % playerList.size();
 		}
 		return null;
+	}
+	
+	public Player getCurrPlayer() {
+		return currPlayer;
+	}
+	
+	public void updateTurn() {
+		int index = playerList.indexOf(currPlayer);
+		index = (index+1)%(playerList.size());
+		currPlayer = playerList.get(index);
+	}
+	
+	public int roll() {
+		Random random = new Random();
+        currRoll = random.nextInt(6) + 1;
+        return currRoll;
+	}
+	
+	public void setBoardPanel(JPanel boardPanel) {
+		this.boardPanel = boardPanel;
+	}
+	
+	public JPanel getBoardPanel() {
+		return boardPanel;
+	}
+	
+	public int getRoll() {
+		return currRoll;
 	}
 
 }
