@@ -6,11 +6,17 @@ import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
 	private BoardPanel boardPanel;
 	private CardsPanel cardsPanel;
 	private GameControlPanel gameControlPanel;
 	private static Board board;
 	
+	
+	/*
+	 * This function creates the main panel for the 
+	 * Clue board and adds all other panels to display.
+	 */
 	public ClueGame() {
 		setTitle("Clue Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,9 +27,13 @@ public class ClueGame extends JFrame {
 		add(gameControlPanel, BorderLayout.SOUTH);
 	}
 	
+	/*
+	 * This function creates all the panels
+	 * that are going to be displayed on the GUI.
+	 */
 	public void createPanels() {
 		boardPanel = new BoardPanel(board);
-		cardsPanel = new CardsPanel(board);
+		cardsPanel= new CardsPanel(board);
 		gameControlPanel = new GameControlPanel(board);
 	}
 	
@@ -33,7 +43,7 @@ public class ClueGame extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		board = Board.getInstance();
 		// set the file names to use my config files
 		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");		

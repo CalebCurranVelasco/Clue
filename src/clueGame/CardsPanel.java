@@ -1,18 +1,16 @@
 package clueGame;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class CardsPanel extends JPanel {
-//	private static HumanPlayer humanPlayer;
+private static final long serialVersionUID = 1L;
+	//	private static HumanPlayer humanPlayer;
 	private static Board board;
 	
 	/*
