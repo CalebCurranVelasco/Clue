@@ -79,6 +79,7 @@ public class GameControlPanel extends JPanel {
 		turn.setBackground(board.getCurrPlayer().getColor());
 		turn.setEditable(false);
 		namePanel.add(turn);
+		board.setHumanTurn(true);
 		return namePanel;
 	}
 	

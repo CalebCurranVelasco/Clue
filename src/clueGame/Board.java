@@ -50,6 +50,7 @@ public class Board {
 	private Player currPlayer;
 	private JPanel boardPanel;
 	private int currRoll;
+	private boolean humanTurn;
 	
 
 
@@ -178,6 +179,7 @@ public class Board {
 						cardDeck.add(humanCard); // Add human card to card deck
 						personCards.add(humanCard);
 						currPlayer = humanPlayer;
+						
 						human = false; // No longer need any more human players
 					}
 					
@@ -608,6 +610,9 @@ public class Board {
 		int index = playerList.indexOf(currPlayer);
 		index = (index+1)%(playerList.size());
 		currPlayer = playerList.get(index);
+		if (currPlayer.isHuman()== true) {
+			humanTurn=true;
+		}
 	}
 	
 	public int roll() {
@@ -626,6 +631,19 @@ public class Board {
 	
 	public int getRoll() {
 		return currRoll;
+	}
+	
+	public void movePlayer(BoardCell clickedCell) {
+		currPlayer.setRow(clickedCell.getRow());
+		currPlayer.setCol(clickedCell.getColumn());
+	}
+	
+	public boolean isHumanTurn() {
+		return humanTurn;
+	}
+	
+	public void setHumanTurn(boolean human) {
+		humanTurn = human;
 	}
 
 }

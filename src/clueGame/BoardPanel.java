@@ -3,10 +3,13 @@ package clueGame;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.junit.platform.engine.support.descriptor.DirectorySource;
@@ -14,17 +17,19 @@ import org.junit.platform.engine.support.descriptor.DirectorySource;
 public class BoardPanel extends JPanel{
 	
 	private static Board board;
+	private int cellDimension;
 
 	public BoardPanel(Board board) {
 		this.board = board;
 		board.setBoardPanel(this);
+		addMouseListener(new TargetListener());
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 //		int cellDimension = 50;
-		int cellDimension = Math.min(getWidth() / board.getNumColumns(), getHeight() / board.getNumRows());
+		cellDimension = Math.min(getWidth() / board.getNumColumns(), getHeight() / board.getNumRows());
 		//board.getCell(0,20).draw(g, cellDimension);
 		//board.getCell(2,1).draw(g, cellDimension);
 		for (int i=0; i < board.getNumRows(); i++) {
@@ -80,7 +85,7 @@ public class BoardPanel extends JPanel{
                 }
             
 	        }
-            if (board.getCurrPlayer().isHuman()==true) {
+            if (board.isHumanTurn()) {
         		board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
         		for (BoardCell target : board.getTargets()) {
         			target.drawTarget(g, cellDimension);
@@ -89,18 +94,61 @@ public class BoardPanel extends JPanel{
         }
 	}
 	
-}
-//		setSize(new Dimension(400, 250));
-//		setTitle("Clue Game – CSCI306");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
-//		CardsPanel cardsPanel = new CardsPanel();
-//		add(cardsPanel, BorderLayout.EAST);
-//		
-//		GameControlPanel controlPanel = new GameControlPanel();
-//		add(controlPanel, BorderLayout.SOUTH);
+
+
+	private class TargetListener implements MouseListener {
+	
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			if (board.isHumanTurn()==true) {
+				BoardCell clickedCell = board.getCell(e.getY()/cellDimension, e.getX()/cellDimension);
+				if (board.getTargets().contains(clickedCell)) {
+					board.movePlayer(clickedCell);
+					board.setHumanTurn(false);
+					repaint();
+					
+				} else {
+					showErrorClick();
+				}
+			}
+		}
+
+	
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 		
-	
-	
+		private void showErrorClick() {
+			String message = "Error: Not a valid target.";
+			JOptionPane.showMessageDialog(
+					null,
+					message,
+					"Error",
+					JOptionPane.INFORMATION_MESSAGE
+					);	
+		}
+	}
+}
 
 
