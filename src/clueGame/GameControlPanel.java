@@ -180,21 +180,13 @@ class NextPlayerListener implements ActionListener {
 					"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (ans == JOptionPane.YES_OPTION) {
 				updateGame();
-			} else {
-				showError();
-			}
+			} 
 		} else {
 			updateGame();
 		}
 	}
 	
-	private void showError() {
-		JOptionPane.showMessageDialog(null,
-				"Player not done with turn.",
-				"Error!",
-				JOptionPane.INFORMATION_MESSAGE
-				);
-	}
+
 	
 	private void updateGame() {
 		String newRoll = Integer.toString(board.roll());

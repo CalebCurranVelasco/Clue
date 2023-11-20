@@ -62,7 +62,6 @@ public class BoardPanel extends JPanel{
                     g.setColor(Color.CYAN);
                     switch (board.getCell(i, j).getDoorDirection()) {
                     case UP:
-                    	System.out.println("he");
                         g.fillRect(j * cellDimension, i * cellDimension, cellDimension,4);
                         g.drawRect(j * cellDimension, i * cellDimension, cellDimension,4);
                         break;

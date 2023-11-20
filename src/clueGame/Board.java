@@ -610,8 +610,10 @@ public class Board {
 		int index = playerList.indexOf(currPlayer);
 		index = (index+1)%(playerList.size());
 		currPlayer = playerList.get(index);
-		if (currPlayer.isHuman()== true) {
+		if (currPlayer.isHuman()) {
 			humanTurn=true;
+		} else {
+			humanTurn = false;
 		}
 	}
 	
