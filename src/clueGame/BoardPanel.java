@@ -25,6 +25,13 @@ public class BoardPanel extends JPanel{
 		addMouseListener(new TargetListener());
 	}
 	
+	
+	/*
+	 * The function below is the paint component
+	 * for the graphics portion of this function.
+	 * This function lets us draw the game board for display
+	 * using the width and height of each individual cell.
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
