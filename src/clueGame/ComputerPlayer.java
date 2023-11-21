@@ -69,6 +69,9 @@ public class ComputerPlayer extends Player {
 	
 	
 	public BoardCell selectTarget(Set<BoardCell> targets, Map<Character, Room> roomMap, ArrayList<Card> cards) {
+		if (targets.size() == 0) {
+			return null;
+		}
 		for (BoardCell target : targets) {
 			if (target.isRoomCenter()) {
 				Room room = roomMap.get(target.getInitial());
@@ -80,12 +83,22 @@ public class ComputerPlayer extends Player {
 					}
 				}
 				if (!hand.contains(roomCard) && !cardsSeen.containsKey(roomCard)) {
+					Player tempPlayer = new ComputerPlayer("Test", Color.BLACK);
+					this.cardsSeen.put(roomCard, tempPlayer);
 					return target;
 				}
 			}
 		}
 		// if no unseen room, return random target
-		return targets.stream().findAny().get();
+		boolean filled = false;
+		BoardCell option = null;
+		while (filled == false) {
+			option = targets.stream().findAny().get();
+			if (!option.isOccupied()) {
+				filled = true;
+			}
+		}
+		return option;
 	}
 
 

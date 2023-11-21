@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -182,6 +184,14 @@ class NextPlayerListener implements ActionListener {
 				updateGame();
 			} 
 		} else {
+			
+        	board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+        	BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
+        	if (newTarget != null) {
+        		board.getCurrPlayer().setCol(newTarget.getColumn());
+        		board.getCurrPlayer().setRow(newTarget.getRow());
+        	}
+        	
 			updateGame();
 		}
 	}

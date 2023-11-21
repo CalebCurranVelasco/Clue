@@ -82,6 +82,8 @@ public class Board {
 		colorMap.put("green", Color.GREEN);
 		colorMap.put("yellow", Color.YELLOW);
 		colorMap.put("white", Color.WHITE);
+		
+		
 		// We have 2 different try/catch statements that will each catch their own
 		// badConfigFormatException
 		// This way, we know which file exactly is giving us the error.
@@ -106,6 +108,7 @@ public class Board {
 		}
 
 		calculateAdjacencies();
+
 
 	}
 
@@ -246,6 +249,8 @@ public class Board {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+		
+
 
 		try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))) {
 			String line;
@@ -635,9 +640,17 @@ public class Board {
 		return currRoll;
 	}
 	
-	public void movePlayer(BoardCell clickedCell) {
+	
+	
+	public void movePlayer(BoardCell clickedCell) { 
+		
+		BoardCell currCell = getCell(currPlayer.getRow(), currPlayer.getCol());
+		currCell.setOccupied(false);
 		currPlayer.setRow(clickedCell.getRow());
 		currPlayer.setCol(clickedCell.getColumn());
+		clickedCell.setOccupied(true);
+		
+		
 	}
 	
 	public boolean isHumanTurn() {

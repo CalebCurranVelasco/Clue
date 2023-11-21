@@ -41,19 +41,33 @@ public class BoardPanel extends JPanel{
 		//board.getCell(2,1).draw(g, cellDimension);
 		for (int i=0; i < board.getNumRows(); i++) {
 			for (int j=0; j < board.getNumColumns(); j++) {
+				if (board.getCell(i, j).isSecretPassage()) {
+					board.getCell(i, j).drawSecret(g, cellDimension);
+					g.setColor(Color.BLACK);
+		            g.setFont(new Font("Arial", Font.PLAIN, this.getHeight() / 45));
+		            
+		            // Calculate the center coordinates of the cell
+		            int centerX = j * cellDimension + cellDimension / 2;
+		            int centerY = i * cellDimension + cellDimension / 2;
 
-				board.getCell(i, j).draw(g, cellDimension);
+		            // Draw the "S" at the center of the cell
+		            g.drawString("S", centerX, centerY);
+				
+				} else {
+					board.getCell(i, j).draw(g, cellDimension);
+				}
+				
 			}
 		}
 		for (Player player : board.getPlayerList()) {
-			player.draw(g, cellDimension);
+			player.drawPlayers(g, cellDimension, board);
 		}
 		for (int i = 0; i < board.getNumRows(); i++) {
 			for (int j=0; j < board.getNumColumns(); j++) {
 				BoardCell currCell = board.getCell(i, j);
 				if (currCell.isLabel()) {
 					g.setColor(Color.CYAN);
-					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight()/40));
+					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight()/45));
 					g.drawString(board.getRoom(currCell).getName(), j*cellDimension, i*cellDimension);
 				}
 			}
@@ -94,7 +108,11 @@ public class BoardPanel extends JPanel{
             if (board.isHumanTurn()) {
         		board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
         		for (BoardCell target : board.getTargets()) {
-        			target.drawTarget(g, cellDimension);
+        			System.out.println(target);
+        			if (!target.isOccupied()) {
+        				target.drawTarget(g, cellDimension);
+        			}
+        			
         		}
             }
         }

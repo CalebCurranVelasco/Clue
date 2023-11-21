@@ -38,7 +38,7 @@ public class ClueGame extends JFrame {
 	}
 	
 	private static void splashScreen() {
-		String message = "You are Gojo Satoru.\nCan you find the solution \nbefore the the advanced AI players?";
+		String message = "You are Gojo Satoru.\nCan you find the solution \nbefore the the advanced \nAI players?";
         JOptionPane.showMessageDialog(null, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 

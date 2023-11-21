@@ -11,6 +11,7 @@
 package clueGame;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
@@ -100,6 +101,11 @@ public class BoardCell {
 		
 	}
 	
+	public void drawSecret(Graphics g, int size) {
+		g.setColor(Color.GREEN);
+		g.fillRect(column*size, row*size, size, size);
+	}
+	
 	public void drawTarget(Graphics g, int size) {
 		g.setColor(Color.magenta);
 		g.fillRect(column*size, row*size, size, size);
@@ -170,7 +176,7 @@ public class BoardCell {
 	@Override
 	public String toString() {
 		return "BoardCell [row=" + row + ", column=" + column + ", initial=" + initial + ", doorDirection="
-				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", isDoorway=" + isDoorway ;
+				+ doorDirection + ", roomLabel=" + roomLabel + ", roomCenter=" + roomCenter + ", isDoorway=" + isDoorway + ", isOccupied=" + isOccupied;
 	}
 	
 	

@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,12 +52,32 @@ public abstract class Player {
 		return null;
 	}
 
-	public void draw(Graphics g, int dimension) {
+	public void draw(Graphics g, int dimension) {		
 		g.setColor(this.color);
 		int radius = dimension/2;
 		int circleX = (col * dimension) + radius;
 		int circleY = (row * dimension) + radius;
 		g.fillOval(circleX - radius, circleY - radius, radius * 2, radius * 2);
+	}
+	
+	public void drawPlayers(Graphics g, int dimension, Board board) {
+		Set<BoardCell> drawnCells = new HashSet<>();
+		for (Player player : board.getPlayerList()) {
+			BoardCell currCell = board.getCell(player.getRow(), player.getCol());
+			if (drawnCells.contains(currCell)) {
+				BoardCell newCell = board.getCell(currCell.getRow(), currCell.getColumn()+1);
+				drawnCells.add(newCell);
+				player.setRow(newCell.getRow());
+				player.setCol(newCell.getColumn());
+				player.draw(g, dimension);
+				player.setRow(currCell.getRow());
+				player.setCol(currCell.getColumn());
+			} else {
+				currCell.setOccupied(true);
+				player.draw(g, dimension);
+				drawnCells.add(currCell);
+			}
+		}	
 	}
 	
 	
@@ -86,6 +107,11 @@ public abstract class Player {
 	
 	public void addCardsSeen(Card card, Player seenFrom) {
 		this.cardsSeen.put(card, seenFrom);
+	}
+	
+	public void addCardsSeen(Card card) {
+		Player tempPlayer = new ComputerPlayer("Test", Color.BLACK);
+		this.cardsSeen.put(card, tempPlayer);
 	}
 
 	public String getName() {
