@@ -368,6 +368,28 @@ public class BoardAdjTargetTest {
 		
 
 	}
+	
+	@Test
+	public void testBrokenTargets() {
+		board.getCell(0, 8).setOccupied(true);
+		
+		board.getCell(0, 10).setOccupied(true);
+		board.calcTargets(board.getCell(0, 9), 3);
+		
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(4, targets.size());	// Space that's occupied
+	}
+	
+	@Test
+	public void testBrokenTargetsPart2() {
+		board.getCell(12, 23).setOccupied(true);
+		
+		board.getCell(14, 23).setOccupied(true);
+		board.calcTargets(board.getCell(13, 23), 3);
+		
+		Set<BoardCell> targets = board.getTargets();
+		assertEquals(4, targets.size());	// Space that's occupied
+	}
 }
 
 

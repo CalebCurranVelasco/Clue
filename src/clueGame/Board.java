@@ -384,6 +384,7 @@ public class Board {
 		Set<BoardCell> adjList = startCell.getAdjList();
 		for (BoardCell cell : adjList) {
 			if (visited.contains(cell) || (cell.isOccupied() && !cell.isRoomCenter())) {
+				System.out.println(cell);
 				continue;
 			} else {
 				visited.add(cell);
