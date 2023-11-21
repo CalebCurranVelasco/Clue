@@ -92,11 +92,13 @@ public class ComputerPlayer extends Player {
 		// if no unseen room, return random target
 		boolean filled = false;
 		BoardCell option = null;
-		while (filled == false) {
+		int count = 0;
+		while (filled == false || count >= targets.size()) {
 			option = targets.stream().findAny().get();
 			if (!option.isOccupied()) {
 				filled = true;
 			}
+			count++;
 		}
 		return option;
 	}

@@ -384,16 +384,17 @@ public class Board {
 		Set<BoardCell> adjList = startCell.getAdjList();
 		for (BoardCell cell : adjList) {
 			if (visited.contains(cell) || (cell.isOccupied() && !cell.isRoomCenter())) {
-				System.out.println(cell);
 				continue;
 			} else {
 				visited.add(cell);
 
 				if (pathLength == 1 || cell.isRoomCenter()) { // found target since adj cells are one cell away
+
 					targets.add(cell);
-					startCell.addAdjacency(cell);
 				} else {
+					
 					findAllTargets(cell, pathLength - 1); // recursive call
+					
 				}
 				visited.remove(cell);
 			}
