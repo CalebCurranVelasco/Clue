@@ -37,11 +37,19 @@ public class ClueGame extends JFrame {
 		gameControlPanel = new GameControlPanel(board);
 	}
 	
+	/*
+	 * The function below creates a splash screen
+	 * which basically just displays the game's intro.
+	 */
 	private static void splashScreen() {
 		String message = "You are Gojo Satoru.\nCan you find the solution \nbefore the the advanced \nAI players?";
         JOptionPane.showMessageDialog(null, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/*
+	 * The main method below is what lets us
+	 * display the whole game. It wrapss everything up.
+	 */
 	public static void main(String[] args) {
 		
 		board = Board.getInstance();
