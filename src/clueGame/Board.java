@@ -51,7 +51,7 @@ public class Board {
 	private JPanel boardPanel;
 	private int currRoll;
 	private boolean humanTurn;
-	
+
 
 
 	/*
@@ -73,7 +73,7 @@ public class Board {
 	 * initialize the board (since we are using singleton pattern)
 	 */
 	public void initialize() {
-		
+
 		theAnswer = new Solution();
 		colorMap = new HashMap<>();
 		colorMap.put("cyan", Color.CYAN);
@@ -82,8 +82,8 @@ public class Board {
 		colorMap.put("green", Color.GREEN);
 		colorMap.put("yellow", Color.YELLOW);
 		colorMap.put("white", Color.WHITE);
-		
-		
+
+
 		// We have 2 different try/catch statements that will each catch their own
 		// badConfigFormatException
 		// This way, we know which file exactly is giving us the error.
@@ -134,7 +134,7 @@ public class Board {
 		this.weaponCards = new ArrayList<Card>();
 		this.personCards = new ArrayList<Card>();
 		this.human = true;
-		
+
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(setupConfigFile));
@@ -182,10 +182,10 @@ public class Board {
 						cardDeck.add(humanCard); // Add human card to card deck
 						personCards.add(humanCard);
 						currPlayer = humanPlayer;
-						
+
 						human = false; // No longer need any more human players
 					}
-					
+
 					// The code below works the same way as the code above
 					// except these are for computer players
 					else {
@@ -249,7 +249,7 @@ public class Board {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 
 
 		try (BufferedReader br = new BufferedReader(new FileReader(layoutConfigFile))) {
@@ -392,9 +392,9 @@ public class Board {
 
 					targets.add(cell);
 				} else {
-					
+
 					findAllTargets(cell, pathLength - 1); // recursive call
-					
+
 				}
 				visited.remove(cell);
 			}
@@ -437,8 +437,8 @@ public class Board {
 	public Set<BoardCell> getAdjList(int row, int col) {
 		return grid[row][col].getAdjList();
 	}
-	
-	
+
+
 	public Map<Character, Room> getRoomMap() {
 		return this.roomMap;
 	}
@@ -446,23 +446,23 @@ public class Board {
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
-	
+
 	public ArrayList<Player> getPlayerList() {
 		return this.playerList;
 	}
-	
+
 	public ArrayList<Card> getCardDeck() {
 		return this.cardDeck;
 	}
-	
+
 	public ArrayList<Card> getRoomCards() {
 		return this.roomCards;
 	}
-	
+
 	public ArrayList<Card> getPersonCards() {
 		return this.personCards;
 	}
-	
+
 	public ArrayList<Card> getWeaponCards() {
 		return this.weaponCards;
 	}
@@ -479,7 +479,7 @@ public class Board {
 		}
 		return null;
 	}
-	
+
 	/*
 	 * Getter function returns an enum of the type of card the card is.
 	 */
@@ -490,7 +490,7 @@ public class Board {
 			}
 		}
 		return null;
-			
+
 	}
 
 	/*
@@ -520,11 +520,11 @@ public class Board {
 		}
 		return currentColor;
 	}
-	
+
 	public Player getHumanPlayer(){
 		return humanPlayer;
 	}
-	
+
 	/*
 	 * Getter that returns a player object
 	 */
@@ -537,7 +537,7 @@ public class Board {
 		}
 		return null;
 	}
-	
+
 	/*
 	 * The function below picks a random weapon, person, and room to place in the solution deck.
 	 * We make sure to remove these 3 cards from the temporary card deck. This way we ensure we don't 
@@ -545,21 +545,21 @@ public class Board {
 	 */
 	public void dealDeck() {
 		Random random = new Random();
-		
+
 		// find a random player, room, and weapon as the solution
 		int solutionPersonIndex = random.nextInt(personCards.size());
 		Card solutionPerson = personCards.get(solutionPersonIndex);
-		
+
 		int solutionRoomIndex = random.nextInt(roomCards.size());
 		Card solutionRoom = roomCards.get(solutionRoomIndex);
-		
+
 		int solutionWeaponIndex = random.nextInt(weaponCards.size());
 		Card solutionWeapon = weaponCards.get(solutionWeaponIndex);
-		
+
 		theAnswer.setPerson(solutionPerson);
 		theAnswer.setWeapon(solutionWeapon);
 		theAnswer.setRoom(solutionRoom);
-		
+
 		// remove those cards from the deck
 		ArrayList<Card> tempCardDeck = new ArrayList<>(cardDeck); // created a tempCardDeck to not change the actual deck
 		int personindex = tempCardDeck.indexOf(solutionPerson);
@@ -568,7 +568,7 @@ public class Board {
 		tempCardDeck.remove(weaponindex);
 		int roomindex = tempCardDeck.indexOf(solutionRoom);
 		tempCardDeck.remove(roomindex);
-		
+
 		int i = 0;
 		while (tempCardDeck.size() > 0) {
 			int index = random.nextInt(tempCardDeck.size());
@@ -577,25 +577,25 @@ public class Board {
 			i++;
 		}
 	}
-	
+
 	public void setSolution(Card person, Card weapon, Card room) {
 		theAnswer.setPerson(person);
 		theAnswer.setWeapon(weapon);
 		theAnswer.setRoom(room);
-		
+
 	}
-	
+
 	public Solution getSolution() {
 		return this.theAnswer;
 	}
-	
+
 	public boolean checkAccusation(Card person, Card weapon, Card room) {
 		if (person.equals(theAnswer.getPerson()) && weapon.equals(theAnswer.getWeapon()) && room.equals((theAnswer.getRoom()))) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public Card handleSuggestion(Card person, Card weapon, Card room, Player suggestor) {
 		int indexSuggestor = playerList.indexOf(suggestor);
 		int counter = (indexSuggestor + 1)%6;
@@ -608,11 +608,11 @@ public class Board {
 		}
 		return null;
 	}
-	
+
 	public Player getCurrPlayer() {
 		return currPlayer;
 	}
-	
+
 	public void updateTurn() {
 		int index = playerList.indexOf(currPlayer);
 		index = (index+1)%(playerList.size());
@@ -623,42 +623,42 @@ public class Board {
 			humanTurn = false;
 		}
 	}
-	
+
 	public int roll() {
 		Random random = new Random();
-        currRoll = random.nextInt(6) + 1;
-        return currRoll;
+		currRoll = random.nextInt(6) + 1;
+		return currRoll;
 	}
-	
+
 	public void setBoardPanel(JPanel boardPanel) {
 		this.boardPanel = boardPanel;
 	}
-	
+
 	public JPanel getBoardPanel() {
 		return boardPanel;
 	}
-	
+
 	public int getRoll() {
 		return currRoll;
 	}
-	
-	
-	
+
+
+
 	public void movePlayer(BoardCell clickedCell) { 
-		
+
 		BoardCell currCell = getCell(currPlayer.getRow(), currPlayer.getCol());
 		currCell.setOccupied(false);
 		currPlayer.setRow(clickedCell.getRow());
 		currPlayer.setCol(clickedCell.getColumn());
 		clickedCell.setOccupied(true);
-		
-		
+
+
 	}
-	
+
 	public boolean isHumanTurn() {
 		return humanTurn;
 	}
-	
+
 	public void setHumanTurn(boolean human) {
 		humanTurn = human;
 	}

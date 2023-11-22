@@ -26,22 +26,22 @@ public class GameControlPanel extends JPanel {
 	private Player currPlayer;
 	private static Board board;
 
-	
+
 	/*
 	 * The Game Control Panel creates the full GUI panel that displays
 	 * using a 2 x 1 matrix layout
 	 */
 	public GameControlPanel(Board board) {
 		this.board = board;  // create the panel
-		
+
 		setLayout(new GridLayout(2,1));
 		JPanel topHalfPanel = createTopHalfPanel();	// Displays top half of display
 		JPanel botHalfPanel = createBotHalfPanel();	// Displays bottom half of display
-		
+
 		add(topHalfPanel);
 		add(botHalfPanel);
 	}
-	
+
 	/*
 	 * This function creates the top half panel which includes 
 	 * the name and roll panels. The buttons are created and
@@ -50,24 +50,24 @@ public class GameControlPanel extends JPanel {
 	private JPanel createTopHalfPanel() {
 		JPanel topHalfPanel = new JPanel();
 		topHalfPanel.setLayout(new GridLayout(1, 4));
-		
+
 		JPanel userPanel = createNamePanel();
 		JPanel rollPanel = createRollPanel();
-		
+
 		JButton nextPlayerButton = new JButton("NEXT!");
 		NextPlayerListener nextPlayerListener = new NextPlayerListener(board, turn, roll);
 		nextPlayerButton.addActionListener(nextPlayerListener);
 		JButton makeAccusationButton = new JButton("Make Accusation");
-		
+
 		topHalfPanel.add(userPanel);
 		topHalfPanel.add(rollPanel);
 		topHalfPanel.add(makeAccusationButton);
 		topHalfPanel.add(nextPlayerButton);
-			
+
 		return topHalfPanel;
 	}
-	
-	
+
+
 	/*
 	 * This function creates the name panel for displaying
 	 * the current turn and which player's turn it is.
@@ -84,7 +84,7 @@ public class GameControlPanel extends JPanel {
 		board.setHumanTurn(true);
 		return namePanel;
 	}
-	
+
 	/*
 	 * This function creates the roll panel for displaying 
 	 * the roll number.
@@ -99,7 +99,7 @@ public class GameControlPanel extends JPanel {
 		rollPanel.add(roll);
 		return rollPanel;
 	}
-	
+
 	/*
 	 * This function creates the bottom half panel which includes
 	 * the guess panel.
@@ -107,16 +107,16 @@ public class GameControlPanel extends JPanel {
 	private JPanel createBotHalfPanel() {
 		JPanel botHalfPanel = new JPanel();
 		botHalfPanel.setLayout(new GridLayout(1,2));
-		
+
 		JPanel guessPanel = createGuessPanel("Guess");
 		JPanel guessResultPanel = createGuessPanel("Guess Result");
-		
+
 		botHalfPanel.add(guessPanel);
 		botHalfPanel.add(guessResultPanel);
-		
+
 		return botHalfPanel;
 	}
-	
+
 	/*
 	 * This function creates the guess panel which displays
 	 * the guess result.
@@ -126,7 +126,7 @@ public class GameControlPanel extends JPanel {
 		guessPanel.setLayout(new GridLayout(0, 1));
 		TitledBorder panelTitle = BorderFactory.createTitledBorder(title);
 		guessPanel.setBorder(panelTitle);
-		
+
 		if (title.equals("Guess")) {
 			theGuess = new JTextField();
 			theGuess.setEditable(false);	// Refactor Item
@@ -138,11 +138,11 @@ public class GameControlPanel extends JPanel {
 		}
 		return guessPanel;
 	}
-	
+
 	public void setGuess(String guess) {
 		theGuess.setText(guess);
 	}
-	
+
 	/*
 	 * This function sets our instance variables properly
 	 * so that we may use the player's information such as
@@ -154,58 +154,58 @@ public class GameControlPanel extends JPanel {
 		turn.setBackground(currPlayer.getColor());
 		this.roll.setText(String.valueOf(roll));
 	}
-	
+
 	public void setGuessResult(String guessResult) {
 		this.guessResult.setText(guessResult);
 	}
-	
+
 	public void setText(String g) {
 		this.setText(g);
 	}
 
-class NextPlayerListener implements ActionListener {
-	private Board board;
-	private JTextField currPlayer;
-	private JTextField roll;
-	
-	public NextPlayerListener(Board board, JTextField currPlayer, JTextField roll) {
-		this.board = board;
-		this.currPlayer = currPlayer;
-		this.roll = roll;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (board.getCurrPlayer().isHuman() == true) {
-			int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
-					"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			if (ans == JOptionPane.YES_OPTION) {
-				updateGame();
-			} 
-		} else {
-			
-        	board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
-        	BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
-        	if (newTarget != null) {
-        		board.getCurrPlayer().setCol(newTarget.getColumn());
-        		board.getCurrPlayer().setRow(newTarget.getRow());
-        	}
-        	
-			updateGame();
-		}
-	}
-	
+	class NextPlayerListener implements ActionListener {
+		private Board board;
+		private JTextField currPlayer;
+		private JTextField roll;
 
-	
-	private void updateGame() {
-		String newRoll = Integer.toString(board.roll());
-		roll.setText(newRoll);
-		board.updateTurn();
-		currPlayer.setText(board.getCurrPlayer().getName());
-		currPlayer.setBackground(board.getCurrPlayer().getColor());
-		board.getBoardPanel().repaint();
+		public NextPlayerListener(Board board, JTextField currPlayer, JTextField roll) {
+			this.board = board;
+			this.currPlayer = currPlayer;
+			this.roll = roll;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (board.getCurrPlayer().isHuman() == true) {
+				int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
+						"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (ans == JOptionPane.YES_OPTION) {
+					updateGame();
+				} 
+			} else {
+
+				board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+				BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
+				if (newTarget != null) {
+					board.getCurrPlayer().setCol(newTarget.getColumn());
+					board.getCurrPlayer().setRow(newTarget.getRow());
+				}
+
+				updateGame();
+			}
+		}
+
+
+
+		private void updateGame() {
+			String newRoll = Integer.toString(board.roll());
+			roll.setText(newRoll);
+			board.updateTurn();
+			currPlayer.setText(board.getCurrPlayer().getName());
+			currPlayer.setBackground(board.getCurrPlayer().getColor());
+			board.getBoardPanel().repaint();
+		}
+
 	}
-	
-}
 }

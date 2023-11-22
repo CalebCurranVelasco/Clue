@@ -5,14 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	private BoardPanel boardPanel;
 	private CardsPanel cardsPanel;
 	private GameControlPanel gameControlPanel;
 	private static Board board;
-	
-	
+
+
 	/*
 	 * This function creates the main panel for the 
 	 * Clue board and adds all other panels to display.
@@ -26,7 +26,7 @@ public class ClueGame extends JFrame {
 		add(cardsPanel, BorderLayout.EAST);
 		add(gameControlPanel, BorderLayout.SOUTH);
 	}
-	
+
 	/*
 	 * This function creates all the panels
 	 * that are going to be displayed on the GUI.
@@ -36,22 +36,22 @@ public class ClueGame extends JFrame {
 		cardsPanel= new CardsPanel(board);
 		gameControlPanel = new GameControlPanel(board);
 	}
-	
+
 	/*
 	 * The function below creates a splash screen
 	 * which basically just displays the game's intro.
 	 */
 	private static void splashScreen() {
 		String message = "You are Gojo Satoru.\nCan you find the solution \nbefore the the advanced \nAI players?";
-        JOptionPane.showMessageDialog(null, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, message, "Welcome to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/*
 	 * The main method below is what lets us
-	 * display the whole game. It wrapss everything up.
+	 * display the whole game. It wraps everything up.
 	 */
 	public static void main(String[] args) {
-		
+
 		board = Board.getInstance();
 		// set the file names to use my config files
 		board.setConfigFiles("ClueLayout.csv", "ClueSetup.txt");		
