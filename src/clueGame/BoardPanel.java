@@ -128,7 +128,8 @@ public class BoardPanel extends JPanel{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-			if (board.isHumanTurn()==true) {
+			
+			if (board.isHumanTurn()) {
 				BoardCell clickedCell = board.getCell(e.getY()/cellDimension, e.getX()/cellDimension);
 				if (board.getTargets().contains(clickedCell)) {
 					board.movePlayer(clickedCell);
