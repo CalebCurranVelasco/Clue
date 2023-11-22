@@ -1,0 +1,181 @@
+ALL COMMITS BELOW WERE GATHERED FROM THE GITLOGS, BUT ARE ALL THE REFACTOR CHANGES THAT WE'VE MADE:
+
+Authors: Joshua Ramirez Malerva, Caleb Curran Velasco
+
+MOST SIGNIFICANT REFACTOR:
+
+	Before Refactoring:
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		cellDimension = Math.min(getWidth() / board.getNumColumns(), getHeight() / board.getNumRows());
+		
+		for (int i=0; i < board.getNumRows(); i++) {
+			
+			for (int j=0; j < board.getNumColumns(); j++) {
+				
+				if (board.getCell(i, j).isSecretPassage()) {
+					
+					board.getCell(i, j).drawSecret(g, cellDimension);
+					g.setColor(Color.BLACK);
+					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight() / 45));
+
+					// Calculate the center coordinates of the cell
+					int centerX = j * cellDimension + cellDimension / 2;
+					int centerY = i * cellDimension + cellDimension / 2;
+
+					// Draw the "S" at the center of the cell
+					g.drawString("S", centerX, centerY);
+
+				} 
+				
+				else {
+					board.getCell(i, j).draw(g, cellDimension);
+				}
+
+			}
+		}
+			
+		for (Player player : board.getPlayerList()) {
+			player.drawPlayers(g, cellDimension, board);
+		}
+		for (int i = 0; i < board.getNumRows(); i++) {
+			for (int j=0; j < board.getNumColumns(); j++) {
+				BoardCell currCell = board.getCell(i, j);
+				if (currCell.isLabel()) {
+					g.setColor(Color.CYAN);
+					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight()/45));
+					g.drawString(board.getRoom(currCell).getName(), j*cellDimension, i*cellDimension);
+				}
+			}
+		}
+		
+		for (int i = 0; i < board.getNumRows(); i++) {
+			for (int j = 0; j < board.getNumColumns(); j++) {
+				if (board.getCell(i, j).getInitial() == 'W') {
+					g.setColor(Color.BLACK);
+					g.drawRect(j*cellDimension,i*cellDimension,cellDimension,cellDimension);
+				}
+				if (board.getCell(i, j).isDoorway()) {
+
+					g.setColor(Color.CYAN);
+					switch (board.getCell(i, j).getDoorDirection()) {
+					case UP:
+						g.fillRect(j * cellDimension, i * cellDimension, cellDimension,4);
+						g.drawRect(j * cellDimension, i * cellDimension, cellDimension,4);
+						break;
+					case DOWN:
+						g.fillRect(j * cellDimension, i * cellDimension+cellDimension, cellDimension, 4);
+						g.drawRect(j * cellDimension, i * cellDimension+cellDimension, cellDimension, 4);
+						break;
+					case LEFT:
+						g.fillRect(j * cellDimension, i * cellDimension, 4,cellDimension);
+						g.drawRect(j * cellDimension, i * cellDimension, 4,cellDimension);
+						break;
+					case RIGHT:
+						g.fillRect(j * cellDimension+cellDimension, i * cellDimension, 4, cellDimension);
+						g.drawRect(j * cellDimension+cellDimension, i * cellDimension, 4, cellDimension);
+						break;
+					case NONE:
+						break;
+
+					}
+				}
+
+			}
+		}			
+		
+		if (board.isHumanTurn()) {
+			board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+			System.out.println(board.getTargets().size());
+			for (BoardCell target : board.getTargets()) {
+
+				if (!target.isOccupied()) {
+					target.drawTarget(g, cellDimension);
+				}
+
+			}
+		}
+
+	}
+	
+	After Refactoring:
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		cellDimension = Math.min(getWidth() / board.getNumColumns(), getHeight() / board.getNumRows());
+		
+		drawSecretPassage(g);	<--- This function simply puts the logic above into a different function.
+									This allows for more efficient code and looks cleaner.
+		
+		for (Player player : board.getPlayerList()) {
+			player.drawPlayers(g, cellDimension, board);
+		}
+		for (int i = 0; i < board.getNumRows(); i++) {
+			for (int j=0; j < board.getNumColumns(); j++) {
+				BoardCell currCell = board.getCell(i, j);
+				if (currCell.isLabel()) {
+					g.setColor(Color.CYAN);
+					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight()/45));
+					g.drawString(board.getRoom(currCell).getName(), j*cellDimension, i*cellDimension);
+				}
+			}
+		}
+		
+		drawClueBoard(g);	<--- This function simply puts the logic above into a different function.
+								This allows for more efficient code and looks cleaner.
+		
+		if (board.isHumanTurn()) {
+			board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+			System.out.println(board.getTargets().size());
+			for (BoardCell target : board.getTargets()) {
+
+				if (!target.isOccupied()) {
+					target.drawTarget(g, cellDimension);
+				}
+
+			}
+		}
+
+	}
+	
+	
+commit 8041bd71bbee1043bdcbc98d44f305dcc87e97ca
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Thu Nov 16 15:09:14 2023 -0700
+
+    Refactor 1: Used setEditable() so that the text is not editable
+	
+commit dfb386e417fe2475ef7a6403db466e1e12be7ba4
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Nov 19 17:23:48 2023 -0700
+
+    fixed some minor bugs and did some refactoring
+
+commit 3d7393581f6f236882582671c6426dfdbb58678d
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Sun Nov 19 17:09:59 2023 -0700
+
+    Now the human player can move to its targets and did some refactoring
+
+commit 145b961ced09bfcf23328235563b25e2e5d0a251
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Nov 21 11:58:37 2023 -0700
+
+    Made computer players move, made it so that multiple players could be displayed in the rooms. Did some refactoring
+
+commit a40dde5134f8f1702e8d449bfbed4fc8bcc11205
+Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.com>
+Date:   Tue Nov 21 15:25:42 2023 -0700
+
+    fixed errors and removed broken test
+
+
+	
+	
+	
+	
+	
+	
+	
+	

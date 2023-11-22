@@ -35,30 +35,11 @@ public class BoardPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		//		int cellDimension = 50;
 		cellDimension = Math.min(getWidth() / board.getNumColumns(), getHeight() / board.getNumRows());
-		//board.getCell(0,20).draw(g, cellDimension);
-		//board.getCell(2,1).draw(g, cellDimension);
-		for (int i=0; i < board.getNumRows(); i++) {
-			for (int j=0; j < board.getNumColumns(); j++) {
-				if (board.getCell(i, j).isSecretPassage()) {
-					board.getCell(i, j).drawSecret(g, cellDimension);
-					g.setColor(Color.BLACK);
-					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight() / 45));
-
-					// Calculate the center coordinates of the cell
-					int centerX = j * cellDimension + cellDimension / 2;
-					int centerY = i * cellDimension + cellDimension / 2;
-
-					// Draw the "S" at the center of the cell
-					g.drawString("S", centerX, centerY);
-
-				} else {
-					board.getCell(i, j).draw(g, cellDimension);
-				}
-
-			}
-		}
+		
+		drawSecretPassage(g);
+		
+		// The loops below creates the room labels
 		for (Player player : board.getPlayerList()) {
 			player.drawPlayers(g, cellDimension, board);
 		}
@@ -72,12 +53,38 @@ public class BoardPanel extends JPanel{
 				}
 			}
 		}
+		
+		drawClueBoard(g);
+		if (board.isHumanTurn()) {
+			board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+			System.out.println(board.getTargets().size());
+			for (BoardCell target : board.getTargets()) {
+
+				if (!target.isOccupied()) {
+					target.drawTarget(g, cellDimension);
+				}
+
+			}
+		}
+
+	}
+
+
+	/*
+	 * The function below simply draws the clue board
+	 * and includes the doorways.
+	 */
+	private void drawClueBoard(Graphics g) {
+		
 		for (int i = 0; i < board.getNumRows(); i++) {
+			
 			for (int j = 0; j < board.getNumColumns(); j++) {
+				
 				if (board.getCell(i, j).getInitial() == 'W') {
 					g.setColor(Color.BLACK);
 					g.drawRect(j*cellDimension,i*cellDimension,cellDimension,cellDimension);
 				}
+				
 				if (board.getCell(i, j).isDoorway()) {
 
 					g.setColor(Color.CYAN);
@@ -105,20 +112,41 @@ public class BoardPanel extends JPanel{
 				}
 
 			}
-		}
-		if (board.isHumanTurn()) {
-			board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
-			System.out.println(board.getTargets().size());
-			for (BoardCell target : board.getTargets()) {
-				//        			System.out.println(target);
+		}		
+	}
 
-				if (!target.isOccupied()) {
-					target.drawTarget(g, cellDimension);
+
+	/*
+	 * The function below simply draws the secret passages to display on the JFrame.
+	 */
+	private void drawSecretPassage(Graphics g) {
+		
+		for (int i=0; i < board.getNumRows(); i++) {
+			
+			for (int j=0; j < board.getNumColumns(); j++) {
+				
+				if (board.getCell(i, j).isSecretPassage()) {
+					
+					board.getCell(i, j).drawSecret(g, cellDimension);
+					g.setColor(Color.BLACK);
+					g.setFont(new Font("Arial", Font.PLAIN, this.getHeight() / 45));
+
+					// Calculate the center coordinates of the cell
+					int centerX = j * cellDimension + cellDimension / 2;
+					int centerY = i * cellDimension + cellDimension / 2;
+
+					// Draw the "S" at the center of the cell
+					g.drawString("S", centerX, centerY);
+
+				} 
+				
+				else {
+					board.getCell(i, j).draw(g, cellDimension);
 				}
 
 			}
 		}
-
+		
 	}
 
 
@@ -127,7 +155,6 @@ public class BoardPanel extends JPanel{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 			if (board.isHumanTurn()) {
 				BoardCell clickedCell = board.getCell(e.getY()/cellDimension, e.getX()/cellDimension);
