@@ -195,12 +195,13 @@ public class GameControlPanel extends JPanel {
 	 * so that we may use the player's information such as
 	 * name and dice roll.
 	 */
-	private void setTurn(Player player, Integer roll) {
-		currPlayer = player;
-		turn.setText(currPlayer.getName());
-		turn.setBackground(currPlayer.getColor());
-		this.roll.setText(String.valueOf(roll));
-	}
+	
+//	private void setTurn(Player player, Integer roll) {
+//		currPlayer = player;
+//		turn.setText(currPlayer.getName());
+//		turn.setBackground(currPlayer.getColor());
+//		this.roll.setText(String.valueOf(roll));
+//	}
 
 	public void setGuessResult(String guessResult) {
 		this.guessResult.setText(guessResult);

@@ -170,15 +170,17 @@ Date:   Tue Nov 21 15:25:42 2023 -0700
 
     fixed errors and removed broken test
     
-commit 7f609f0c630ca19958e0a822c9d5853f3965c8ad (HEAD -> testBranch, origin/testBranch)
+commit 7f609f0c630ca19958e0a822c9d5853f3965c8ad
 Author: Joshua Ramirez <jramirezmalerv@gmail.com>
 Date:   Tue Nov 21 18:16:05 2023 -0700
 
     Refactor 2: Reformatted paintComponent(Graphics g) function to improve efficiency of code
     
+commit 3978771c67275c5c646b2922cac0ccceb8a5bf12 
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Nov 21 18:55:47 2023 -0700
 
-
-
+    Refactor 3: Simplified logic in ComputerPlayer.java for eassier readability
 	
 	
 	
