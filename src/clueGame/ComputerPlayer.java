@@ -49,7 +49,8 @@ public class ComputerPlayer extends Player {
 		Card personCard = possiblePerson.get(indexPerson % personList.size());
 		Card weaponCard = possibleWeapon.get(indexWeapon % weaponList.size());
 		Card roomCard = null;
-		// if the room we in we have already seen, randomly pick another one
+		
+		// if the room that we're in has already been seen, randomly pick another one
 		if (hand.contains(currRoom) ||  cardsSeen.containsKey(currRoom)) {
 			for (Card room : roomList) {
 				if (!hand.contains(room) && !cardsSeen.containsKey(room)) {
@@ -63,15 +64,15 @@ public class ComputerPlayer extends Player {
 			roomCard = currRoom;
 		}
 		
-		Solution suggestion = new Solution(personCard, weaponCard, roomCard);
-		return suggestion;
+		return new Solution(personCard, weaponCard, roomCard);
 	}
 	
 	
 	public BoardCell selectTarget(Set<BoardCell> targets, Map<Character, Room> roomMap, ArrayList<Card> cards) {
-		if (targets.size() == 0) {
+		if (targets.isEmpty()) {
 			return null;
 		}
+				
 		for (BoardCell target : targets) {
 			if (target.isRoomCenter()) {
 				Room room = roomMap.get(target.getInitial());
@@ -102,9 +103,6 @@ public class ComputerPlayer extends Player {
 		}
 		return option;
 	}
-
-
-	
 	
 
 }
