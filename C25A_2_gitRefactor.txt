@@ -169,6 +169,14 @@ Author: CalebCurranVelasco <118134327+CalebCurranVelasco@users.noreply.github.co
 Date:   Tue Nov 21 15:25:42 2023 -0700
 
     fixed errors and removed broken test
+    
+commit 7f609f0c630ca19958e0a822c9d5853f3965c8ad (HEAD -> testBranch, origin/testBranch)
+Author: Joshua Ramirez <jramirezmalerv@gmail.com>
+Date:   Tue Nov 21 18:16:05 2023 -0700
+
+    Refactor 2: Reformatted paintComponent(Graphics g) function to improve efficiency of code
+    
+
 
 
 	

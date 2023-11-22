@@ -25,6 +25,53 @@ public class GameControlPanel extends JPanel {
 	private JTextField roll;
 	private Player currPlayer;
 	private static Board board;
+	
+	
+	class NextPlayerListener implements ActionListener {
+		private Board board;
+		private JTextField currPlayer;
+		private JTextField roll;
+
+		public NextPlayerListener(Board board, JTextField currPlayer, JTextField roll) {
+			this.board = board;
+			this.currPlayer = currPlayer;
+			this.roll = roll;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (board.getCurrPlayer().isHuman() == true) {
+				int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
+						"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (ans == JOptionPane.YES_OPTION) {
+					updateGame();
+				} 
+			} else {
+
+				board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+				BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
+				if (newTarget != null) {
+					board.getCurrPlayer().setCol(newTarget.getColumn());
+					board.getCurrPlayer().setRow(newTarget.getRow());
+				}
+
+				updateGame();
+			}
+		}
+
+
+
+		private void updateGame() {
+			String newRoll = Integer.toString(board.roll());
+			roll.setText(newRoll);
+			board.updateTurn();
+			currPlayer.setText(board.getCurrPlayer().getName());
+			currPlayer.setBackground(board.getCurrPlayer().getColor());
+			board.getBoardPanel().repaint();
+		}
+
+	}
 
 
 	/*
@@ -163,49 +210,5 @@ public class GameControlPanel extends JPanel {
 		this.setText(g);
 	}
 
-	class NextPlayerListener implements ActionListener {
-		private Board board;
-		private JTextField currPlayer;
-		private JTextField roll;
-
-		public NextPlayerListener(Board board, JTextField currPlayer, JTextField roll) {
-			this.board = board;
-			this.currPlayer = currPlayer;
-			this.roll = roll;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			if (board.getCurrPlayer().isHuman() == true) {
-				int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
-						"Yo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (ans == JOptionPane.YES_OPTION) {
-					updateGame();
-				} 
-			} else {
-
-				board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
-				BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
-				if (newTarget != null) {
-					board.getCurrPlayer().setCol(newTarget.getColumn());
-					board.getCurrPlayer().setRow(newTarget.getRow());
-				}
-
-				updateGame();
-			}
-		}
-
-
-
-		private void updateGame() {
-			String newRoll = Integer.toString(board.roll());
-			roll.setText(newRoll);
-			board.updateTurn();
-			currPlayer.setText(board.getCurrPlayer().getName());
-			currPlayer.setBackground(board.getCurrPlayer().getColor());
-			board.getBoardPanel().repaint();
-		}
-
-	}
+	
 }
