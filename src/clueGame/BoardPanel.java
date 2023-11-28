@@ -163,6 +163,11 @@ public class BoardPanel extends JPanel{
 					board.movePlayer(clickedCell);
 					board.setHumanTurn(false);
 					repaint();
+					
+					// if in room make suggestion
+					if (clickedCell.isRoomCenter()) {
+						// add JDialog and get solution from dialog and send to handleSuggestion in board
+					}
 
 				} else {
 					showErrorClick();

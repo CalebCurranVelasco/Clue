@@ -600,6 +600,25 @@ public class Board {
 	public Card handleSuggestion(Card person, Card weapon, Card room, Player suggestor) {
 		int indexSuggestor = playerList.indexOf(suggestor);
 		int counter = (indexSuggestor + 1)%6;
+		
+		// moving the suggested player to that room
+		Player suggestedPlayer = null;
+		Room suggestedRoom = null;
+		String name = person.getCardName();
+		for (Player player : playerList) {
+			if (player.getName().equals(name)) {
+				suggestedPlayer = player;
+				
+			}
+		}
+		for (Room element : roomMap.values()) {
+			if (element.getName().equals(room.getCardName())) {
+				suggestedRoom = element;
+			}
+		}
+		suggestedPlayer.setCol(suggestedRoom.getCenterCell().getColumn());
+		suggestedPlayer.setRow(suggestedRoom.getCenterCell().getRow());
+		
 		while (counter != indexSuggestor) {
 			Card result = playerList.get(counter).disproveSuggestion(person, weapon, room);
 			if (result != null) {
