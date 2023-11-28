@@ -40,6 +40,7 @@ public class GameControlPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			// TODO Auto-generated method stub
 			if (board.getCurrPlayer().isHuman() == true) {
 				int ans = JOptionPane.showConfirmDialog(null, "Are you done with your turn?", 
@@ -48,9 +49,11 @@ public class GameControlPanel extends JPanel {
 					updateGame();
 				} 
 			} else {
-
+				
 				board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
+			
 				BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
+				
 				if (newTarget != null) {
 					board.getCurrPlayer().setCol(newTarget.getColumn());
 					board.getCurrPlayer().setRow(newTarget.getRow());

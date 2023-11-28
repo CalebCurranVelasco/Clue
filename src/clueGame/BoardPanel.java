@@ -58,7 +58,7 @@ public class BoardPanel extends JPanel{
 		
 		if (board.isHumanTurn()) {
 			board.calcTargets(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()), board.getRoll());
-			System.out.println(board.getTargets().size());
+			
 			for (BoardCell target : board.getTargets()) {
 
 				if (!target.isOccupied()) {

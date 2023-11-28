@@ -94,7 +94,7 @@ public class ComputerPlayer extends Player {
 		boolean filled = false;
 		BoardCell option = null;
 		int count = 0;
-		while (filled == false || count >= targets.size()) {
+		while (filled == false && count <= targets.size()) {
 			option = targets.stream().findAny().get();
 			if (!option.isOccupied()) {
 				filled = true;

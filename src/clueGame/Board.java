@@ -381,6 +381,7 @@ public class Board {
 	}
 
 	public void findAllTargets(BoardCell startCell, int pathLength) {
+		
 		Set<BoardCell> adjList = startCell.getAdjList();
 		for (BoardCell cell : adjList) {
 			if (visited.contains(cell) || (cell.isOccupied() && !cell.isRoomCenter())) {
