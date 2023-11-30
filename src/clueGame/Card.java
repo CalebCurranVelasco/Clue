@@ -48,7 +48,7 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return "Card [cardName=" + cardName + ", typeOfCard=" + typeOfCard + "]";
+		return cardName;
 	}
 	
 	

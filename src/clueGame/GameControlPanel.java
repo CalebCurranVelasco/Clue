@@ -57,7 +57,37 @@ public class GameControlPanel extends JPanel {
 				if (newTarget != null) {
 					board.getCurrPlayer().setCol(newTarget.getColumn());
 					board.getCurrPlayer().setRow(newTarget.getRow());
+					
+					if (newTarget.isRoomCenter()) {
+						Card currRoom = null;
+						
+		            	ArrayList<Card> roomCards = board.getRoomCards();
+		            	for (Card room : roomCards) {
+		            		
+		            		if (room.getCardName().equals(board.getRoom(board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol())).getName())) {
+		            			
+		            			currRoom = room;
+		            			break;
+		            		}
+		            	}
+		            	Solution computerSolution = board.getCurrPlayer().createSuggestion(currRoom, board.getPersonCards(), board.getWeaponCards(), board.getRoomCards());
+		            	System.out.println(currRoom);
+		            	Card disprovingCard = board.handleSuggestion(computerSolution.getPerson(), computerSolution.getWeapon(), computerSolution.getRoom(), board.getCurrPlayer());
+		            	if (disprovingCard == null) {
+		            		// guess result should say inconclusive
+		            		setGuessResult("Guess not Disproved", Color.white);
+		            	} else {
+		            		// guess result should say is was disproved
+		            		setGuessResult(disprovingCard.toString(), )
+		            	}
+		            	// regardless there should be the guess shown
+		            	String newGuess = computerSolution.getPerson() + ", " + computerSolution.getRoom() +
+		            			", " + computerSolution.getWeapon();
+		            	setGuess(newGuess, board.getCurrPlayer().getColor());
+					}
+					
 				}
+			
 
 				updateGame();
 			}
@@ -68,10 +98,11 @@ public class GameControlPanel extends JPanel {
 		private void updateGame() {
 			String newRoll = Integer.toString(board.roll());
 			roll.setText(newRoll);
-			board.updateTurn();
+			
 			currPlayer.setText(board.getCurrPlayer().getName());
 			currPlayer.setBackground(board.getCurrPlayer().getColor());
 			board.getBoardPanel().repaint();
+			board.updateTurn();
 		}
 
 	}
@@ -189,8 +220,9 @@ public class GameControlPanel extends JPanel {
 		return guessPanel;
 	}
 
-	public void setGuess(String guess) {
+	public void setGuess(String guess, Color color) {
 		theGuess.setText(guess);
+		theGuess.setBackground(color);
 	}
 
 	/*
@@ -206,8 +238,9 @@ public class GameControlPanel extends JPanel {
 //		this.roll.setText(String.valueOf(roll));
 //	}
 
-	public void setGuessResult(String guessResult) {
+	public void setGuessResult(String guessResult, Color color) {
 		this.guessResult.setText(guessResult);
+		this.guessResult.setBackground(color);
 	}
 
 	public void setText(String g) {

@@ -612,6 +612,7 @@ public class Board {
 			}
 		}
 		for (Room element : roomMap.values()) {
+			System.out.println(room);
 			if (element.getName().equals(room.getCardName())) {
 				suggestedRoom = element;
 			}
