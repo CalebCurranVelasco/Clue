@@ -73,7 +73,7 @@ public class BoardPanel extends JPanel{
 			
 			for (BoardCell target : board.getTargets()) {
 
-				if (!target.isOccupied()) {
+				if (!target.isOccupied() || target.isRoomCenter()) {
 					target.drawTarget(g, cellDimension);
 				}
 

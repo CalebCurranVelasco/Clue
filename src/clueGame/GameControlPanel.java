@@ -241,8 +241,10 @@ public class GameControlPanel extends JPanel {
 					BoardCell newTarget = board.getCurrPlayer().selectTarget(board.getTargets(), board.getRoomMap(), board.getCardDeck());
 					
 					if (newTarget != null) {
+						board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()).setOccupied(false);
 						board.getCurrPlayer().setCol(newTarget.getColumn());
 						board.getCurrPlayer().setRow(newTarget.getRow());
+//						board.getCell(board.getCurrPlayer().getRow(), board.getCurrPlayer().getCol()).setOccupied(true);
 						
 						if (newTarget.isRoomCenter()) {
 							Card currRoom = null;
@@ -288,12 +290,8 @@ public class GameControlPanel extends JPanel {
             		setGuessResult("Guess Disproved", disprovingColor);
             	}
             	board.getCurrPlayer().addCardsSeen(disprovingCard, disprovingPlayer);
-//            	for (Card card : board.getCurrPlayer().getCardsSeen().keySet()) {
-//            		System.out.println(card);
-//            	}
-//            	cardsPanel.updateSeenCards();
-//            	cardsPanel.update(cardsPanel.getGraphics());
-            	
+
+            	cardsPanel.updateSeenCards();        	
             	
         		
         	}

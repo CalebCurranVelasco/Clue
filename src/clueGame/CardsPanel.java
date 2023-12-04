@@ -115,13 +115,12 @@ public class CardsPanel extends JPanel {
 		int counter = 0;
 		JTextField field;
 		
-		for (Card card : board.getCurrPlayer().getCardsSeen().keySet()) {
-			System.out.println("In Panel: " + card);
+		for (Card card : board.getHumanPlayer().getCardsSeen().keySet()) {
+			
 			if (card.getTypeOfCard().toString().equalsIgnoreCase(cardType.toLowerCase())) {
-				System.out.println("in if: " + card.getCardName());
 				field = new JTextField(card.getCardName(), 20);
 				field.setEditable(false);
-				field.setBackground(board.getCurrPlayer().getCardsSeen().get(card).getColor());
+				field.setBackground(board.getHumanPlayer().getCardsSeen().get(card).getColor());
 				panel.add(field);
 				counter++;
 			}
@@ -136,12 +135,11 @@ public class CardsPanel extends JPanel {
 	}
 	
     public void updateSeenCards() {
-//    	updateSeenPanel(seenPanelForPerson, "Person");
-//        updateSeenPanel(seenPanelForRoom, "Room");
-//        updateSeenPanel(seenPanelForWeapon, "Weapon");
-    	createPanel("Person");
-    	createPanel("Room");
-        createPanel("Weapon");
+    	updateSeenPanel(seenPanelForPerson, "Person");
+        updateSeenPanel(seenPanelForRoom, "Room");
+        updateSeenPanel(seenPanelForWeapon, "Weapon");
+        revalidate();
+        repaint();
     }
 
 }

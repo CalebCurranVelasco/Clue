@@ -617,6 +617,7 @@ public class Board {
 				suggestedRoom = element;
 			}
 		}
+		getCell(suggestedPlayer.getRow(), suggestedPlayer.getCol()).setOccupied(false);
 		suggestedPlayer.setCol(suggestedRoom.getCenterCell().getColumn());
 		suggestedPlayer.setRow(suggestedRoom.getCenterCell().getRow());
 		
