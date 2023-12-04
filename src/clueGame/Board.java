@@ -597,9 +597,10 @@ public class Board {
 		return false;
 	}
 
-	public Card handleSuggestion(Card person, Card weapon, Card room, Player suggestor) {
+	public Pair handleSuggestion(Card person, Card weapon, Card room, Player suggestor) {
 		int indexSuggestor = playerList.indexOf(suggestor);
 		int counter = (indexSuggestor + 1)%6;
+		Pair ans;
 		
 		// moving the suggested player to that room
 		Player suggestedPlayer = null;
@@ -612,7 +613,6 @@ public class Board {
 			}
 		}
 		for (Room element : roomMap.values()) {
-			System.out.println(room);
 			if (element.getName().equals(room.getCardName())) {
 				suggestedRoom = element;
 			}
@@ -623,7 +623,9 @@ public class Board {
 		while (counter != indexSuggestor) {
 			Card result = playerList.get(counter).disproveSuggestion(person, weapon, room);
 			if (result != null) {
-				return result;
+				
+				ans = new Pair(result, playerList.get(counter));
+				return ans;
 			}
 			counter = (counter + 1) % playerList.size();
 		}

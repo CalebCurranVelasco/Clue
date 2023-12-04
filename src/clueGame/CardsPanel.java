@@ -11,6 +11,9 @@ import javax.swing.border.TitledBorder;
 public class CardsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static Board board;
+	private JPanel seenPanelForPerson;
+    private JPanel seenPanelForRoom;
+    private JPanel seenPanelForWeapon;
 
 	/*
 	 * This function creates the panel which displays
@@ -19,6 +22,9 @@ public class CardsPanel extends JPanel {
 	public CardsPanel(Board board) {
 		this.board = board;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		seenPanelForPerson = new JPanel();
+        seenPanelForRoom = new JPanel();
+        seenPanelForWeapon = new JPanel();
 		add(createPanel("Person"));
 		add(createPanel("Room"));
 		add(createPanel("Weapon"));
@@ -85,11 +91,19 @@ public class CardsPanel extends JPanel {
 	 * the cards that the player has seen by others.
 	 */
 	private JPanel createSeenPanel(String cardType) {
-		JPanel seenPanel = new JPanel();
-		TitledBorder titleSeen = BorderFactory.createTitledBorder("Seen: ");
-		seenPanel.setBorder(titleSeen);
-		updateSeenPanel(seenPanel, cardType);
-		return seenPanel;
+        JPanel seenPanel = null;
+        if ("Person".equals(cardType)) {
+            seenPanel = seenPanelForPerson;
+        } else if ("Room".equals(cardType)) {
+            seenPanel = seenPanelForRoom;
+        } else if ("Weapon".equals(cardType)) {
+            seenPanel = seenPanelForWeapon;
+        }
+        
+        TitledBorder titleSeen = BorderFactory.createTitledBorder("Seen: ");
+        seenPanel.setBorder(titleSeen);
+        updateSeenPanel(seenPanel, cardType);
+        return seenPanel;
 	}
 
 	/*
@@ -100,11 +114,14 @@ public class CardsPanel extends JPanel {
 		panel.removeAll();
 		int counter = 0;
 		JTextField field;
-		for (Card card : board.getHumanPlayer().getCardsSeen().keySet()) {
+		
+		for (Card card : board.getCurrPlayer().getCardsSeen().keySet()) {
+			System.out.println("In Panel: " + card);
 			if (card.getTypeOfCard().toString().equalsIgnoreCase(cardType.toLowerCase())) {
+				System.out.println("in if: " + card.getCardName());
 				field = new JTextField(card.getCardName(), 20);
 				field.setEditable(false);
-				field.setBackground(board.getHumanPlayer().getCardsSeen().get(card).getColor());
+				field.setBackground(board.getCurrPlayer().getCardsSeen().get(card).getColor());
 				panel.add(field);
 				counter++;
 			}
@@ -117,5 +134,14 @@ public class CardsPanel extends JPanel {
 
 		panel.setLayout(new GridLayout(counter,1));
 	}
+	
+    public void updateSeenCards() {
+//    	updateSeenPanel(seenPanelForPerson, "Person");
+//        updateSeenPanel(seenPanelForRoom, "Room");
+//        updateSeenPanel(seenPanelForWeapon, "Weapon");
+    	createPanel("Person");
+    	createPanel("Room");
+        createPanel("Weapon");
+    }
 
 }

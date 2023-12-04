@@ -23,6 +23,8 @@ import javax.swing.JTextField;
 
 import org.junit.platform.engine.support.descriptor.DirectorySource;
 
+import clueGame.GameControlPanel.NextPlayerListener;
+
 public class BoardPanel extends JPanel{
 
 	private static Board board;
@@ -171,14 +173,17 @@ public class BoardPanel extends JPanel{
 				BoardCell clickedCell = board.getCell(e.getY()/cellDimension, e.getX()/cellDimension);
 				if (board.getTargets().contains(clickedCell)) {
 					board.movePlayer(clickedCell);
-					board.setHumanTurn(false);
-					repaint();
-					
+//					repaint();
 					// if in room make suggestion
 					if (clickedCell.isRoomCenter()) {
 						// add JDialog and get solution from dialog and send to handleSuggestion in board
 						showSuggestionJDialog();
 					}
+					
+					board.setHumanTurn(false);
+					repaint();
+					
+					
 
 				} else {
 					showErrorClick();
@@ -227,9 +232,9 @@ public class BoardPanel extends JPanel{
 	        suggestionDialog.setVisible(true);
 
 	        // Get the solution from the dialog and handle the suggestion
-	        if (canceled == false) {
+	        if (!canceled) {
 	        	Solution solution = suggestionDialog.getSolution();
-		        board.handleSuggestion(solution.getPerson(), solution.getWeapon(), solution.getRoom(), board.getCurrPlayer());
+	        	NextPlayerListener.checkSuggestion(solution);
 	        }
 	        
 		}

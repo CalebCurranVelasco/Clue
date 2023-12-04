@@ -87,7 +87,7 @@ class GameSolutionTest {
 		board.getPlayer("green").addCardsHeld(card3);
 		board.getPlayer("white").addCardsHeld(card4);
 		board.getPlayer("yellow").addCardsHeld(card5);
-		assertTrue(card3.equals(board.handleSuggestion(card3, card4, card5, board.getPlayer("yellow"))));
+		assertTrue(card3.equals(board.handleSuggestion(card3, card4, card5, board.getPlayer("yellow")).getCard()));
 	}
 	
 	
@@ -163,7 +163,7 @@ class GameSolutionTest {
 		board.getPlayer("green").addCardsHeld(card3);
 		board.getPlayer("white").addCardsHeld(card4);
 		board.getPlayer("yellow").addCardsHeld(card5);
-		assertEquals(card4, board.handleSuggestion(card6, card4, card, board.getPlayer("orange")));
+		assertEquals(card4, board.handleSuggestion(card6, card4, card, board.getPlayer("orange")).getCard());
 	}
 
 }

@@ -57,8 +57,13 @@ public class ComputerPlayer extends Player {
 					possibleRoom.add(room);
 				}
 			}
-			int indexRoom = random.nextInt(possibleRoom.size());
-			roomCard = possibleRoom.get(indexRoom % roomList.size());
+			if (!possibleRoom.isEmpty()) {
+				int indexRoom = random.nextInt(possibleRoom.size());
+				roomCard = possibleRoom.get(indexRoom % roomList.size());
+			} else {
+				roomCard = currRoom;
+			}
+			
 		}
 		else {
 			roomCard = currRoom;
