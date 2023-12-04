@@ -142,7 +142,8 @@ public class GameControlPanel extends JPanel {
 	        
 	        JButton submitButton = new JButton("Submit");
 	        submitButton.addActionListener(new ActionListener() {
-	            @Override
+	            
+	        	@Override
 	            public void actionPerformed(ActionEvent e) {
 	            	// need to get all three cards and put them in solution
 	            	for (Card room : roomCards) {
@@ -273,6 +274,10 @@ public class GameControlPanel extends JPanel {
 			}
 		}
 
+		/*
+		 * The method below check the suggestion of the player that is 
+		 * suggesting a possible solution.
+		 */
 		public static void checkSuggestion(Solution testSolution) {
 			Pair disprovingPair = board.handleSuggestion(testSolution.getPerson(), testSolution.getWeapon(), testSolution.getRoom(), board.getCurrPlayer());
         	
